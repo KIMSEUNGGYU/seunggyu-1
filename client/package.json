@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "@zeit/next-less": "^1.0.1",

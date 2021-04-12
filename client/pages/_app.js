@@ -10,10 +10,24 @@ const globalStyle = css`
 
   ul {
     margin: 0;
+    padding-left: 0;
   }
-
   li {
     list-style: none;
+  }
+  h1 {
+    margin: 0;
+  }
+  textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
   }
 `;
 
