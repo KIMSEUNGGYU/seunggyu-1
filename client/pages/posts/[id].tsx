@@ -1,7 +1,7 @@
-import PoostPage from "@pages/Post";
+import PostPage from "@pages/Post";
 
 function Page() {
-  return <PoostPage />;
+  return <PostPage />;
 }
 
 export default Page;
