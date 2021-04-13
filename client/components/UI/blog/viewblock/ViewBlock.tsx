@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
+
 import { theme } from "@theme/index";
 
 type Post = {
@@ -68,14 +70,18 @@ function ViewBlock({ posts }: ViewBlockProps) {
     <BlogBlock>
       {posts.map((post) => (
         <BlockContainer>
-          <ListTitle>{post.title}</ListTitle>
-          <DateString>{post.date}</DateString>
-          <Description>{post.description}</Description>
-          <Tags>
-            {post.tags.map((tag, idx) => (
-              <Tag key={idx}>#{tag}</Tag>
-            ))}
-          </Tags>
+          <Link href={`/posts/${post.id}`}>
+            <a>
+              <ListTitle>{post.title}</ListTitle>
+              <DateString>{post.date}</DateString>
+              <Description>{post.description}</Description>
+              <Tags>
+                {post.tags.map((tag, idx) => (
+                  <Tag key={idx}>#{tag}</Tag>
+                ))}
+              </Tags>
+            </a>
+          </Link>
         </BlockContainer>
       ))}
     </BlogBlock>

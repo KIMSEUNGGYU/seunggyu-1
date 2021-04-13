@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
+
 import { theme } from "@theme/index";
 
 type Post = {
@@ -69,18 +71,22 @@ function ViewList({ posts }: PorpsType) {
     <>
       <BlogLists>
         {posts.map((post, idx) => (
-          <ListContainer key={idx}>
-            <ListTitleBlock>
-              <ListTitle>{post.title}</ListTitle>
-              <DateString>{post.date}</DateString>
-            </ListTitleBlock>
-            <Description>{post.description}</Description>
-            <Tags>
-              {post.tags.map((tag, idx) => (
-                <Tag key={idx}>#{tag}</Tag>
-              ))}
-            </Tags>
-          </ListContainer>
+          <Link href={`/posts/${post.id}`}>
+            <a>
+              <ListContainer key={idx}>
+                <ListTitleBlock>
+                  <ListTitle>{post.title}</ListTitle>
+                  <DateString>{post.date}</DateString>
+                </ListTitleBlock>
+                <Description>{post.description}</Description>
+                <Tags>
+                  {post.tags.map((tag, idx) => (
+                    <Tag key={idx}>#{tag}</Tag>
+                  ))}
+                </Tags>
+              </ListContainer>
+            </a>
+          </Link>
         ))}
       </BlogLists>
     </>
