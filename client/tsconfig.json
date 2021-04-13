@@ -68,6 +68,7 @@
       "@components/*": ["components/*"],
       "@pages/*": ["components/pages/*"],
       "@UI/*": ["components/UI/*"],
+      "@SERIES/*": ["components/UI/series/*"],
       "@theme/*": ["theme/*"],
       "@data/*": ["data/*"]
     }
