@@ -1,8 +1,14 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { MenuOutlined, BlockOutlined } from "@ant-design/icons";
-import { css } from "@emotion/react";
 
 import { theme } from "@theme/index";
+
+type ViewModeType = "list" | "block";
+const initMode = {
+  list: false,
+  block: false,
+};
 
 const ViewModeBlock = styled.ul`
   /* width: 100%; */
@@ -15,24 +21,33 @@ const ViewModeBlock = styled.ul`
   font-size: 36px;
 `;
 
-const MenuItem = styled.li<{ choice?: boolean }>`
+const MenuItem = styled.li`
   margin-left: 25px;
   cursor: pointer;
-  ${(props) =>
-    props.choice &&
-    css`
-      font-weight: bold;
-      color: ${theme.MAIN_COLOR};
-    `}
+
+  &.choice {
+    font-weight: bold;
+    color: ${theme.MAIN_COLOR};
+  }
 `;
 
 function ViewMode() {
+  const [mode, setMode] = useState(initMode);
+  const clickHandler = (view: ViewModeType) =>
+    setMode({ ...initMode, [view]: true });
+
   return (
     <ViewModeBlock>
-      <MenuItem choice>
+      <MenuItem
+        className={mode.list ? "choice" : ""}
+        onClick={() => clickHandler("list")}
+      >
         <MenuOutlined />
       </MenuItem>
-      <MenuItem>
+      <MenuItem
+        className={mode.block ? "choice" : ""}
+        onClick={() => clickHandler("block")}
+      >
         <BlockOutlined />
       </MenuItem>
     </ViewModeBlock>

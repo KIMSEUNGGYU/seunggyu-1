@@ -1,8 +1,12 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 import { theme } from "@theme/index";
-import { tags } from "@data/data";
+
+type TagsProps = {
+  tags: string[];
+};
 
 const TagsContainer = styled.div`
   width: 20%;
@@ -18,7 +22,7 @@ const TagTitle = styled.h1`
 const TagList = styled.ul`
   margin-top: 1em;
 `;
-const Tag = styled.li<{ choice?: boolean }>`
+const TagItem = styled.li<{ choice?: boolean }>`
   font-size: 25px;
   cursor: pointer;
   ${(props) =>
@@ -29,18 +33,21 @@ const Tag = styled.li<{ choice?: boolean }>`
     `}
 `;
 
-function Tags() {
+function Tags({ tags }: TagsProps) {
+  const [toggle, setToggle] = useState("전체 보기");
+
+  const handleClick = (tag: string) => setToggle(tag);
+  console.log(toggle);
+
   return (
     <TagsContainer>
       <TagTitle># 태그</TagTitle>
       <TagList>
-        {tags.map((tag) => (
-          <Tag>{tag.tag}</Tag>
+        {tags.map((tag, idx) => (
+          <TagItem key={idx} onClick={() => handleClick(tag)}>
+            {tag}
+          </TagItem>
         ))}
-        {/* <Tag choice>전체 보기</Tag>
-        <Tag>자료 구조</Tag>
-        <Tag>리액트</Tag>
-        <Tag>브라우저</Tag> */}
       </TagList>
     </TagsContainer>
   );

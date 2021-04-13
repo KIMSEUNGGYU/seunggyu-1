@@ -10,9 +10,12 @@ type Post = {
 };
 
 type PorpsType = {
-  post: Post;
+  posts: Post[];
 };
 
+const BlogLists = styled.ul`
+  width: 80%;
+`;
 const ListContainer = styled.li`
   background-color: white;
   border: 1px solid ${theme.BORDER_COLOR};
@@ -61,21 +64,25 @@ const Tag = styled.li`
   margin-right: 6px;
 `;
 
-function ViewList({ post }: PorpsType) {
+function ViewList({ posts }: PorpsType) {
   return (
     <>
-      <ListContainer>
-        <ListTitleBlock>
-          <ListTitle>{post.title}</ListTitle>
-          <DateString>{post.date}</DateString>
-        </ListTitleBlock>
-        <Description>{post.description}</Description>
-        <Tags>
-          {post.tags.map((tag, idx) => (
-            <Tag key={idx}>#{tag}</Tag>
-          ))}
-        </Tags>
-      </ListContainer>
+      <BlogLists>
+        {posts.map((post, idx) => (
+          <ListContainer key={idx}>
+            <ListTitleBlock>
+              <ListTitle>{post.title}</ListTitle>
+              <DateString>{post.date}</DateString>
+            </ListTitleBlock>
+            <Description>{post.description}</Description>
+            <Tags>
+              {post.tags.map((tag, idx) => (
+                <Tag key={idx}>#{tag}</Tag>
+              ))}
+            </Tags>
+          </ListContainer>
+        ))}
+      </BlogLists>
     </>
   );
 }

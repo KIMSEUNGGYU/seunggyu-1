@@ -3,6 +3,9 @@ import { css, Global } from "@emotion/react";
 import { theme } from "../theme/index";
 
 const globalStyle = css`
+  * {
+    box-sizing: border-box;
+  }
   body {
     background-color: ${theme.BACKGROUND_COLOR};
     margin: 0;
