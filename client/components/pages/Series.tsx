@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 import Header from "@UI/header/Header";
-// import SeriesBlock from "@components/UI/series/SeriesBlock";
 import Series from "@SERIES/Series";
 import { series } from "@data/data";
 import { theme } from "@theme/index";
@@ -30,8 +29,8 @@ function SeriesPage() {
     <>
       <Header />
       <SeriesContainer>
-        {series.map((contents) => (
-          <SeriesBlock>
+        {series.map((contents, idx) => (
+          <SeriesBlock key={idx}>
             <Series series={contents} />
           </SeriesBlock>
         ))}

@@ -5,7 +5,7 @@ import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { theme } from "@theme/index";
 
 type ListType = {
-  id: number;
+  id: string;
   title: string;
 };
 // type Ser
