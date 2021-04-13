@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 
-import Header from "@UI/header/Header";
-import ViewMode from "@UI/viewmode/ViewMode";
-import ViewList from "@UI/viewlist/ViewList";
-import ViewBlock from "@UI/viewblock/ViewBlock";
-import Tags from "@components/UI/tags/Tags";
+import Header from "@header/Header";
+import ViewMode from "@blog/viewmode/ViewMode";
+import ViewList from "@blog/viewlist/ViewList";
+import ViewBlock from "@blog/viewblock/ViewBlock";
+import Tags from "@blog/tags/Tags";
 import { posts, tags } from "@data/data";
 import { useState } from "react";
 

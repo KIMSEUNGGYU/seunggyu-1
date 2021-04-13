@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-import Header from "@UI/header/Header";
-import Series from "@SERIES/Series";
+import Header from "@header/Header";
+import Series from "@series/Series";
 import { series } from "@data/data";
 import { theme } from "@theme/index";
 

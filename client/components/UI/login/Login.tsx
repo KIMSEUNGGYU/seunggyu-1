@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
-import Header from "@header/Header";
-import { theme } from "../theme/index";
+import { theme } from "@theme/index";
 import { Input, Button } from "antd";
 
 const LoginContainer = styled.div`
@@ -30,14 +29,11 @@ const SingInButton = styled(Button)`
 
 function Login() {
   return (
-    <>
-      <Header />
-      <LoginContainer>
-        <InputStyle size="large" placeholder="아이디" />
-        <InputStyle size="large" placeholder="비밀번호" type="password" />
-        <SingInButton type="primary">로그인</SingInButton>
-      </LoginContainer>
-    </>
+    <LoginContainer>
+      <InputStyle size="large" placeholder="아이디" />
+      <InputStyle size="large" placeholder="비밀번호" type="password" />
+      <SingInButton type="primary">로그인</SingInButton>
+    </LoginContainer>
   );
 }
 

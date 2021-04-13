@@ -67,8 +67,11 @@
     "paths": {
       "@components/*": ["components/*"],
       "@pages/*": ["components/pages/*"],
-      "@UI/*": ["components/UI/*"],
-      "@SERIES/*": ["components/UI/series/*"],
+      "@ui/*": ["components/UI/*"],
+      "@header/*": ["components/UI/header/*"],
+      "@blog/*": ["components/UI/blog/*"],
+      "@series/*": ["components/UI/series/*"],
+      "@login/*": ["components/UI/login/*"],
       "@theme/*": ["theme/*"],
       "@data/*": ["data/*"]
     }
