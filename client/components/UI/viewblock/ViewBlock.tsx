@@ -76,10 +76,6 @@ function ViewBlock({ posts }: ViewBlockProps) {
               <Tag key={idx}>#{tag}</Tag>
             ))}
           </Tags>
-          {/* <Tags>
-            <Tag>#자료구조</Tag>
-            <Tag>#스택</Tag>
-          </Tags> */}
         </BlockContainer>
       ))}
     </BlogBlock>

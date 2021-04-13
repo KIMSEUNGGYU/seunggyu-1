@@ -1,17 +1,19 @@
-import { useState } from "react";
 import styled from "@emotion/styled";
 import { MenuOutlined, BlockOutlined } from "@ant-design/icons";
 
 import { theme } from "@theme/index";
 
 type ViewModeType = "list" | "block";
+type ViewModeProps = {
+  mode: boolean;
+  changeViewMode: (mode: ViewModeType) => void;
+};
 const initMode = {
   list: false,
   block: false,
 };
 
 const ViewModeBlock = styled.ul`
-  /* width: 100%; */
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 48px;
@@ -31,22 +33,18 @@ const MenuItem = styled.li`
   }
 `;
 
-function ViewMode() {
-  const [mode, setMode] = useState(initMode);
-  const clickHandler = (view: ViewModeType) =>
-    setMode({ ...initMode, [view]: true });
-
+function ViewMode({ changeViewMode, mode }: ViewModeProps) {
   return (
     <ViewModeBlock>
       <MenuItem
-        className={mode.list ? "choice" : ""}
-        onClick={() => clickHandler("list")}
+        className={mode === true ? "choice" : ""}
+        onClick={() => changeViewMode("list")}
       >
         <MenuOutlined />
       </MenuItem>
       <MenuItem
-        className={mode.block ? "choice" : ""}
-        onClick={() => clickHandler("block")}
+        className={mode === false ? "choice" : ""}
+        onClick={() => changeViewMode("block")}
       >
         <BlockOutlined />
       </MenuItem>

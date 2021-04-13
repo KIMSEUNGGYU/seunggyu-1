@@ -14,7 +14,7 @@ type PorpsType = {
 };
 
 const BlogLists = styled.ul`
-  width: 80%;
+  max-width: 80%;
 `;
 const ListContainer = styled.li`
   background-color: white;

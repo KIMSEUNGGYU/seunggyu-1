@@ -6,12 +6,9 @@ import ViewList from "@UI/viewlist/ViewList";
 import ViewBlock from "@UI/viewblock/ViewBlock";
 import Tags from "@components/UI/tags/Tags";
 import { posts, tags } from "@data/data";
+import { useState } from "react";
 
-// type ViewModeType = "list" | "block";
-// const initMode = {
-//   list: false,
-//   block: false,
-// };
+type ViewModeType = "list" | "block";
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -22,13 +19,17 @@ const BlogContainer = styled.div`
 `;
 
 function Blog() {
+  const [mode, setMode] = useState(true);
+  const changeViewMode = (mode: ViewModeType) => {
+    mode === "list" ? setMode(true) : setMode(false);
+  };
+
   return (
     <>
       <Header />
-      <ViewMode />
+      <ViewMode changeViewMode={changeViewMode} mode={mode} />
       <BlogContainer>
-        {/* <ViewList posts={posts} /> */}
-        <ViewBlock posts={posts} />
+        {mode ? <ViewList posts={posts} /> : <ViewBlock posts={posts} />}
         <Tags tags={tags} />
       </BlogContainer>
     </>
