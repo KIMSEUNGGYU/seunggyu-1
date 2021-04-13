@@ -21,7 +21,11 @@ const globalStyle = css`
   h1 {
     margin: 0;
   }
-  textarea {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  /* textarea {
     border: none;
     overflow: auto;
     outline: none;
@@ -30,8 +34,8 @@ const globalStyle = css`
     -moz-box-shadow: none;
     box-shadow: none;
 
-    resize: none; /*remove the resize handle on the bottom right*/
-  }
+    resize: none; /*remove the resize handle on the bottom right
+  } */
 `;
 
 function MyApp({ Component, pageProps }) {

@@ -48,7 +48,7 @@ const Description = styled.p`
   font-weight: bold;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 8;
   overflow: hidden;
 `;
 const Tags = styled.ul`

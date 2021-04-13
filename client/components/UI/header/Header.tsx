@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import Image from "next/image";
 
 import { theme } from "@theme/index";
@@ -50,33 +50,49 @@ function Header() {
 
   return (
     <Head>
-      <Logo>
-        <Image
-          src="/SEUNGGYU.svg"
-          alt="Picture of the author"
-          width={180}
-          height={41}
-        />
-      </Logo>
+      <Link href="/">
+        <a>
+          <Logo>
+            <Image
+              src="/SEUNGGYU.svg"
+              alt="Picture of the author"
+              width={180}
+              height={41}
+            />
+          </Logo>
+        </a>
+      </Link>
       <Menu>
-        <List
-          className={menu.blog ? "choice" : ""}
-          onClick={() => clickHandler("blog")}
-        >
-          Blog
-        </List>
-        <List
-          className={menu.series ? "choice" : ""}
-          onClick={() => clickHandler("series")}
-        >
-          Series
-        </List>
-        <List
-          className={menu.login ? "choice" : ""}
-          onClick={() => clickHandler("login")}
-        >
-          Login
-        </List>
+        <Link href="/">
+          <a>
+            <List
+              className={menu.blog ? "choice" : ""}
+              onClick={() => clickHandler("blog")}
+            >
+              Blog
+            </List>
+          </a>
+        </Link>
+        <Link href="/series">
+          <a>
+            <List
+              className={menu.series ? "choice" : ""}
+              onClick={() => clickHandler("series")}
+            >
+              Series
+            </List>
+          </a>
+        </Link>
+        <Link href="/login">
+          <a>
+            <List
+              className={menu.login ? "choice" : ""}
+              onClick={() => clickHandler("login")}
+            >
+              Login
+            </List>
+          </a>
+        </Link>
       </Menu>
     </Head>
   );
