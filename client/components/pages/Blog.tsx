@@ -26,7 +26,7 @@ function Blog() {
     mode === "list" ? setMode(true) : setMode(false);
   };
 
-  const changeTag = (tagId: string) => setTagId(tagId);
+  const changeTag = (tagId: string | null) => setTagId(tagId);
   let selectedPosts = [];
 
   if (tagId !== null) {
