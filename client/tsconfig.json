@@ -74,7 +74,8 @@
       "@login/*": ["components/UI/login/*"],
       "@post/*": ["components/UI/post/*"],
       "@theme/*": ["theme/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@common/*": ["common/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

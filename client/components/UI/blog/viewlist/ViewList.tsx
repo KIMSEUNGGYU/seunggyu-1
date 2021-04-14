@@ -1,19 +1,15 @@
+import { FC } from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
 import { theme } from "@theme/index";
+import { Post } from "@common/types";
+import { Typography } from "antd";
+const { Title, Text } = Typography;
 
-type Post = {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  tags: string[];
-};
-
-type PorpsType = {
+interface Props {
   posts: Post[];
-};
+}
 
 const BlogLists = styled.ul`
   max-width: 80%;
@@ -36,15 +32,14 @@ const ListTitleBlock = styled.div`
   display: flex;
   align-items: flex-end;
 `;
-const ListTitle = styled.h1``;
 
-const DateString = styled.span`
+const DateString = styled(Text)`
   color: ${theme.GREY_TEXT_COLOR};
   margin-left: 1em;
   font-weight: bold;
 `;
 
-const Description = styled.p`
+const Description = styled(Text)`
   margin-top: 6px;
   width: 100%;
   font-size: 15px;
@@ -58,30 +53,30 @@ const Description = styled.p`
 const Tags = styled.ul`
   margin-top: 3px;
   display: flex;
+
+  & > li {
+    color: ${theme.MAIN_COLOR};
+    font-weight: bold;
+    margin-right: 6px;
+  }
 `;
 
-const Tag = styled.li`
-  color: ${theme.MAIN_COLOR};
-  font-weight: bold;
-  margin-right: 6px;
-`;
-
-function ViewList({ posts }: PorpsType) {
+const ViewList: FC<Props> = ({ posts }) => {
   return (
     <>
       <BlogLists>
         {posts.map((post, idx) => (
           <Link href={`/posts/${post.id}`}>
             <a>
-              <ListContainer key={idx}>
+              <ListContainer key={post.id}>
                 <ListTitleBlock>
-                  <ListTitle>{post.title}</ListTitle>
-                  <DateString>{post.date}</DateString>
+                  <Title style={{ margin: 0 }}>{post.title}</Title>
+                  <DateString type="secondary">{post.date}</DateString>
                 </ListTitleBlock>
                 <Description>{post.description}</Description>
                 <Tags>
                   {post.tags.map((tag, idx) => (
-                    <Tag key={idx}>#{tag}</Tag>
+                    <li key={idx}>#{tag}</li>
                   ))}
                 </Tags>
               </ListContainer>
@@ -91,6 +86,6 @@ function ViewList({ posts }: PorpsType) {
       </BlogLists>
     </>
   );
-}
+};
 
 export default ViewList;

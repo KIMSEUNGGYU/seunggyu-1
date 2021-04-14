@@ -37,7 +37,6 @@ function Tags({ tags }: TagsProps) {
   const [toggle, setToggle] = useState("전체 보기");
 
   const handleClick = (tag: string) => setToggle(tag);
-  console.log(toggle);
 
   return (
     <TagsContainer>

@@ -1,16 +1,13 @@
+import { FC } from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
 import { theme } from "@theme/index";
+import { Post } from "@common/types";
+import { Typography } from "antd";
+const { Title, Text } = Typography;
 
-type Post = {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  tags: string[];
-};
-type ViewBlockProps = {
+type Props = {
   posts: Post[];
 };
 
@@ -39,11 +36,11 @@ const BlockContainer = styled.div`
 const ListTitle = styled.h1`
   font-size: 30px;
 `;
-const DateString = styled.span`
+const DateString = styled(Text)`
   color: ${theme.GREY_TEXT_COLOR};
   font-weight: bold;
 `;
-const Description = styled.p`
+const Description = styled(Text)`
   margin-top: 24px;
   width: 100%;
   font-size: 15px;
@@ -65,14 +62,16 @@ const Tag = styled.li`
   margin-right: 6px;
 `;
 
-function ViewBlock({ posts }: ViewBlockProps) {
+const ViewBlock: FC<Props> = ({ posts }) => {
   return (
     <BlogBlock>
       {posts.map((post) => (
         <BlockContainer>
           <Link href={`/posts/${post.id}`}>
             <a>
-              <ListTitle>{post.title}</ListTitle>
+              <Title level={3} style={{ margin: 0 }}>
+                {post.title}
+              </Title>
               <DateString>{post.date}</DateString>
               <Description>{post.description}</Description>
               <Tags>
@@ -86,6 +85,6 @@ function ViewBlock({ posts }: ViewBlockProps) {
       ))}
     </BlogBlock>
   );
-}
+};
 
 export default ViewBlock;

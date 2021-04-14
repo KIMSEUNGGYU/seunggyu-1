@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useState } from "react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 
@@ -45,9 +44,6 @@ const List = styled.li<{ choice?: boolean }>`
 `;
 
 function Header() {
-  const [menu, setMenu] = useState(initMenu);
-  const clickHandler = (menu: Menu) => setMenu({ ...initMenu, [menu]: true });
-
   return (
     <Head>
       <Link href="/">
@@ -65,32 +61,17 @@ function Header() {
       <Menu>
         <Link href="/">
           <a>
-            <List
-              className={menu.blog ? "choice" : ""}
-              onClick={() => clickHandler("blog")}
-            >
-              Blog
-            </List>
+            <List>Blog</List>
           </a>
         </Link>
         <Link href="/series">
           <a>
-            <List
-              className={menu.series ? "choice" : ""}
-              onClick={() => clickHandler("series")}
-            >
-              Series
-            </List>
+            <List>Series</List>
           </a>
         </Link>
         <Link href="/login">
           <a>
-            <List
-              className={menu.login ? "choice" : ""}
-              onClick={() => clickHandler("login")}
-            >
-              Login
-            </List>
+            <List>Login</List>
           </a>
         </Link>
       </Menu>
