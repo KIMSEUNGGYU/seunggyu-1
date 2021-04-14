@@ -9,6 +9,7 @@ const globalStyle = css`
   body {
     background-color: ${theme.BACKGROUND_COLOR};
     margin: 0;
+    overflow-y: scroll;
   }
 
   ul {
