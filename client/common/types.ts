@@ -20,7 +20,7 @@ type List = {
   title: string;
 };
 
-export type Series = {
+export type SeriesData = {
   title: string;
   lists: List[];
 };

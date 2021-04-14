@@ -1,21 +1,12 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import styled from "@emotion/styled";
 
 import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { theme } from "@theme/index";
+import { SeriesData } from "@common/types";
 
-type ListType = {
-  id: string;
-  title: string;
-};
-// type Ser
-type SeriesType = {
-  title: string;
-  lists: ListType[];
-};
-
-type SeriesProps = {
-  series: SeriesType;
+type Props = {
+  series: SeriesData;
 };
 
 const Title = styled.h1`
@@ -32,7 +23,6 @@ const ToggleBlock = styled.div`
   bottom: 30px;
   right: 25px;
   cursor: pointer;
-  /* font-size: 35px; */
   font-size: 28px;
   color: ${theme.MAIN_COLOR};
 `;
@@ -61,7 +51,7 @@ const SeriesList = styled.li`
   }
 `;
 
-function Series({ series }: SeriesProps) {
+const Series: FC<Props> = ({ series }) => {
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -87,6 +77,6 @@ function Series({ series }: SeriesProps) {
       )}
     </>
   );
-}
+};
 
 export default Series;

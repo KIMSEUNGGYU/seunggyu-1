@@ -1,16 +1,13 @@
+import { FC } from "react";
 import styled from "@emotion/styled";
 import { MenuOutlined, BlockOutlined } from "@ant-design/icons";
 
 import { theme } from "@theme/index";
+import { ViewModeData } from "@common/types";
 
-type ViewModeType = "list" | "block";
-type ViewModeProps = {
+type Props = {
   mode: boolean;
-  changeViewMode: (mode: ViewModeType) => void;
-};
-const initMode = {
-  list: false,
-  block: false,
+  changeViewMode: (mode: ViewModeData) => void;
 };
 
 const ViewModeBlock = styled.ul`
@@ -33,7 +30,7 @@ const MenuItem = styled.li`
   }
 `;
 
-function ViewMode({ changeViewMode, mode }: ViewModeProps) {
+const ViewMode: FC<Props> = ({ changeViewMode, mode }) => {
   return (
     <ViewModeBlock>
       <MenuItem
@@ -50,6 +47,6 @@ function ViewMode({ changeViewMode, mode }: ViewModeProps) {
       </MenuItem>
     </ViewModeBlock>
   );
-}
+};
 
 export default ViewMode;

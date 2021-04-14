@@ -1,3 +1,4 @@
+import { FC } from "react";
 import styled from "@emotion/styled";
 
 import { theme } from "@theme/index";
@@ -27,7 +28,7 @@ const SingInButton = styled(Button)`
   font-size: 1.4em;
 `;
 
-function Login() {
+const Login: FC = () => {
   return (
     <LoginContainer>
       <InputStyle size="large" placeholder="아이디" />
@@ -35,6 +36,6 @@ function Login() {
       <SingInButton type="primary">로그인</SingInButton>
     </LoginContainer>
   );
-}
+};
 
 export default Login;

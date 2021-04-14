@@ -1,15 +1,9 @@
+import { FC } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import Image from "next/image";
 
 import { theme } from "@theme/index";
-
-type Menu = "blog" | "series" | "login";
-const initMenu = {
-  blog: false,
-  series: false,
-  login: false,
-};
 
 const Head = styled.header`
   width: 100%;
@@ -43,7 +37,7 @@ const List = styled.li<{ choice?: boolean }>`
   }
 `;
 
-function Header() {
+const Header: FC = () => {
   return (
     <Head>
       <Link href="/">
@@ -77,6 +71,6 @@ function Header() {
       </Menu>
     </Head>
   );
-}
+};
 
 export default Header;

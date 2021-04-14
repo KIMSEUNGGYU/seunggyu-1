@@ -5,7 +5,7 @@ import Link from "next/link";
 import { theme } from "@theme/index";
 import { Post } from "@common/types";
 import { Typography } from "antd";
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 type Props = {
   posts: Post[];
@@ -33,11 +33,13 @@ const BlockContainer = styled.div`
     transform: translateY(-20px);
   }
 `;
-const ListTitle = styled.h1`
-  font-size: 30px;
+const Title = styled(Text)`
+  font-size: 2em;
+  font-weight: bold;
 `;
 const DateString = styled(Text)`
   color: ${theme.GREY_TEXT_COLOR};
+  margin-left: 1em;
   font-weight: bold;
 `;
 const Description = styled(Text)`
@@ -69,9 +71,7 @@ const ViewBlock: FC<Props> = ({ posts }) => {
         <BlockContainer>
           <Link href={`/posts/${post.id}`}>
             <a>
-              <Title level={3} style={{ margin: 0 }}>
-                {post.title}
-              </Title>
+              <Title>{post.title}</Title>
               <DateString>{post.date}</DateString>
               <Description>{post.description}</Description>
               <Tags>

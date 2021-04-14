@@ -5,7 +5,7 @@ import Link from "next/link";
 import { theme } from "@theme/index";
 import { Post } from "@common/types";
 import { Typography } from "antd";
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 interface Props {
   posts: Post[];
@@ -31,6 +31,11 @@ const ListContainer = styled.li`
 const ListTitleBlock = styled.div`
   display: flex;
   align-items: flex-end;
+`;
+
+const Title = styled(Text)`
+  font-size: 2em;
+  font-weight: bold;
 `;
 
 const DateString = styled(Text)`
@@ -70,7 +75,7 @@ const ViewList: FC<Props> = ({ posts }) => {
             <a>
               <ListContainer key={post.id}>
                 <ListTitleBlock>
-                  <Title style={{ margin: 0 }}>{post.title}</Title>
+                  <Title>{post.title}</Title>
                   <DateString type="secondary">{post.date}</DateString>
                 </ListTitleBlock>
                 <Description>{post.description}</Description>

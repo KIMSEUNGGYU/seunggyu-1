@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Typography } from "antd";
 
 import { theme } from "@theme/index";
+const { Text } = Typography;
 
-type TagsProps = {
+type Props = {
   tags: string[];
 };
 
@@ -16,40 +17,37 @@ const TagsContainer = styled.div`
   margin-left: 60px;
 `;
 
-const TagTitle = styled.h1`
+const Title = styled(Text)`
+  font-size: 2em;
+  font-weight: bold;
   margin: 0 auto;
 `;
+
 const TagList = styled.ul`
   margin-top: 1em;
 `;
-const TagItem = styled.li<{ choice?: boolean }>`
-  font-size: 25px;
+
+const Tag = styled.li`
+  font-size: 1.5em;
   cursor: pointer;
-  ${(props) =>
-    props.choice &&
-    css`
-      color: ${theme.MAIN_COLOR};
-      font-weight: bolder;
-    `}
+
+  &:hover {
+    color: ${theme.MAIN_COLOR};
+    font-weight: bold;
+  }
 `;
 
-function Tags({ tags }: TagsProps) {
-  const [toggle, setToggle] = useState("전체 보기");
-
-  const handleClick = (tag: string) => setToggle(tag);
-
+const Tags: FC<Props> = ({ tags }) => {
   return (
     <TagsContainer>
-      <TagTitle># 태그</TagTitle>
+      <Title># 태그</Title>
       <TagList>
         {tags.map((tag, idx) => (
-          <TagItem key={idx} onClick={() => handleClick(tag)}>
-            {tag}
-          </TagItem>
+          <Tag key={idx}>{tag}</Tag>
         ))}
       </TagList>
     </TagsContainer>
   );
-}
+};
 
 export default Tags;
