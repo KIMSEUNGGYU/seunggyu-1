@@ -58,18 +58,19 @@ const Tags = styled.ul`
   align-items: flex-end;
   position: absolute;
   bottom: 10px;
-`;
-const Tag = styled.li`
-  color: ${theme.MAIN_COLOR};
-  font-weight: bold;
-  margin-right: 6px;
+
+  & > li {
+    color: ${theme.MAIN_COLOR};
+    font-weight: bold;
+    margin-right: 6px;
+  }
 `;
 
 const ViewBlock: FC<Props> = ({ posts }) => {
   return (
     <BlogBlock>
       {posts.map((post) => (
-        <BlockContainer>
+        <BlockContainer key={post.id}>
           <Link href={`/posts/${post.id}`}>
             <a>
               <Title>{post.title}</Title>
@@ -77,7 +78,7 @@ const ViewBlock: FC<Props> = ({ posts }) => {
               <Description>{post.description}</Description>
               <Tags>
                 {post.tags.map((tag, idx) => (
-                  <Tag key={idx}>#{tag}</Tag>
+                  <li key={idx}>#{tag}</li>
                 ))}
               </Tags>
             </a>
