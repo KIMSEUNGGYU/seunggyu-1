@@ -48,8 +48,8 @@ import { TagData, PostData, SeriesData } from "@common/types";
 // const tags: Tag[] = ["전체 보기", "자료 구조", "리액트", "브라우저"];
 const tags: TagData[] = [
   { id: "1", tag: "자료구조" },
-  { id: "1", tag: "리액트" },
-  { id: "1", tag: "브라우저" },
+  { id: "2", tag: "리액트" },
+  { id: "3", tag: "브라우저" },
 ];
 
 const posts: PostData[] = [
@@ -84,6 +84,13 @@ const posts: PostData[] = [
     description:
       "브라우저는 HTML 파일을 요청하고 해당 파일을 수신합니다. 수신된 HTML 파일을 브라우저에 로딩합니다, 브라우저에 로딩하면 브라우저에서 HTML tag 들을 이용하여 DOM Tree 를 만들고 DOM Tree 와 Style 정보들으 합쳐 CSSOM 을 만듭니다. ",
     tags: ["브라우저"],
+  },
+  {
+    id: 5,
+    title: "리액트",
+    date: "2021.04.010",
+    description: "리액트 너무 많다",
+    tags: ["리액트"],
   },
 ];
 

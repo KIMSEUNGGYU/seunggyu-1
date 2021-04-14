@@ -13,6 +13,7 @@ type Props = {
 
 const BlogBlock = styled.div`
   max-width: 80%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

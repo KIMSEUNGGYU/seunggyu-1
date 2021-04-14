@@ -13,8 +13,10 @@ interface Props {
 
 const BlogLists = styled.ul`
   max-width: 80%;
+  width: 80%;
 `;
 const ListContainer = styled.li`
+  width: 100%;
   background-color: white;
   border: 1px solid ${theme.BORDER_COLOR};
   padding: 18px 42px;
@@ -72,20 +74,19 @@ const ViewList: FC<Props> = ({ posts }) => {
       <BlogLists>
         {posts.map((post, idx) => (
           <Link href={`/posts/${post.id}`}>
-            <a>
-              <ListContainer key={post.id}>
-                <ListTitleBlock>
-                  <Title>{post.title}</Title>
-                  <DateString type="secondary">{post.date}</DateString>
-                </ListTitleBlock>
-                <Description>{post.description}</Description>
-                <Tags>
-                  {post.tags.map((tag, idx) => (
-                    <li key={idx}>#{tag}</li>
-                  ))}
-                </Tags>
-              </ListContainer>
-            </a>
+            <ListContainer key={post.id}>
+              <ListTitleBlock>
+                <Title>{post.title}</Title>
+                <DateString type="secondary">{post.date}</DateString>
+              </ListTitleBlock>
+              <Description>{post.description}</Description>
+              <Tags>
+                {post.tags.map((tag, idx) => (
+                  <li key={idx}>#{tag}</li>
+                ))}
+              </Tags>
+            </ListContainer>
+            {/* </a> */}
           </Link>
         ))}
       </BlogLists>

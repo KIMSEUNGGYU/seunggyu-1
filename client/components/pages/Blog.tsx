@@ -21,18 +21,38 @@ const BlogContainer = styled.div`
 
 function Blog() {
   const [mode, setMode] = useState(true);
-  const [tagList, setTagList] = useState<TagData | null>(null);
+  const [tagId, setTagId] = useState<string | null>(null);
   const changeViewMode = (mode: ViewModeType) => {
     mode === "list" ? setMode(true) : setMode(false);
   };
+
+  const changeTag = (tagId: string) => setTagId(tagId);
+  let selectedPosts = [];
+
+  if (tagId !== null) {
+    const selectedTag = tags.find((tag) => tag.id === tagId)!.tag;
+    selectedPosts = posts.filter((post) => post.tags.includes(selectedTag));
+  } else {
+    selectedPosts = posts;
+  }
+
+  // console.log();
+  // console.log();
+  // const selectTag = tags.find((tag) => tag.id === tagId).tag;
+  // console.log(tags.find(tags(tag) => tag.id === tagId).tag);
+  // console.log(posts);
 
   return (
     <>
       <Header />
       <ViewMode changeViewMode={changeViewMode} mode={mode} />
       <BlogContainer>
-        {mode ? <ViewList posts={posts} /> : <ViewBlock posts={posts} />}
-        <Tags tags={tags} />
+        {mode ? (
+          <ViewList posts={selectedPosts} />
+        ) : (
+          <ViewBlock posts={selectedPosts} />
+        )}
+        <Tags tags={tags} tagId={tagId} changeTag={changeTag} />
       </BlogContainer>
     </>
   );
