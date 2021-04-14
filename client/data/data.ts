@@ -1,63 +1,58 @@
-// type Tag = {
-//   tag: string;
-// };
+import { TagData, PostData, SeriesData } from "@common/types";
 
-type Tag = string;
-type Post = {
-  id: number;
-  title: string;
-  date: string;
-  description: string;
-  tags: string[];
-};
-type Series = [
-  {
-    title: "브라우저";
-    lists: [
-      {
-        id: "1";
-        title: "브라우저 렌더링 1 - DOM, BOM";
-      },
-      {
-        id: "2";
-        title: "브라우저 렌더링 2 - CSSOM 과 Render Tree";
-      },
-      {
-        id: "3";
-        title: "브라우저 렌더링 3 - CRP";
-      },
-      {
-        id: "4";
-        title: "이벤트 루프 0 - 이벤트";
-      },
-      {
-        id: "5";
-        title: "이벤트 루프 1 - 프로세스와 쓰레드";
-      },
-      {
-        id: "6";
-        title: "이벤트 루프 2 - 브라우저 런타임 환경";
-      }
-    ];
-  },
-  {
-    title: "자료구조";
-    lists: [
-      {
-        id: "11";
-        title: "자료구조 - 스택";
-      },
-      {
-        id: "12";
-        title: "자료구조 - 큐";
-      }
-    ];
-  }
+// type Series = [
+//   {
+//     title: "브라우저";
+//     lists: [
+//       {
+//         id: "1";
+//         title: "브라우저 렌더링 1 - DOM, BOM";
+//       },
+//       {
+//         id: "2";
+//         title: "브라우저 렌더링 2 - CSSOM 과 Render Tree";
+//       },
+//       {
+//         id: "3";
+//         title: "브라우저 렌더링 3 - CRP";
+//       },
+//       {
+//         id: "4";
+//         title: "이벤트 루프 0 - 이벤트";
+//       },
+//       {
+//         id: "5";
+//         title: "이벤트 루프 1 - 프로세스와 쓰레드";
+//       },
+//       {
+//         id: "6";
+//         title: "이벤트 루프 2 - 브라우저 런타임 환경";
+//       }
+//     ];
+//   },
+//   {
+//     title: "자료구조";
+//     lists: [
+//       {
+//         id: "11";
+//         title: "자료구조 - 스택";
+//       },
+//       {
+//         id: "12";
+//         title: "자료구조 - 큐";
+//       }
+//     ];
+//   }
+// ];
+
+// const tags: Tag[] = ["전체 보기", "자료 구조", "리액트", "브라우저"];
+const tags: TagData[] = [
+  { id: "1", tag: "자료구조" },
+  { id: "1", tag: "리액트" },
+  { id: "1", tag: "브라우저" },
 ];
 
-const tags: Tag[] = ["전체 보기", "자료 구조", "리액트", "브라우저"];
-
-const posts: Post[] = [
+const posts: PostData[] = [
   {
     id: 1,
     title: "자료구조 - 스택",
@@ -92,7 +87,7 @@ const posts: Post[] = [
   },
 ];
 
-const series = [
+const series: SeriesData[] = [
   {
     title: "브라우저",
     lists: [

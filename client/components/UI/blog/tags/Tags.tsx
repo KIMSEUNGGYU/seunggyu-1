@@ -4,9 +4,10 @@ import { Typography } from "antd";
 
 import { theme } from "@theme/index";
 const { Text } = Typography;
+import { TagData } from "@common/types";
 
 type Props = {
-  tags: string[];
+  tags: TagData[];
 };
 
 const TagsContainer = styled.div`
@@ -38,12 +39,13 @@ const Tag = styled.li`
 `;
 
 const Tags: FC<Props> = ({ tags }) => {
+  console.log("tags", tags);
   return (
     <TagsContainer>
       <Title># 태그</Title>
       <TagList>
-        {tags.map((tag, idx) => (
-          <Tag key={idx}>{tag}</Tag>
+        {tags.map((tag) => (
+          <Tag key={tag.id}>{tag.tag}</Tag>
         ))}
       </TagList>
     </TagsContainer>

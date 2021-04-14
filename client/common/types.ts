@@ -2,12 +2,12 @@ export type MenuData = "blog" | "series" | "login";
 
 export type ViewModeData = "list" | "block";
 
-export type Tag = {
+export type TagData = {
   id: string;
   tag: string;
 };
 
-export type Post = {
+export type PostData = {
   id: number;
   title: string;
   date: string;

@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 
 import { theme } from "@theme/index";
-import { Post } from "@common/types";
+import { PostData } from "@common/types";
 import { Typography } from "antd";
 const { Text } = Typography;
 
 interface Props {
-  posts: Post[];
+  posts: PostData[];
 }
 
 const BlogLists = styled.ul`

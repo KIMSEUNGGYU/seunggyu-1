@@ -7,6 +7,7 @@ import ViewBlock from "@blog/viewblock/ViewBlock";
 import Tags from "@blog/tags/Tags";
 import { posts, tags } from "@data/data";
 import { useState } from "react";
+import { TagData } from "@common/types";
 
 type ViewModeType = "list" | "block";
 
@@ -20,6 +21,7 @@ const BlogContainer = styled.div`
 
 function Blog() {
   const [mode, setMode] = useState(true);
+  const [tagList, setTagList] = useState<TagData | null>(null);
   const changeViewMode = (mode: ViewModeType) => {
     mode === "list" ? setMode(true) : setMode(false);
   };
