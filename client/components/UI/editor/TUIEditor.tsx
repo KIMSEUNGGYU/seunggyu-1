@@ -11,12 +11,6 @@ import { theme } from "@theme/index";
 import "highlight.js/styles/github.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import hljs from "highlight.js";
-import "tui-color-picker/dist/tui-color-picker.css";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-const colorSyntaxOptions = {
-  preset: ["#181818", "#292929", "#393939"],
-  useCustomSyntax: true,
-};
 
 const EditorMenu = styled.div`
   display: flex;
@@ -88,13 +82,6 @@ const WysiwygEditor: React.FC<Props> = (props) => {
     );
   }, [props, editorRef]);
 
-  // const addImageBlobHook = useCallback(async (blob, callback) => {
-  //   const url = await getUploadImageUrl(blob, TYPE_FOLDER_POST);
-
-  //   setImage(url);
-  //   callback(url, blob.name);
-  // }, []);
-
   return (
     <>
       <Head>
@@ -112,12 +99,12 @@ const WysiwygEditor: React.FC<Props> = (props) => {
       <div>
         <EditorWithForwardedRef
           {...props}
+          ref={editorRef}
           initialValue={initialValue || "hello react editor world!"}
           previewStyle={previewStyle || "vertical"}
           height={height || "800px"}
           initialEditType={initialEditType || "markdown"}
           useCommandShortcut={useCommandShortcut || true}
-          ref={editorRef}
           usageStatistics={false}
           onChange={handleChange}
           hooks={{
@@ -128,8 +115,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
               return false;
             },
           }}
-          plugins={[[codeSyntaxHighlight, { hljs }], [colorSyntax]]}
-          // plugins={[codeSyntaxHighlight.bind(hljs), colorSyntax]}
+          plugins={[[codeSyntaxHighlight, { hljs }]]}
         />
 
         <EditorMenu>
