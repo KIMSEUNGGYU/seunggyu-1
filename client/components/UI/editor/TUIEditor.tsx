@@ -11,12 +11,12 @@ import { theme } from "@theme/index";
 import "highlight.js/styles/github.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import hljs from "highlight.js";
-// import "tui-color-picker/dist/tui-color-picker.css";
-// import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-// const colorSyntaxOptions = {
-//   preset: ["#181818", "#292929", "#393939"],
-//   useCustomSyntax: true,
-// };
+import "tui-color-picker/dist/tui-color-picker.css";
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+const colorSyntaxOptions = {
+  preset: ["#181818", "#292929", "#393939"],
+  useCustomSyntax: true,
+};
 
 const EditorMenu = styled.div`
   display: flex;
@@ -99,10 +99,6 @@ const WysiwygEditor: React.FC<Props> = (props) => {
     <>
       <Head>
         <title>글쓰기 :: seunggyu</title>
-        {/* <meta name="description" content={`${postDescription}...`} /> */}
-        {/* <meta name="og:title" content={`${post.title} - chanyeong`} /> */}
-        {/* <meta name="og:description" content={`${postDescription}...`} /> */}
-        {/* <meta name="og:image" content={post.titleImage} /> */}
 
         <link
           rel="stylesheet"
@@ -132,7 +128,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
               return false;
             },
           }}
-          plugins={[[codeSyntaxHighlight, { hljs }]]}
+          plugins={[[codeSyntaxHighlight, { hljs }], [colorSyntax]]}
           // plugins={[codeSyntaxHighlight.bind(hljs), colorSyntax]}
         />
 
