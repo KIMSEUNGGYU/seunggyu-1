@@ -11,12 +11,12 @@ import { theme } from "@theme/index";
 import "highlight.js/styles/github.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import hljs from "highlight.js";
-import "tui-color-picker/dist/tui-color-picker.css";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-const colorSyntaxOptions = {
-  preset: ["#181818", "#292929", "#393939"],
-  useCustomSyntax: true,
-};
+// import "tui-color-picker/dist/tui-color-picker.css";
+// import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+// const colorSyntaxOptions = {
+//   preset: ["#181818", "#292929", "#393939"],
+//   useCustomSyntax: true,
+// };
 
 const EditorMenu = styled.div`
   display: flex;
@@ -132,7 +132,8 @@ const WysiwygEditor: React.FC<Props> = (props) => {
               return false;
             },
           }}
-          plugins={[codeSyntaxHighlight.bind(hljs), colorSyntax]}
+          plugins={[[codeSyntaxHighlight, { hljs }]]}
+          // plugins={[codeSyntaxHighlight.bind(hljs), colorSyntax]}
         />
 
         <EditorMenu>
