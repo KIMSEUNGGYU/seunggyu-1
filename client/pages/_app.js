@@ -1,3 +1,6 @@
+import "codemirror/lib/codemirror.css";
+import "@toast-ui/editor/dist/toastui-editor.css";
+
 import { css, Global } from "@emotion/react";
 
 import { theme } from "../theme/index";
