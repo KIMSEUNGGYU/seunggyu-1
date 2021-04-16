@@ -24,3 +24,7 @@ export type SeriesData = {
   title: string;
   lists: List[];
 };
+
+export interface ImageUploader {
+  upload: (file: any) => any;
+}

@@ -6,6 +6,7 @@ import { Button } from "antd";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import { theme } from "@theme/index";
+import { ImageUploader } from "@common/types";
 
 // editor plugin
 import "highlight.js/styles/github.css";
@@ -54,6 +55,7 @@ const EditorWithForwardedRef = React.forwardRef<
 
 interface Props extends EditorProps {
   onChange(value: string): void;
+  imageUploader: ImageUploader;
 
   valueType?: "markdown" | "html";
 }
@@ -65,6 +67,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
     height,
     initialEditType,
     useCommandShortcut,
+    imageUploader,
   } = props;
 
   const editorRef = React.useRef<EditorType>();
@@ -108,10 +111,9 @@ const WysiwygEditor: React.FC<Props> = (props) => {
           usageStatistics={false}
           onChange={handleChange}
           hooks={{
-            addImageBlobHook: (blob, callback) => {
-              console.log("test", blob);
-              // const uploadedImageURL = uploadImage(blob);
-              // callback(blob, "alt text");
+            addImageBlobHook: async (blob, callback) => {
+              const uploaded = await imageUploader.upload(blob);
+              callback(uploaded.url, uploaded.original_filename);
               return false;
             },
           }}
