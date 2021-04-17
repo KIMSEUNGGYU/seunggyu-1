@@ -1,11 +1,19 @@
 import axios from "axios";
 
+type PostData = {
+  title: string;
+  date: string;
+  description: string;
+  content: string;
+  tags: string[];
+};
+
 interface PostRepository {
-  create: (body: string) => void;
+  create: (body: PostData) => void;
 }
 
 export default class PostRepositoryImpl implements PostRepository {
-  create(body: string) {
+  create(body: PostData) {
     const option = {
       method: "POST",
       headers: {
@@ -21,7 +29,7 @@ export default class PostRepositoryImpl implements PostRepository {
     };
 
     return fetch("http://localhost:4000/posts", option) //
-      .then((response) => response)
+      .then((response) => response.json())
       .catch((error) => console.log(`POST fetch error: ${error}`));
   }
   async read() {

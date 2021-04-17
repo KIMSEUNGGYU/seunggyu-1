@@ -17,6 +17,8 @@ const Editor = styled.div`
 
 export default function WritePage() {
   const router = useRouter();
+  const [postTitle, setPostTitle] = useState("");
+  const [postTags, setPostTags] = useState("");
   const [postContents, setPostContents] = useState("");
 
   const handlePrev = () => {
@@ -24,13 +26,33 @@ export default function WritePage() {
   };
 
   const addPost = () => {
-    postRepository.create(postContents);
+    if (!(postTitle && postTags && postContents)) {
+      alert("모든 내용을 입력해주세요");
+      return;
+    }
+
+    postRepository
+      .create({
+        title: postTitle,
+        date: "2021.04.07",
+        description: "test description",
+        tags: [postTags],
+        content: postContents,
+      })
+      .then((res) => {
+        console.log(res);
+        alert("포스트 작성 성공");
+        router.push("/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
     <Editor>
       <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo />
+      <PostInfo setPostTitle={setPostTitle} setPostTags={setPostTags} />
 
       <TUIEditor
         imageUploader={imageUploader}

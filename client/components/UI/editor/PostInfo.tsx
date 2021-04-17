@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Typography, Input } from "antd";
+import { Input } from "antd";
 
 const PostInfo = styled.div`
   display: flex;
@@ -11,11 +11,27 @@ const InputStyle = styled(Input)`
   width: 50%;
 `;
 
-export default function PostInfoCompoenent() {
+interface Props {
+  setPostTitle: (title: string) => void;
+  setPostTags: (tags: string) => void;
+}
+
+export default function PostInfoCompoenent({
+  setPostTitle,
+  setPostTags,
+}: Props) {
   return (
     <PostInfo>
-      <InputStyle size="large" placeholder="제목" />
-      <InputStyle size="large" placeholder="태그," />
+      <InputStyle
+        size="large"
+        placeholder="제목"
+        onChange={({ target }) => setPostTitle(target.value)}
+      />
+      <InputStyle
+        size="large"
+        placeholder="태그,"
+        onChange={({ target }) => setPostTags(target.value)}
+      />
     </PostInfo>
   );
 }
