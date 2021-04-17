@@ -22,13 +22,15 @@ const ViewerWithForwardedRef = React.forwardRef<
 ));
 
 interface Props extends ViewerProps {
+  contents: string;
   // onChange(value: string): void;
   // imageUploader: ImageUploader;
   // valueType?: "markdown" | "html";
 }
 
 const WysiwygEditor: React.FC<Props> = (props) => {
-  const { initialValue } = props;
+  const { initialValue, contents } = props;
+  console.log("conetns", contents);
 
   const editorRef = React.useRef<ViewerType>();
 
@@ -46,9 +48,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css"
         />
       </Head>
-      <div>
-        <ViewerWithForwardedRef {...props} initialValue="# hello" />
-      </div>
+      <ViewerWithForwardedRef {...props} initialValue={contents} />
     </>
   );
 };
