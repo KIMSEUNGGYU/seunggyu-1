@@ -3,7 +3,11 @@ import * as React from "react";
 import { Viewer as ViewerType, ViewerProps } from "@toast-ui/react-editor";
 import { TuiViewerWithForwardedProps } from "./TUIViewerWrapper";
 import Head from "next/head";
-import { ImageUploader } from "@common/types";
+
+// editor plugin
+import "highlight.js/styles/github.css";
+import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
+import hljs from "highlight.js";
 
 interface ViewerPropsWithHandlers extends ViewerProps {
   onChange?(value: string): void;
@@ -23,21 +27,15 @@ const ViewerWithForwardedRef = React.forwardRef<
 
 interface Props extends ViewerProps {
   contents: string;
-  // onChange(value: string): void;
-  // imageUploader: ImageUploader;
-  // valueType?: "markdown" | "html";
 }
 
 const WysiwygEditor: React.FC<Props> = (props) => {
-  const { initialValue, contents } = props;
-  console.log("conetns", contents);
-
-  const editorRef = React.useRef<ViewerType>();
+  const { contents } = props;
 
   return (
     <>
       <Head>
-        <title>글쓰기 :: seunggyu</title>
+        <title> seunggyu</title>
 
         <link
           rel="stylesheet"
@@ -48,7 +46,11 @@ const WysiwygEditor: React.FC<Props> = (props) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css"
         />
       </Head>
-      <ViewerWithForwardedRef {...props} initialValue={contents} />
+      <ViewerWithForwardedRef
+        {...props}
+        initialValue={contents}
+        plugins={[[codeSyntaxHighlight, { hljs }]]}
+      />
     </>
   );
 };

@@ -26,7 +26,7 @@ export default class PostRepositoryImpl implements PostRepository {
 
     return fetch("http://localhost:4000/posts", option) //
       .then((response) => response.json())
-      .catch((error) => console.log(`POST fetch error: ${error}`));
+      .catch((error) => console.error(`POST fetch error: ${error}`));
   }
   async read() {
     const response = await axios.get("http://localhost:4000/posts/");
