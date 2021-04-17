@@ -30,15 +30,15 @@ export default function WritePage() {
       alert("모든 내용을 입력해주세요");
       return;
     }
-
+    const body = JSON.stringify({
+      title: postTitle,
+      date: "2021.04.07",
+      description: "test description",
+      tags: [postTags],
+      content: postContents,
+    });
     postRepository
-      .create({
-        title: postTitle,
-        date: "2021.04.07",
-        description: "test description",
-        tags: [postTags],
-        content: postContents,
-      })
+      .create(body)
       .then((res) => {
         console.log(res);
         alert("포스트 작성 성공");

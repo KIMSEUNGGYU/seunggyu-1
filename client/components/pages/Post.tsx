@@ -4,6 +4,7 @@ import { css, Global } from "@emotion/react";
 import Header from "@header/Header";
 import PostInfo from "@post/PostInfo";
 import Contents from "@post/Contents";
+import { PostData } from "@common/types";
 
 const globalStyle = css`
   body {
@@ -21,14 +22,18 @@ const PostPageContainer = styled.div`
   margin-top: 60px;
 `;
 
-function PostPage() {
+interface Props {
+  post: PostData;
+}
+
+function PostPage({ post }: Props) {
   return (
     <>
       <Global styles={globalStyle} />
       <Header />
       <PostPageContainer>
-        <PostInfo />
-        <Contents />
+        <PostInfo post={post} />
+        <Contents post={post} />
       </PostPageContainer>
     </>
   );

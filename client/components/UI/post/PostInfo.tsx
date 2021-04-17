@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@theme/index";
 import { Typography } from "antd";
+import { PostData } from "@common/types";
 const { Text } = Typography;
 
 const PostInfo = styled.div`
@@ -32,14 +33,19 @@ const Tag = styled.li`
   font-size: 16px;
 `;
 
-const Info: FC = () => {
+interface Props {
+  post: PostData;
+}
+
+const Info: FC = ({ post }: Props) => {
   return (
     <PostInfo>
-      <Title>자료 구조 - 스택</Title>
-      <DateString type="secondary">2021.04.07</DateString>
+      <Title>{post.title}</Title>
+      <DateString type="secondary">{post.date}</DateString>
       <Tags>
-        <Tag>#자료구조</Tag>
-        <Tag>#스택</Tag>
+        {post.tags.map((tag, idx) => (
+          <Tag key={idx}>#{tag}</Tag>
+        ))}
       </Tags>
     </PostInfo>
   );

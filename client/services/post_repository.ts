@@ -9,23 +9,19 @@ type PostData = {
 };
 
 interface PostRepository {
-  create: (body: PostData) => void;
+  create: (post: PostData) => void;
+  read: () => any;
+  detailRead: (id: any) => any;
 }
 
 export default class PostRepositoryImpl implements PostRepository {
-  create(body: PostData) {
+  create(post: PostData) {
     const option = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: "Test",
-        date: "2021.04.07",
-        description: "test description",
-        tags: ["test"],
-        content: body,
-      }),
+      body: post,
     };
 
     return fetch("http://localhost:4000/posts", option) //
@@ -33,7 +29,12 @@ export default class PostRepositoryImpl implements PostRepository {
       .catch((error) => console.log(`POST fetch error: ${error}`));
   }
   async read() {
-    const response = await axios.get("http://localhost:4000/posts");
+    const response = await axios.get("http://localhost:4000/posts/");
+    return response.data;
+  }
+
+  async detailRead(id) {
+    const response = await axios.get(`http://localhost:4000/posts/${id}`);
     return response.data;
   }
 }

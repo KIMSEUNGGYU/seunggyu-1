@@ -7,7 +7,8 @@ import ViewBlock from "@blog/viewblock/ViewBlock";
 import Tags from "@blog/tags/Tags";
 import { posts, tags } from "@data/data";
 import { useState } from "react";
-import { TagData } from "@common/types";
+// import { TagData } from "@common/types";
+import { PostData } from "@common/types";
 
 type ViewModeType = "list" | "block";
 
@@ -19,7 +20,11 @@ const BlogContainer = styled.div`
   margin-top: 60px;
 `;
 
-function Blog() {
+interface Props {
+  posts: PostData[] | [];
+}
+
+function Blog({ posts }: Props) {
   const [mode, setMode] = useState(true);
   const [tagId, setTagId] = useState<string | null>(null);
   const changeViewMode = (mode: ViewModeType) => {
@@ -29,18 +34,13 @@ function Blog() {
   const changeTag = (tagId: string | null) => setTagId(tagId);
   let selectedPosts = [];
 
+  console.log("blog", posts);
   if (tagId !== null) {
     const selectedTag = tags.find((tag) => tag.id === tagId)!.tag;
     selectedPosts = posts.filter((post) => post.tags.includes(selectedTag));
   } else {
     selectedPosts = posts;
   }
-
-  // console.log();
-  // console.log();
-  // const selectTag = tags.find((tag) => tag.id === tagId).tag;
-  // console.log(tags.find(tags(tag) => tag.id === tagId).tag);
-  // console.log(posts);
 
   return (
     <>
