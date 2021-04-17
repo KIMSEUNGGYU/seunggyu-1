@@ -1,14 +1,22 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
+import { PostData } from "@common/types";
+// import { Viewer, ViewerProps } from "@toast-ui/react-editor";
+import TUIViewer from "@ui/editor/TUIViewer";
 
 const TemporaryBox = styled.div`
-  margin-top: 75px;
+  margin-top: 32px;
+  margin-bottom: 64px;
 `;
 
-const Contents: FC = () => {
+interface Props {
+  post: PostData;
+}
+
+const Contents: FC = ({ post }: Props) => {
   return (
     <TemporaryBox>
-      <h1> Contents </h1>
+      <TUIViewer contents={post.contents} />
     </TemporaryBox>
   );
 };

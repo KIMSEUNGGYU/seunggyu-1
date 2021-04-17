@@ -35,7 +35,7 @@ export default function EditorMenuCompoenent({ addPost, handlePrev }: Props) {
   return (
     <EditorMenu>
       <PrevButton onClick={() => handlePrev()}> {"← 나가기"}</PrevButton>
-      <Button type="primary" onClick={addPost}>
+      <Button type="primary" onClick={() => addPost()}>
         작성하기
       </Button>
     </EditorMenu>

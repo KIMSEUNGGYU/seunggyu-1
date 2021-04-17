@@ -5,9 +5,8 @@ import ViewMode from "@blog/viewmode/ViewMode";
 import ViewList from "@blog/viewlist/ViewList";
 import ViewBlock from "@blog/viewblock/ViewBlock";
 import Tags from "@blog/tags/Tags";
-import { posts, tags } from "@data/data";
 import { useState } from "react";
-import { TagData } from "@common/types";
+import { PostData, TagData } from "@common/types";
 
 type ViewModeType = "list" | "block";
 
@@ -19,7 +18,12 @@ const BlogContainer = styled.div`
   margin-top: 60px;
 `;
 
-function Blog() {
+interface Props {
+  posts: PostData[] | [];
+  tags: TagData[] | [];
+}
+
+function Blog({ posts, tags }: Props) {
   const [mode, setMode] = useState(true);
   const [tagId, setTagId] = useState<string | null>(null);
   const changeViewMode = (mode: ViewModeType) => {
@@ -35,12 +39,6 @@ function Blog() {
   } else {
     selectedPosts = posts;
   }
-
-  // console.log();
-  // console.log();
-  // const selectTag = tags.find((tag) => tag.id === tagId).tag;
-  // console.log(tags.find(tags(tag) => tag.id === tagId).tag);
-  // console.log(posts);
 
   return (
     <>
