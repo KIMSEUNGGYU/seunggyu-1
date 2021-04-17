@@ -5,7 +5,8 @@ import { PostData } from "@common/types";
 import TUIViewer from "@ui/editor/TUIViewer";
 
 const TemporaryBox = styled.div`
-  margin-top: 75px;
+  margin-top: 32px;
+  margin-bottom: 64px;
 `;
 
 interface Props {

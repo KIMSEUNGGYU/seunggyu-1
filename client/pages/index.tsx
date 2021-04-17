@@ -4,12 +4,10 @@ import PostRepository from "@services/post_repository";
 const postRepository = new PostRepository();
 
 interface Props {
-  test: string;
   posts: PostData[] | [];
 }
 
-export default function Home({ test, posts }: Props) {
-  // console.log(test, posts);
+export default function Home({ posts }: Props) {
   return <Blog posts={posts} />;
 }
 

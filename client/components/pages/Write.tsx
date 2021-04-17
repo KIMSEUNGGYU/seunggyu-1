@@ -40,7 +40,6 @@ export default function WritePage() {
     postRepository
       .create(body)
       .then((res) => {
-        console.log(res);
         alert("포스트 작성 성공");
         router.push("/");
       })

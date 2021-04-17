@@ -27,7 +27,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const post = await postRepository.detailRead(params.id);
-  // console.log("post", post);
   return {
     props: {
       post,

@@ -34,7 +34,6 @@ function Blog({ posts }: Props) {
   const changeTag = (tagId: string | null) => setTagId(tagId);
   let selectedPosts = [];
 
-  console.log("blog", posts);
   if (tagId !== null) {
     const selectedTag = tags.find((tag) => tag.id === tagId)!.tag;
     selectedPosts = posts.filter((post) => post.tags.includes(selectedTag));
