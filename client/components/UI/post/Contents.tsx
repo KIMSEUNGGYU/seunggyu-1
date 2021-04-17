@@ -16,7 +16,7 @@ interface Props {
 const Contents: FC = ({ post }: Props) => {
   return (
     <TemporaryBox>
-      <TUIViewer contents={post.content} />
+      <TUIViewer contents={post.contents} />
     </TemporaryBox>
   );
 };
