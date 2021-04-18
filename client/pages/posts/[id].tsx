@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import PostPage from "@pages/Post";
 import PostRepository from "@services/post_repository";
 
@@ -10,7 +12,19 @@ interface Props {
 }
 
 export default function Page({ post }: Props) {
-  return <PostPage post={post} />;
+  const router = useRouter();
+  const deletePost = async (postId: number) => {
+    const response = await postRepository.deletePost(postId);
+    if (response && response.status === 200) {
+      alert("삭제 성공");
+      router.push("/");
+      return;
+    }
+
+    alert("삭제 실패");
+  };
+
+  return <PostPage post={post} deletePost={deletePost} />;
 }
 
 export async function getStaticPaths() {

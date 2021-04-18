@@ -45,9 +45,10 @@ const Tag = styled.li`
 
 interface Props {
   post: PostData;
+  deletePost: (id: number) => void;
 }
 
-const Info: FC = ({ post }: Props) => {
+const Info: FC = ({ post, deletePost }: Props) => {
   return (
     <PostInfo>
       <Title>{post.title}</Title>
@@ -56,7 +57,9 @@ const Info: FC = ({ post }: Props) => {
         {true && (
           <div>
             <Button size="small"> 수정 </Button>
-            <Button size="small"> 삭제 </Button>
+            <Button size="small" onClick={() => deletePost(post.id)}>
+              삭제
+            </Button>
           </div>
         )}
       </div>

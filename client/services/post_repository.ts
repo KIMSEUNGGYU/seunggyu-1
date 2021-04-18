@@ -15,6 +15,7 @@ interface PostRepository {
 }
 
 export default class PostRepositoryImpl implements PostRepository {
+  // 생성
   async create(post: PostData) {
     return Promise.all([this.createPost(post), this.createTag(post)])
       .then(([fetchPost, fetchTag]) => (fetchPost && fetchTag ? true : false))
@@ -65,18 +66,27 @@ export default class PostRepositoryImpl implements PostRepository {
     }
   }
 
+  // 조회
   async read() {
     const response = await axios.get("http://localhost:4000/posts/");
     return response.data;
   }
-
   async getTags() {
     const response = await axios.get("http://localhost:4000/tags/");
     return response.data;
   }
-
   async detailRead(id: string) {
     const response = await axios.get(`http://localhost:4000/posts/${id}`);
     return response.data;
+  }
+
+  // 삭제
+  async deletePost(id: number) {
+    try {
+      const response = await axios.delete(`http://localhost:4000/posts/${id}`);
+      return response;
+    } catch (error) {
+      console.error(`deletePost error: ${error}`);
+    }
   }
 }
