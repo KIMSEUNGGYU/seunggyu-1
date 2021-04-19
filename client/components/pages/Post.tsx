@@ -23,15 +23,16 @@ const PostPageContainer = styled.div`
 
 interface Props {
   post: PostData;
+  deletePost: (id: number) => void;
 }
 
-function PostPage({ post }: Props) {
+function PostPage({ post, deletePost }: Props) {
   return (
     <>
       <Global styles={globalStyle} />
       <Header />
       <PostPageContainer>
-        <PostInfo post={post} />
+        <PostInfo post={post} deletePost={deletePost} />
         <Contents post={post} />
       </PostPageContainer>
     </>

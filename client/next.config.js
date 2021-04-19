@@ -42,5 +42,3 @@ module.exports = withCSS(
     },
   })
 );
-
-// json-server --watch ./data/data.json -p 4000
