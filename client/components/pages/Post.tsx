@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 
-import Header from "@header/Header";
 import PostInfo from "@post/PostInfo";
 import Contents from "@post/Contents";
 import { PostData } from "@common/types";
@@ -30,7 +29,6 @@ function PostPage({ post, deletePost }: Props) {
   return (
     <>
       <Global styles={globalStyle} />
-      <Header />
       <PostPageContainer>
         <PostInfo post={post} deletePost={deletePost} />
         <Contents post={post} />

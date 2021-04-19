@@ -1,11 +1,7 @@
 import LoginPage from "@pages/Login";
 
 function Login() {
-  return (
-    <>
-      <LoginPage />
-    </>
-  );
+  return <LoginPage />;
 }
 
 export default Login;

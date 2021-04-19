@@ -1,9 +1,9 @@
 import "codemirror/lib/codemirror.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
-
 import { css, Global } from "@emotion/react";
 
 import { theme } from "../theme/index";
+import Header from "@ui/header/Header";
 
 const globalStyle = css`
   * {
@@ -34,6 +34,7 @@ const globalStyle = css`
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Header />
       <Global styles={globalStyle} />
       <Component {...pageProps} />
     </>
