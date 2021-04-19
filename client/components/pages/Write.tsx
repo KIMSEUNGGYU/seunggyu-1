@@ -8,6 +8,7 @@ import PostRepositoryImpl from "@services/post_repository";
 import EditorMenus from "@ui/editor/EditorMenu";
 import PostInfo from "@ui/editor/PostInfo";
 import styled from "@emotion/styled";
+import { PostData } from "@common/types";
 
 const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
@@ -22,12 +23,19 @@ function getDate() {
   return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 }
 
-export default function WritePage() {
-  const router = useRouter();
-  const [postTitle, setPostTitle] = useState("");
-  const [postTags, setPostTags] = useState("");
-  const [postContents, setPostContents] = useState("");
+interface Props {
+  post?: PostData;
+}
 
+export default function WritePage({ post }: Props) {
+  const router = useRouter();
+  const [postTitle, setPostTitle] = useState((post && post.title) || "");
+  const [postTags, setPostTags] = useState(
+    (post && post.tags.toString()) || ""
+  );
+  const [postContents, setPostContents] = useState(
+    (post && post.contents) || ""
+  );
   const handlePrev = () => {
     router.push("/");
   };
@@ -64,16 +72,59 @@ export default function WritePage() {
       });
   };
 
+  const updatePost = () => {
+    if (!(postTitle && postTags && postContents)) {
+      alert("모든 내용을 입력해주세요");
+      return;
+    }
+
+    const body = {
+      title: postTitle,
+      description: removeMD(postContents, { useImgAltText: false }).slice(
+        0,
+        MAX_DESCRIPTION
+      ),
+      tags: postTags.replaceAll(/ /gi, "").split(","),
+      contents: postContents,
+    };
+
+    console.log(post.id);
+    postRepository
+      .updatePost(post?.id, body) //
+      .then((res) => {
+        if (res) {
+          alert("포스트 수정 성공");
+          router.push("/");
+        } else {
+          alert("포스트 수정 실패");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <Editor>
       <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo setPostTitle={setPostTitle} setPostTags={setPostTags} />
+      <PostInfo
+        setPostTitle={setPostTitle}
+        setPostTags={setPostTags}
+        postTitle={postTitle}
+        postTags={postTags}
+      />
 
       <TUIEditor
         imageUploader={imageUploader}
         onChange={(value) => setPostContents(value)}
+        initialValue={postContents}
       />
-      <EditorMenus addPost={addPost} handlePrev={handlePrev} />
+      <EditorMenus
+        updateMode={post ? true : false}
+        updatePost={updatePost}
+        addPost={addPost}
+        handlePrev={handlePrev}
+      />
     </Editor>
   );
 }

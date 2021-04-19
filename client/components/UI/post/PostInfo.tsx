@@ -1,5 +1,7 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 import styled from "@emotion/styled";
+
 import { theme } from "@theme/index";
 import { PostData } from "@common/types";
 import { Typography, Button } from "antd";
@@ -49,6 +51,8 @@ interface Props {
 }
 
 const Info: FC = ({ post, deletePost }: Props) => {
+  const router = useRouter();
+
   return (
     <PostInfo>
       <Title>{post.title}</Title>
@@ -56,7 +60,12 @@ const Info: FC = ({ post, deletePost }: Props) => {
         <DateString type="secondary">{post.date}</DateString>
         {true && (
           <div>
-            <Button size="small"> 수정 </Button>
+            <Button
+              size="small"
+              onClick={() => router.push(`/update/${post.id}`)}
+            >
+              수정
+            </Button>
             <Button size="small" onClick={() => deletePost(post.id)}>
               삭제
             </Button>

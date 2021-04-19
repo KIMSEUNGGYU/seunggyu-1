@@ -65,7 +65,7 @@ const Header: FC = () => {
         </Link>
         <Link href="/write">
           <a>
-            <List>Login</List>
+            <List>Write</List>
           </a>
         </Link>
       </Menu>

@@ -29,7 +29,6 @@ const EditorWithForwardedRef = React.forwardRef<
 interface Props extends EditorProps {
   onChange(value: string): void;
   imageUploader: ImageUploader;
-
   valueType?: "markdown" | "html";
 }
 

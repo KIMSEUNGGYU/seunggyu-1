@@ -12,6 +12,7 @@ interface PostRepository {
   create: (body: PostData) => void;
   read: () => any;
   detailRead: (id: string) => any;
+  updatePost: (id: string, body: PostData) => any;
 }
 
 export default class PostRepositoryImpl implements PostRepository {
@@ -75,12 +76,30 @@ export default class PostRepositoryImpl implements PostRepository {
   }
 
   // 삭제
-  async deletePost(id: number) {
+  async deletePost(id: string) {
     try {
       const response = await axios.delete(`http://localhost:4000/posts/${id}`);
       return response;
     } catch (error) {
       console.error(`deletePost error: ${error}`);
+    }
+  }
+
+  // 수정
+  async updatePost(id: string, body: PostData) {
+    try {
+      const option = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      };
+      return fetch(`http://localhost:4000/posts/${id}`, option)
+        .then((res) => res.ok)
+        .catch((error) => `태그 생성 오류: ${error}`);
+    } catch (error) {
+      console.log(`포스트 업데이트 오류: ${error}`);
     }
   }
 }
