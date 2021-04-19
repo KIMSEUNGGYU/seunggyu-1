@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import styled from "@emotion/styled";
 import { theme } from "@theme/index";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const EditorMenu = styled.div`
   display: flex;
@@ -27,17 +28,30 @@ const PrevButton = styled.button`
 `;
 
 interface Props {
+  updateMode: boolean;
   addPost: () => void;
   handlePrev: () => void;
+  updatePost: () => void;
 }
 
-export default function EditorMenuCompoenent({ addPost, handlePrev }: Props) {
+export default function EditorMenuCompoenent({
+  updateMode,
+  addPost,
+  handlePrev,
+  updatePost,
+}: Props) {
   return (
     <EditorMenu>
       <PrevButton onClick={() => handlePrev()}> {"← 나가기"}</PrevButton>
-      <Button type="primary" onClick={() => addPost()}>
-        작성하기
-      </Button>
+      {updateMode ? (
+        <Button type="primary" onClick={() => updatePost()}>
+          수정하기
+        </Button>
+      ) : (
+        <Button type="primary" onClick={() => addPost()}>
+          작성하기
+        </Button>
+      )}
     </EditorMenu>
   );
 }
