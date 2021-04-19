@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import removeMD from "remove-markdown";
 
 import TUIEditor from "@ui/editor/TUIEditor";
 import ImageUploaderImpl from "@services/image_uploader";
@@ -8,12 +9,18 @@ import EditorMenus from "@ui/editor/EditorMenu";
 import PostInfo from "@ui/editor/PostInfo";
 import styled from "@emotion/styled";
 
+const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
 const postRepository = new PostRepositoryImpl();
 
 const Editor = styled.div`
   padding: 20px;
 `;
+
+function getDate() {
+  const date = new Date();
+  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+}
 
 export default function WritePage() {
   const router = useRouter();
@@ -30,10 +37,14 @@ export default function WritePage() {
       alert("모든 내용을 입력해주세요");
       return;
     }
+
     const body = {
       title: postTitle,
-      date: "2021.04.07",
-      description: "test description",
+      date: getDate(),
+      description: removeMD(postContents, { useImgAltText: false }).slice(
+        0,
+        MAX_DESCRIPTION
+      ),
       tags: postTags.replaceAll(/ /gi, "").split(","),
       contents: postContents,
     };

@@ -9,7 +9,7 @@ type PostData = {
 };
 
 interface PostRepository {
-  create: (post: PostData) => void;
+  create: (body: PostData) => void;
   read: () => any;
   detailRead: (id: string) => any;
 }
@@ -22,19 +22,13 @@ export default class PostRepositoryImpl implements PostRepository {
       .catch((error) => console.error(`포스트 생성 에러: ${error}`));
   }
 
-  async createPost(post: PostData) {
+  async createPost(body: PostData) {
     const option = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: post.title,
-        date: post.date,
-        description: "test description",
-        tags: post.tags,
-        contents: post.contents,
-      }),
+      body: JSON.stringify(body),
     };
     return fetch("http://localhost:4000/posts", option)
       .then((res) => res.ok)
