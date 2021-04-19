@@ -18,7 +18,7 @@ export default class PostRepositoryImpl implements PostRepository {
   // 생성
   async create(post: PostData) {
     return Promise.all([this.createPost(post), this.createTag(post)])
-      .then(([fetchPost, fetchTag]) => (fetchPost && fetchTag ? true : false))
+      .then(([fetchPost]) => (fetchPost ? true : false))
       .catch((error) => console.error(`포스트 생성 에러: ${error}`));
   }
 
