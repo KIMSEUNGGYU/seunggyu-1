@@ -8,6 +8,7 @@ import PostRepositoryImpl from "@services/post_repository";
 import EditorMenus from "@ui/editor/EditorMenu";
 import PostInfo from "@ui/editor/PostInfo";
 import styled from "@emotion/styled";
+import { PostData } from "@common/types";
 
 const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
@@ -22,12 +23,19 @@ function getDate() {
   return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 }
 
-export default function WritePage() {
-  const router = useRouter();
-  const [postTitle, setPostTitle] = useState("");
-  const [postTags, setPostTags] = useState("");
-  const [postContents, setPostContents] = useState("");
+interface Props {
+  post?: PostData;
+}
 
+export default function WritePage({ post }: Props) {
+  const router = useRouter();
+  const [postTitle, setPostTitle] = useState((post && post.title) || "");
+  const [postTags, setPostTags] = useState(
+    (post && post.tags.toString()) || ""
+  );
+  const [postContents, setPostContents] = useState(
+    (post && post.contents) || ""
+  );
   const handlePrev = () => {
     router.push("/");
   };
@@ -67,11 +75,17 @@ export default function WritePage() {
   return (
     <Editor>
       <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo setPostTitle={setPostTitle} setPostTags={setPostTags} />
+      <PostInfo
+        setPostTitle={setPostTitle}
+        setPostTags={setPostTags}
+        postTitle={postTitle}
+        postTags={postTags}
+      />
 
       <TUIEditor
         imageUploader={imageUploader}
         onChange={(value) => setPostContents(value)}
+        initialValue={postContents}
       />
       <EditorMenus addPost={addPost} handlePrev={handlePrev} />
     </Editor>
