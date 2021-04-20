@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-import Header from "@header/Header";
 import Series from "@series/Series";
 import { series } from "@data/data";
 import { theme } from "@theme/index";
@@ -19,7 +18,6 @@ const SeriesBlock = styled.div`
   width: 48%;
   height: 330px;
   background-color: ${theme.SERIES_BOX_COLOR};
-  /* border: 1px solid ${theme.BORDER_COLOR}; */
   margin-top: 49px;
   position: relative;
 `;
@@ -27,7 +25,6 @@ const SeriesBlock = styled.div`
 function SeriesPage() {
   return (
     <>
-      <Header />
       <SeriesContainer>
         {series.map((contents, idx) => (
           <SeriesBlock key={idx}>

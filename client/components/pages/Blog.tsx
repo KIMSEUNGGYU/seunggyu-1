@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-import Header from "@header/Header";
 import ViewMode from "@blog/viewmode/ViewMode";
 import ViewList from "@blog/viewlist/ViewList";
 import ViewBlock from "@blog/viewblock/ViewBlock";
@@ -42,7 +41,6 @@ function Blog({ posts, tags }: Props) {
 
   return (
     <>
-      <Header />
       <ViewMode changeViewMode={changeViewMode} mode={mode} />
       <BlogContainer>
         {mode ? (
