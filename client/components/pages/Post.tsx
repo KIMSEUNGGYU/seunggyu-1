@@ -22,7 +22,7 @@ const PostPageContainer = styled.div`
 
 interface Props {
   post: PostData;
-  deletePost: (id: number) => void;
+  deletePost: (id: string) => void;
 }
 
 function PostPage({ post, deletePost }: Props) {

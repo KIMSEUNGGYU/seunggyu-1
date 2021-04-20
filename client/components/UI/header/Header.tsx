@@ -1,8 +1,6 @@
-import React, { FC, useState } from "react";
-import Link from "next/link";
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import Image from "next/image";
 
 import { theme } from "@theme/index";
@@ -51,7 +49,7 @@ const Header: FC = () => {
     activeMenu = "write";
   }
 
-  const goLink = ({ target }) => {
+  const goLink = ({ target }: any) => {
     switch (target.dataset.name) {
       case "logo":
       case "blog":

@@ -12,7 +12,7 @@ export default function Home({ posts, tags }: Props) {
   return <Blog posts={posts} tags={tags} />;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = await postRepository.read();
   const tags = await postRepository.getTags();
 

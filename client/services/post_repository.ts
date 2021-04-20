@@ -1,8 +1,9 @@
+import { TagData } from "@common/types";
 import axios from "axios";
 
 type PostData = {
   title: string;
-  date: string;
+  date?: string;
   description: string;
   contents: string;
   tags: string[];
@@ -31,16 +32,17 @@ export default class PostRepositoryImpl implements PostRepository {
       },
       body: JSON.stringify(body),
     };
+
     return fetch("http://localhost:4000/posts", option)
       .then((res) => res.ok)
       .catch((error) => `태그 생성 오류: ${error}`);
   }
   async createTag(post: PostData) {
     const fetchedTags = await this.getTags();
-    const tags = fetchedTags.map((tag) => tag.tag);
+    const tags = fetchedTags.map((tag: TagData) => tag.tag);
 
     // tag 가 있다면.. 새로운 tag 추가해야함
-    const newTags = post.tags.filter((postTag) => !tags.includes(postTag));
+    const newTags = post.tags.filter((postTag: any) => !tags.includes(postTag));
     if (newTags.length) {
       const requests = newTags.map((tag) => {
         const option = {
