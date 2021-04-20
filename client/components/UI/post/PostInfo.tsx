@@ -47,10 +47,10 @@ const Tag = styled.li`
 
 interface Props {
   post: PostData;
-  deletePost: (id: number) => void;
+  deletePost: (id: string) => void;
 }
 
-const Info: FC = ({ post, deletePost }: Props) => {
+function Info({ post, deletePost }: Props) {
   const router = useRouter();
 
   return (
@@ -79,6 +79,6 @@ const Info: FC = ({ post, deletePost }: Props) => {
       </Tags>
     </PostInfo>
   );
-};
+}
 
 export default Info;

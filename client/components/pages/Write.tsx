@@ -88,20 +88,20 @@ export default function WritePage({ post }: Props) {
       contents: postContents,
     };
 
-    console.log(post.id);
-    postRepository
-      .updatePost(post?.id, body) //
-      .then((res) => {
-        if (res) {
-          alert("포스트 수정 성공");
-          router.push("/");
-        } else {
-          alert("포스트 수정 실패");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    post &&
+      postRepository
+        .updatePost(post.id, body) //
+        .then((res) => {
+          if (res) {
+            alert("포스트 수정 성공");
+            router.push("/");
+          } else {
+            alert("포스트 수정 실패");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
   };
 
   return (

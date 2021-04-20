@@ -89,7 +89,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
               return false;
             },
           }}
-          plugins={[[codeSyntaxHighlight, { hljs }]]}
+          plugins={[[codeSyntaxHighlight, { hljs }] as any]}
         />
       </div>
     </>

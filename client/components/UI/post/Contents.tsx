@@ -13,12 +13,12 @@ interface Props {
   post: PostData;
 }
 
-const Contents: FC = ({ post }: Props) => {
+function Contents({ post }: Props) {
   return (
     <TemporaryBox>
       <TUIViewer contents={post.contents} />
     </TemporaryBox>
   );
-};
+}
 
 export default Contents;

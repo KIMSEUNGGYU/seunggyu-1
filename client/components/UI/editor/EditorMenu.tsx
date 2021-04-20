@@ -1,7 +1,6 @@
 import { Button } from "antd";
 import styled from "@emotion/styled";
 import { theme } from "@theme/index";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const EditorMenu = styled.div`
   display: flex;

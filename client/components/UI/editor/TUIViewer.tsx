@@ -49,7 +49,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
       <ViewerWithForwardedRef
         {...props}
         initialValue={contents}
-        plugins={[[codeSyntaxHighlight, { hljs }]]}
+        plugins={[[codeSyntaxHighlight, { hljs }] as any]}
       />
     </>
   );
