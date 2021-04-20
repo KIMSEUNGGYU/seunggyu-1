@@ -33,16 +33,10 @@ const MenuItem = styled.li`
 const ViewMode: FC<Props> = ({ changeViewMode, mode }) => {
   return (
     <ViewModeBlock>
-      <MenuItem
-        className={mode === true ? "choice" : ""}
-        onClick={() => changeViewMode("list")}
-      >
+      <MenuItem className={mode === true ? "choice" : ""} onClick={() => changeViewMode("list")}>
         <MenuOutlined />
       </MenuItem>
-      <MenuItem
-        className={mode === false ? "choice" : ""}
-        onClick={() => changeViewMode("block")}
-      >
+      <MenuItem className={mode === false ? "choice" : ""} onClick={() => changeViewMode("block")}>
         <BlockOutlined />
       </MenuItem>
     </ViewModeBlock>
