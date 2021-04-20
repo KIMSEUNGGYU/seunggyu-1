@@ -24,23 +24,3 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-// export async function getStaticPaths() {
-//   const data = await postRepository.read();
-//   const paths = data.map(({ id }: PostData) => ({
-//     params: { id: String(id) },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps({ params }) {
-//   const post = await postRepository.detailRead(params.id);
-//   return {
-//     props: {
-//       post,
-//     },
-//   };
-// }
