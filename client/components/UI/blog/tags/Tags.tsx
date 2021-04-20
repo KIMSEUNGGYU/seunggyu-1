@@ -3,9 +3,8 @@ import styled from "@emotion/styled";
 import { Typography } from "antd";
 
 import { theme } from "@theme/index";
-const { Text } = Typography;
 import { TagData } from "@common/types";
-import { css } from "@emotion/react";
+const { Text } = Typography;
 
 type Props = {
   tags: TagData[];
@@ -13,7 +12,7 @@ type Props = {
   changeTag: (tagId: string | null) => void;
 };
 
-const TagsContainer = styled.div`
+const TagsContainer = styled.aside`
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -31,21 +30,17 @@ const TagList = styled.ul`
   margin-top: 1em;
 `;
 
-const Tag = styled.li<{ isFocus?: boolean }>`
+const Tag = styled.li<{ active?: boolean }>`
   font-size: 1.5em;
   cursor: pointer;
 
   &:hover {
     color: ${theme.MAIN_COLOR};
-    /* font-weight: bold; */
   }
-
-  ${(props) =>
-    props.isFocus &&
-    css`
-      color: ${theme.MAIN_COLOR};
-      font-weight: bold;
-    `}
+  &.active {
+    color: ${theme.MAIN_COLOR};
+    font-weight: bold;
+  }
 `;
 
 const Tags: FC<Props> = ({ tags, tagId, changeTag }) => {
@@ -54,7 +49,7 @@ const Tags: FC<Props> = ({ tags, tagId, changeTag }) => {
       <Title># 태그</Title>
       <TagList>
         <Tag
-          isFocus={tagId === null ? true : false}
+          className={tagId === null ? "active" : ""}
           key={0}
           onClick={() => changeTag(null)}
         >
@@ -64,7 +59,7 @@ const Tags: FC<Props> = ({ tags, tagId, changeTag }) => {
           return (
             <Tag
               key={tag.id}
-              isFocus={tagId?.toString() === tag.id}
+              className={tagId?.toString() == tag.id ? "active" : ""}
               onClick={() => changeTag(tag.id)}
             >
               {tag.tag}
