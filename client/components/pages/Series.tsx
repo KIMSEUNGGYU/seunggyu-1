@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
 
 import Series from '@series/Series';
-import { series } from '@data/data';
 import { theme } from '@theme/index';
+import { SeriesData } from '@common/types';
 
-function SeriesPage() {
+interface Props {
+  series: SeriesData[];
+}
+
+function SeriesPage({ series }: Props) {
   const seriesList = series.map((contents, idx) => (
     <SeriesBlock key={idx}>
       <Series series={contents} />

@@ -16,16 +16,16 @@ export type PostData = {
   tags: string[];
 };
 
-type List = {
+export interface ImageUploader {
+  upload: (file: any) => any;
+}
+
+type SeriesPostData = {
   id: string;
   title: string;
 };
 
 export type SeriesData = {
   title: string;
-  lists: List[];
+  lists: SeriesPostData[];
 };
-
-export interface ImageUploader {
-  upload: (file: any) => any;
-}
