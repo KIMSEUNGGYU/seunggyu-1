@@ -1,10 +1,10 @@
-export type MenuData = "blog" | "series" | "login";
+export type MenuData = 'blog' | 'series' | 'login';
 
-export type ViewModeData = "list" | "block";
+export type ViewModeData = 'list' | 'block';
 
 export type TagData = {
   id: string;
-  tag: string;
+  name: string;
 };
 
 export type PostData = {

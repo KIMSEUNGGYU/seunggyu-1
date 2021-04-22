@@ -1,9 +1,8 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
-import { Typography } from "antd";
+import styled from '@emotion/styled';
+import { Typography } from 'antd';
 
-import { theme } from "@theme/index";
-import { TagData } from "@common/types";
+import { theme } from '@theme/index';
+import { TagData } from '@common/types';
 const { Text } = Typography;
 
 type Props = {
@@ -11,6 +10,36 @@ type Props = {
   tagId: string | null;
   changeTag: (tagId: string | null) => void;
 };
+
+function Tags({ tags, tagId, changeTag }: Props) {
+  const viewAllTag = (
+    <Tag className={tagId === null ? 'active' : ''} onClick={() => changeTag(null)}>
+      전체보기
+    </Tag>
+  );
+
+  const tagList = tags.map((tag) => {
+    return (
+      <Tag
+        key={tag.id}
+        className={tagId?.toString() == tag.id ? 'active' : ''}
+        onClick={() => changeTag(tag.id)}
+      >
+        {tag.name}
+      </Tag>
+    );
+  });
+
+  return (
+    <TagsContainer>
+      <Title># 태그</Title>
+      <TagList>
+        {viewAllTag}
+        {tagList}
+      </TagList>
+    </TagsContainer>
+  );
+}
 
 const TagsContainer = styled.aside`
   width: 20%;
@@ -42,33 +71,5 @@ const Tag = styled.li<{ active?: boolean }>`
     font-weight: bold;
   }
 `;
-
-const Tags: FC<Props> = ({ tags, tagId, changeTag }) => {
-  return (
-    <TagsContainer>
-      <Title># 태그</Title>
-      <TagList>
-        <Tag
-          className={tagId === null ? "active" : ""}
-          key={0}
-          onClick={() => changeTag(null)}
-        >
-          전체보기
-        </Tag>
-        {tags.map((tag) => {
-          return (
-            <Tag
-              key={tag.id}
-              className={tagId?.toString() == tag.id ? "active" : ""}
-              onClick={() => changeTag(tag.id)}
-            >
-              {tag.tag}
-            </Tag>
-          );
-        })}
-      </TagList>
-    </TagsContainer>
-  );
-};
 
 export default Tags;

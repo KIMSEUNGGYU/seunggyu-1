@@ -1,5 +1,5 @@
-import { TagData } from "@common/types";
-import axios from "axios";
+import { TagData } from '@common/types';
+import axios from 'axios';
 
 type PostData = {
   title: string;
@@ -16,71 +16,74 @@ interface PostRepository {
   updatePost: (id: string, body: PostData) => any;
 }
 
+const BASE_URL = 'http://localhost:4000';
+
 export default class PostRepositoryImpl implements PostRepository {
   // 생성
   async create(post: PostData) {
-    return Promise.all([this.createPost(post), this.createTag(post)])
-      .then(([fetchPost]) => (fetchPost ? true : false))
-      .catch((error) => console.error(`포스트 생성 에러: ${error}`));
+    const result = await Promise.all([this.createPost(post), this.createTag(post.tags)]);
+    return result.every((requestState) => requestState);
   }
 
-  async createPost(body: PostData) {
-    const option = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-
-    return fetch("http://localhost:4000/posts", option)
-      .then((res) => res.ok)
-      .catch((error) => `태그 생성 오류: ${error}`);
+  private async createPost(body: PostData) {
+    const option = this.getPostOption(body);
+    const response = await fetch(`${BASE_URL}/posts`, option);
+    return response.ok;
   }
-  async createTag(post: PostData) {
+  private async createTag(postTags: PostData['tags']) {
     const fetchedTags = await this.getTags();
-    const tags = fetchedTags.map((tag: TagData) => tag.tag);
+    const tags = fetchedTags.map((tag: TagData) => tag.name);
+    const newTags = postTags.filter((postTag: string) => !tags.includes(postTag));
 
-    // tag 가 있다면.. 새로운 tag 추가해야함
-    const newTags = post.tags.filter((postTag: any) => !tags.includes(postTag));
-    if (newTags.length) {
-      const requests = newTags.map((tag) => {
-        const option = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ tag }),
-        };
-        return fetch("http://localhost:4000/tags", option);
-      });
+    // 이미 태그가 존재하여 굳이 생성하지 않아도 됨
+    if (!newTags.length) {
+      return true;
+    }
 
-      return Promise.all(requests)
-        .then((res) => {
-          return res.every((r) => r.ok) ? true : false;
-        })
-        .catch((error) => `태그 생성 오류: ${error}`);
+    const requests = newTags.map((tag) => {
+      // const option = {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ name: tag }),
+      // };
+      const option = this.getPostOption({ name: tag });
+      try {
+        return fetch(`${BASE_URL}/tags`, option);
+      } catch (error) {
+        console.error(`create Tag error: ${error}`);
+        throw new Error(`create Tag error: ${error}`);
+      }
+    });
+
+    // tag가 정상적으로 생성되는지 판단
+    try {
+      const result = await Promise.all(requests);
+      return result.every((response) => response.ok);
+    } catch (error) {
+      console.error(`error: ${error}`);
     }
   }
 
   // 조회
   async read() {
-    const response = await axios.get("http://localhost:4000/posts/");
+    const response = await axios.get(`${BASE_URL}/posts/`);
     return response.data;
   }
   async getTags() {
-    const response = await axios.get("http://localhost:4000/tags/");
+    const response = await axios.get(`${BASE_URL}/tags/`);
     return response.data;
   }
   async detailRead(id: string) {
-    const response = await axios.get(`http://localhost:4000/posts/${id}`);
+    const response = await axios.get(`${BASE_URL}/posts/${id}`);
     return response.data;
   }
 
   // 삭제
   async deletePost(id: string) {
     try {
-      const response = await axios.delete(`http://localhost:4000/posts/${id}`);
+      const response = await axios.delete(`${BASE_URL}/posts/${id}`);
       return response;
     } catch (error) {
       console.error(`deletePost error: ${error}`);
@@ -90,18 +93,32 @@ export default class PostRepositoryImpl implements PostRepository {
   // 수정
   async updatePost(id: string, body: PostData) {
     try {
-      const option = {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      };
-      return fetch(`http://localhost:4000/posts/${id}`, option)
+      const option = this.getUpdateOption(body);
+      return fetch(`${BASE_URL}/posts/${id}`, option)
         .then((res) => res.ok)
         .catch((error) => `태그 생성 오류: ${error}`);
     } catch (error) {
       console.log(`포스트 업데이트 오류: ${error}`);
     }
+  }
+
+  private getPostOption(body: any) {
+    return {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    };
+  }
+
+  private getUpdateOption(body: any) {
+    return {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    };
   }
 }
