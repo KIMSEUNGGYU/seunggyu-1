@@ -1,9 +1,9 @@
-import { FC, useState } from "react";
-import styled from "@emotion/styled";
+import { FC, useState } from 'react';
+import styled from '@emotion/styled';
 
-import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
-import { theme } from "@theme/index";
-import { SeriesData } from "@common/types";
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { theme } from '@theme/index';
+import { SeriesData } from '@common/types';
 
 type Props = {
   series: SeriesData;
@@ -43,7 +43,7 @@ const SeriesList = styled.li`
     font-weight: bold;
   }
   &::before {
-    content: "- ";
+    content: '- ';
     counter-increment: item;
     color: rgb(128, 133, 138);
     font-style: italic;

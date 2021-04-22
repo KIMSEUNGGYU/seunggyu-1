@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { css, Global } from "@emotion/react";
+import styled from '@emotion/styled';
+import { css, Global } from '@emotion/react';
 
-import PostInfo from "@post/PostInfo";
-import Contents from "@post/Contents";
-import { PostData } from "@common/types";
+import PostInfo from '@post/PostInfo';
+import Contents from '@post/Contents';
+import { PostData } from '@common/types';
 
 const globalStyle = css`
   body {

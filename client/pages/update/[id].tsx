@@ -1,12 +1,10 @@
-import { useRouter } from "next/router";
-
-import WritePage from "@pages/Write";
-import PostRepository from "@services/post_repository";
+import WritePage from '@pages/Write';
+import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();
 
-import { PostData } from "@common/types";
-import { GetServerSidePropsContext } from "next";
+import { PostData } from '@common/types';
+import { GetServerSidePropsContext } from 'next';
 
 interface Props {
   post: PostData;
@@ -17,7 +15,7 @@ export default function Page({ post }: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  if (typeof context.query.id == "string") {
+  if (typeof context.query.id == 'string') {
     const post = await postRepository.detailRead(context.query.id);
     return {
       props: { post },

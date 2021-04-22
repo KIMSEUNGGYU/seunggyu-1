@@ -41,13 +41,6 @@ export default class PostRepositoryImpl implements PostRepository {
     }
 
     const requests = newTags.map((tag) => {
-      // const option = {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ name: tag }),
-      // };
       const option = this.getPostOption({ name: tag });
       try {
         return fetch(`${BASE_URL}/tags`, option);

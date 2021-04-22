@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Input } from "antd";
+import styled from '@emotion/styled';
+import { Input } from 'antd';
 
 const PostInfo = styled.div`
   display: flex;

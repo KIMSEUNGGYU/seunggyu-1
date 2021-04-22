@@ -1,8 +1,8 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
+import { FC } from 'react';
+import styled from '@emotion/styled';
 
-import { theme } from "@theme/index";
-import { Input, Button } from "antd";
+import { theme } from '@theme/index';
+import { Input, Button } from 'antd';
 
 const LoginContainer = styled.div`
   max-width: 800px;

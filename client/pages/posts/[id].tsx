@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import PostPage from "@pages/Post";
-import PostRepository from "@services/post_repository";
+import PostPage from '@pages/Post';
+import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();
 
-import { PostData } from "@common/types";
-import { GetServerSidePropsContext } from "next";
+import { PostData } from '@common/types';
+import { GetServerSidePropsContext } from 'next';
 
 interface Props {
   post: PostData;
@@ -18,19 +18,19 @@ export default function Page({ post }: Props) {
   const deletePost = async (postId: string) => {
     const response = await postRepository.deletePost(postId);
     if (response && response.status === 200) {
-      alert("삭제 성공");
-      router.push("/");
+      alert('삭제 성공');
+      router.push('/');
       return;
     }
 
-    alert("삭제 실패");
+    alert('삭제 실패');
   };
 
   return <PostPage post={post} deletePost={deletePost} />;
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  if (typeof context.query.id == "string") {
+  if (typeof context.query.id == 'string') {
     const post = await postRepository.detailRead(context.query.id);
     return {
       props: { post },

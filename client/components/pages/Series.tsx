@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import Series from "@series/Series";
-import { series } from "@data/data";
-import { theme } from "@theme/index";
+import Series from '@series/Series';
+import { series } from '@data/data';
+import { theme } from '@theme/index';
 
 const SeriesContainer = styled.div`
   max-width: 1200px;

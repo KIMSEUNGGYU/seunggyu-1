@@ -1,6 +1,6 @@
-import { Button } from "antd";
-import styled from "@emotion/styled";
-import { theme } from "@theme/index";
+import { Button } from 'antd';
+import styled from '@emotion/styled';
+import { theme } from '@theme/index';
 
 const EditorMenu = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export default function EditorMenuCompoenent({
 }: Props) {
   return (
     <EditorMenu>
-      <PrevButton onClick={() => handlePrev()}> {"← 나가기"}</PrevButton>
+      <PrevButton onClick={() => handlePrev()}> {'← 나가기'}</PrevButton>
       {updateMode ? (
         <Button type="primary" onClick={() => updatePost()}>
           수정하기

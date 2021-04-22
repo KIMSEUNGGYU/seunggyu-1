@@ -1,10 +1,10 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
-import Link from "next/link";
+import { FC } from 'react';
+import styled from '@emotion/styled';
+import Link from 'next/link';
 
-import { theme } from "@theme/index";
-import { PostData } from "@common/types";
-import { Typography } from "antd";
+import { theme } from '@theme/index';
+import { PostData } from '@common/types';
+import { Typography } from 'antd';
 const { Text } = Typography;
 
 type Props = {

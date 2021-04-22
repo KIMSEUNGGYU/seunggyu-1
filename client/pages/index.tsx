@@ -1,6 +1,6 @@
-import Blog from "@pages/Blog";
-import { PostData, TagData } from "@common/types";
-import PostRepository from "@services/post_repository";
+import Blog from '@pages/Blog';
+import { PostData, TagData } from '@common/types';
+import PostRepository from '@services/post_repository';
 const postRepository = new PostRepository();
 
 interface Props {
