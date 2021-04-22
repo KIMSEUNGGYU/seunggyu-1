@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { useRouter } from "next/router";
-import styled from "@emotion/styled";
+import { FC } from 'react';
+import { useRouter } from 'next/router';
+import styled from '@emotion/styled';
 
-import { theme } from "@theme/index";
-import { PostData } from "@common/types";
-import { Typography, Button } from "antd";
+import { theme } from '@theme/index';
+import { PostData } from '@common/types';
+import { Typography, Button } from 'antd';
 const { Text } = Typography;
 
 const PostInfo = styled.div`
@@ -60,10 +60,7 @@ function Info({ post, deletePost }: Props) {
         <DateString type="secondary">{post.date}</DateString>
         {true && (
           <div>
-            <Button
-              size="small"
-              onClick={() => router.push(`/update/${post.id}`)}
-            >
+            <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
               수정
             </Button>
             <Button size="small" onClick={() => deletePost(post.id)}>

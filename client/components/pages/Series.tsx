@@ -1,8 +1,22 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import Series from "@series/Series";
-import { series } from "@data/data";
-import { theme } from "@theme/index";
+import Series from '@series/Series';
+import { theme } from '@theme/index';
+import { SeriesData } from '@common/types';
+
+interface Props {
+  series: SeriesData[];
+}
+
+function SeriesPage({ series }: Props) {
+  const seriesList = series.map((contents, idx) => (
+    <SeriesBlock key={idx}>
+      <Series series={contents} />
+    </SeriesBlock>
+  ));
+
+  return <SeriesContainer>{seriesList}</SeriesContainer>;
+}
 
 const SeriesContainer = styled.div`
   max-width: 1200px;
@@ -21,19 +35,5 @@ const SeriesBlock = styled.div`
   margin-top: 49px;
   position: relative;
 `;
-
-function SeriesPage() {
-  return (
-    <>
-      <SeriesContainer>
-        {series.map((contents, idx) => (
-          <SeriesBlock key={idx}>
-            <Series series={contents} />
-          </SeriesBlock>
-        ))}
-      </SeriesContainer>
-    </>
-  );
-}
 
 export default SeriesPage;

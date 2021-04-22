@@ -1,10 +1,10 @@
-export type MenuData = "blog" | "series" | "login";
+export type MenuData = 'blog' | 'series' | 'login';
 
-export type ViewModeData = "list" | "block";
+export type ViewModeData = 'list' | 'block';
 
 export type TagData = {
   id: string;
-  tag: string;
+  name: string;
 };
 
 export type PostData = {
@@ -16,16 +16,16 @@ export type PostData = {
   tags: string[];
 };
 
-type List = {
+export interface ImageUploader {
+  upload: (file: any) => any;
+}
+
+type SeriesPostData = {
   id: string;
   title: string;
 };
 
 export type SeriesData = {
   title: string;
-  lists: List[];
+  lists: SeriesPostData[];
 };
-
-export interface ImageUploader {
-  upload: (file: any) => any;
-}

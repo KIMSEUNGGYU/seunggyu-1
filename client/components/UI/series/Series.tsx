@@ -1,13 +1,46 @@
-import { FC, useState } from "react";
-import styled from "@emotion/styled";
+import { FC, useState } from 'react';
+import styled from '@emotion/styled';
 
-import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
-import { theme } from "@theme/index";
-import { SeriesData } from "@common/types";
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { theme } from '@theme/index';
+import { SeriesData } from '@common/types';
+import DevelopingDialog from '@ui/dialog/DevelopingDialog';
 
 type Props = {
   series: SeriesData;
 };
+
+function Series({ series }: Props) {
+  const [toggle, setToggle] = useState(false);
+  const [bDevelopDialog, setbDevelopDialog] = useState(false);
+  const closeDialog = () => setbDevelopDialog(false);
+
+  return (
+    <>
+      <Title>{series.title}</Title>
+      {toggle ? (
+        <>
+          <SeriesLists>
+            {series.lists.map((list) => (
+              <SeriesList key={list.id} onClick={() => setbDevelopDialog(true)}>
+                {list.title}
+              </SeriesList>
+            ))}
+
+            <ToggleBlock onClick={() => setToggle(!toggle)}>
+              <CaretUpOutlined />
+            </ToggleBlock>
+          </SeriesLists>
+        </>
+      ) : (
+        <ToggleBlock onClick={() => setToggle(!toggle)}>
+          <CaretDownOutlined />
+        </ToggleBlock>
+      )}
+      <DevelopingDialog visible={bDevelopDialog} closeDialog={closeDialog} />
+    </>
+  );
+}
 
 const Title = styled.h1`
   color: ${theme.MAIN_COLOR};
@@ -43,40 +76,12 @@ const SeriesList = styled.li`
     font-weight: bold;
   }
   &::before {
-    content: "- ";
+    content: '- ';
     counter-increment: item;
     color: rgb(128, 133, 138);
     font-style: italic;
     margin-right: 0.25rem;
   }
 `;
-
-const Series: FC<Props> = ({ series }) => {
-  const [toggle, setToggle] = useState(false);
-
-  return (
-    <>
-      <Title>{series.title}</Title>
-
-      {toggle ? (
-        <>
-          <SeriesLists>
-            {series.lists.map((list) => (
-              <SeriesList key={list.id}>{list.title}</SeriesList>
-            ))}
-
-            <ToggleBlock onClick={() => setToggle(!toggle)}>
-              <CaretUpOutlined />
-            </ToggleBlock>
-          </SeriesLists>
-        </>
-      ) : (
-        <ToggleBlock onClick={() => setToggle(!toggle)}>
-          <CaretDownOutlined />
-        </ToggleBlock>
-      )}
-    </>
-  );
-};
 
 export default Series;

@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import { useRouter } from "next/router";
-import styled from "@emotion/styled";
-import Image from "next/image";
+import React, { FC } from 'react';
+import { useRouter } from 'next/router';
+import styled from '@emotion/styled';
+import Image from 'next/image';
 
-import { theme } from "@theme/index";
+import { theme } from '@theme/index';
 
 const Head = styled.header`
   width: 100%;
@@ -41,25 +41,25 @@ const Header: FC = () => {
   const router = useRouter();
   let activeMenu;
 
-  if (router.pathname === "/") {
-    activeMenu = "blog";
-  } else if (router.pathname === "/series") {
-    activeMenu = "series";
-  } else if (router.pathname === "/write") {
-    activeMenu = "write";
+  if (router.pathname === '/') {
+    activeMenu = 'blog';
+  } else if (router.pathname === '/series') {
+    activeMenu = 'series';
+  } else if (router.pathname === '/write') {
+    activeMenu = 'write';
   }
 
   const goLink = ({ target }: any) => {
     switch (target.dataset.name) {
-      case "logo":
-      case "blog":
-        router.push("/");
+      case 'logo':
+      case 'blog':
+        router.push('/');
         break;
-      case "series":
-        router.push("/series");
+      case 'series':
+        router.push('/series');
         break;
-      case "write":
-        router.push("/write");
+      case 'write':
+        router.push('/write');
         break;
       default:
         throw new Error(`제공하지 않은 메뉴: ${target.dataset.name}`);
@@ -79,27 +79,19 @@ const Header: FC = () => {
         />
       </Logo>
       <Menu>
-        <List
-          data-name="blog"
-          className={activeMenu === "blog" ? "active" : ""}
-          onClick={goLink}
-        >
+        <List data-name="blog" className={activeMenu === 'blog' ? 'active' : ''} onClick={goLink}>
           Blog
         </List>
 
         <List
           data-name="series"
-          className={activeMenu === "series" ? "active" : ""}
+          className={activeMenu === 'series' ? 'active' : ''}
           onClick={goLink}
         >
           Series
         </List>
 
-        <List
-          data-name="write"
-          className={activeMenu === "write" ? "active" : ""}
-          onClick={goLink}
-        >
+        <List data-name="write" className={activeMenu === 'write' ? 'active' : ''} onClick={goLink}>
           Write
         </List>
       </Menu>

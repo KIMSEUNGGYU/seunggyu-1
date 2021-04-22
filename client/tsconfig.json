@@ -76,7 +76,8 @@
       "@theme/*": ["theme/*"],
       "@data/*": ["data/*"],
       "@common/*": ["common/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@constants/*": ["constants/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
