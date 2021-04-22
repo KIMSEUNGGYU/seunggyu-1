@@ -1,0 +1,5 @@
+export const env = {
+  BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  IMAGE_UPLOAD_PRESET: process.env.NEXT_PUBLIC_IMAGE_UPLOAD_PRESET!,
+  IMAGE_UPLOAD_URL: process.env.NEXT_PUBLIC_IMAGE_UPLOAD_URL!,
+};

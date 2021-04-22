@@ -4,6 +4,16 @@ import Series from '@series/Series';
 import { series } from '@data/data';
 import { theme } from '@theme/index';
 
+function SeriesPage() {
+  const seriesList = series.map((contents, idx) => (
+    <SeriesBlock key={idx}>
+      <Series series={contents} />
+    </SeriesBlock>
+  ));
+
+  return <SeriesContainer>{seriesList}</SeriesContainer>;
+}
+
 const SeriesContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -21,19 +31,5 @@ const SeriesBlock = styled.div`
   margin-top: 49px;
   position: relative;
 `;
-
-function SeriesPage() {
-  return (
-    <>
-      <SeriesContainer>
-        {series.map((contents, idx) => (
-          <SeriesBlock key={idx}>
-            <Series series={contents} />
-          </SeriesBlock>
-        ))}
-      </SeriesContainer>
-    </>
-  );
-}
 
 export default SeriesPage;

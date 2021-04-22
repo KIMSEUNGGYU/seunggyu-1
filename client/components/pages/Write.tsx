@@ -14,10 +14,6 @@ const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
 const postRepository = new PostRepositoryImpl();
 
-const Editor = styled.div`
-  padding: 20px;
-`;
-
 function getDate() {
   const date = new Date();
   return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
@@ -32,11 +28,9 @@ export default function WritePage({ post }: Props) {
   const [postTitle, setPostTitle] = useState((post && post.title) || '');
   const [postTags, setPostTags] = useState((post && post.tags.toString()) || '');
   const [postContents, setPostContents] = useState((post && post.contents) || '');
-  const handlePrev = () => {
-    router.push('/');
-  };
+  const handlePrev = () => router.push('/');
 
-  const addPost = () => {
+  const addPost = async () => {
     if (!(postTitle && postTags && postContents)) {
       alert('모든 내용을 입력해주세요');
       return;
@@ -50,22 +44,17 @@ export default function WritePage({ post }: Props) {
       contents: postContents,
     };
 
-    postRepository
-      .create(body)
-      .then((res) => {
-        if (res) {
-          alert('포스트 작성 성공');
-          router.push('/');
-        } else {
-          alert('포스트 작성 실패');
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const response = await postRepository.create(body);
+    if (!response) {
+      alert('post 작성 실패');
+      return;
+    }
+
+    alert('post 작성 성공');
+    router.push('/');
   };
 
-  const updatePost = () => {
+  const updatePost = async () => {
     if (!(postTitle && postTags && postContents)) {
       alert('모든 내용을 입력해주세요');
       return;
@@ -78,20 +67,14 @@ export default function WritePage({ post }: Props) {
       contents: postContents,
     };
 
-    post &&
-      postRepository
-        .updatePost(post.id, body) //
-        .then((res) => {
-          if (res) {
-            alert('포스트 수정 성공');
-            router.push('/');
-          } else {
-            alert('포스트 수정 실패');
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+    const response = post && (await postRepository.updatePost(post.id, body)); //
+    if (!response) {
+      alert('post 수정 실패');
+      return;
+    }
+
+    alert('post 수정 성공');
+    router.push('/');
   };
 
   return (
@@ -118,3 +101,7 @@ export default function WritePage({ post }: Props) {
     </Editor>
   );
 }
+
+const Editor = styled.div`
+  padding: 20px;
+`;

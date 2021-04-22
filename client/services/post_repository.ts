@@ -1,5 +1,7 @@
-import { TagData } from '@common/types';
 import axios from 'axios';
+
+import { TagData } from '@common/types';
+import { env } from '@constants/env';
 
 type PostData = {
   title: string;
@@ -16,7 +18,7 @@ interface PostRepository {
   updatePost: (id: string, body: PostData) => any;
 }
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = env.BASE_URL;
 
 export default class PostRepositoryImpl implements PostRepository {
   // 생성
