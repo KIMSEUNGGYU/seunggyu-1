@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
@@ -6,6 +5,39 @@ import { theme } from '@theme/index';
 import { PostData } from '@common/types';
 import { Typography, Button } from 'antd';
 const { Text } = Typography;
+
+interface Props {
+  post: PostData;
+  deletePost: (id: string) => void;
+}
+
+function Info({ post, deletePost }: Props) {
+  const router = useRouter();
+
+  return (
+    <PostInfo>
+      <Title>{post.title}</Title>
+      <div>
+        <DateString type="secondary">{post.date}</DateString>
+        {true && (
+          <div>
+            <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
+              수정
+            </Button>
+            <Button size="small" onClick={() => deletePost(post.id)}>
+              삭제
+            </Button>
+          </div>
+        )}
+      </div>
+      <Tags>
+        {post.tags.map((tag, idx) => (
+          <Tag key={idx}>#{tag}</Tag>
+        ))}
+      </Tags>
+    </PostInfo>
+  );
+}
 
 const PostInfo = styled.div`
   width: 100%;
@@ -44,38 +76,5 @@ const Tag = styled.li`
   margin-right: 6px;
   font-weight: bold;
 `;
-
-interface Props {
-  post: PostData;
-  deletePost: (id: string) => void;
-}
-
-function Info({ post, deletePost }: Props) {
-  const router = useRouter();
-
-  return (
-    <PostInfo>
-      <Title>{post.title}</Title>
-      <div>
-        <DateString type="secondary">{post.date}</DateString>
-        {true && (
-          <div>
-            <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
-              수정
-            </Button>
-            <Button size="small" onClick={() => deletePost(post.id)}>
-              삭제
-            </Button>
-          </div>
-        )}
-      </div>
-      <Tags>
-        {post.tags.map((tag, idx) => (
-          <Tag key={idx}>#{tag}</Tag>
-        ))}
-      </Tags>
-    </PostInfo>
-  );
-}
 
 export default Info;

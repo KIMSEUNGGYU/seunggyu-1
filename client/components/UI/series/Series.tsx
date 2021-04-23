@@ -6,9 +6,9 @@ import { theme } from '@theme/index';
 import { SeriesData } from '@common/types';
 import DevelopingDialog from '@ui/dialog/DevelopingDialog';
 
-type Props = {
+interface Props {
   series: SeriesData;
-};
+}
 
 function Series({ series }: Props) {
   const [toggle, setToggle] = useState(false);

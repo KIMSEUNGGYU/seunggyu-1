@@ -67,7 +67,7 @@ export default function WritePage({ post }: Props) {
       contents: postContents,
     };
 
-    const response = post && (await postRepository.updatePost(post.id, body)); //
+    const response = post && (await postRepository.updatePost(post.id, body));
     if (!response) {
       alert('post 수정 실패');
       return;
