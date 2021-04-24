@@ -4,6 +4,31 @@ import { css, Global } from '@emotion/react';
 
 import { theme } from '../theme/index';
 import Header from '@ui/header/Header';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const [bLogin, setbLogin] = useState(false);
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem('seunggyu');
+    if (isLogin) {
+      setbLogin(true);
+    } else {
+      router.push('/');
+    }
+    console.log('isLogin', isLogin);
+  }, [bLogin]);
+
+  return (
+    <>
+      <Header bLogin={bLogin} setbLogin={setbLogin} />
+      <Global styles={globalStyle} />
+      <Component {...pageProps} bLogin={bLogin} setbLogin={setbLogin} />
+    </>
+  );
+}
 
 const globalStyle = css`
   * {
@@ -30,15 +55,5 @@ const globalStyle = css`
     color: inherit;
   }
 `;
-
-function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Header />
-      <Global styles={globalStyle} />
-      <Component {...pageProps} />
-    </>
-  );
-}
 
 export default MyApp;

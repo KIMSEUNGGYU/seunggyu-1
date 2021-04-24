@@ -1,16 +1,6 @@
 import styled from '@emotion/styled';
 import { Input } from 'antd';
 
-const PostInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const InputStyle = styled(Input)`
-  margin-bottom: 20px;
-  width: 50%;
-`;
-
 interface Props {
   setPostTitle: (title: string) => void;
   setPostTags: (tags: string) => void;
@@ -41,3 +31,13 @@ export default function PostInfoCompoenent({
     </PostInfo>
   );
 }
+
+const PostInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const InputStyle = styled(Input)`
+  margin-bottom: 20px;
+  width: 50%;
+`;
