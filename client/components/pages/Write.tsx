@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import removeMD from 'remove-markdown';
 
 import TUIEditor from '@ui/editor/TUIEditor';
@@ -28,8 +28,20 @@ export default function WritePage({ post }: Props) {
   const [postTitle, setPostTitle] = useState((post && post.title) || '');
   const [postTags, setPostTags] = useState((post && post.tags.toString()) || '');
   const [postContents, setPostContents] = useState((post && post.contents) || '');
-  const handlePrev = () => router.push('/');
 
+  const [bLogin, setbLogin] = useState(false);
+  useEffect(() => {
+    const isLogin = localStorage.getItem('seunggyu');
+    if (isLogin) {
+      setbLogin(true);
+    } else {
+      router.push('/');
+    }
+  }, []);
+
+  if (!bLogin) return null;
+
+  const handlePrev = () => router.push('/');
   const addPost = async () => {
     if (!(postTitle && postTags && postContents)) {
       alert('모든 내용을 입력해주세요');

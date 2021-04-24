@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { theme } from '@theme/index';
 import { PostData } from '@common/types';
 import { Typography, Button } from 'antd';
+import { useEffect, useState } from 'react';
 const { Text } = Typography;
 
 interface Props {
@@ -13,13 +14,21 @@ interface Props {
 
 function Info({ post, deletePost }: Props) {
   const router = useRouter();
+  const [bLogin, setbLogin] = useState(false);
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem('seunggyu');
+    if (isLogin) {
+      setbLogin(true);
+    }
+  }, [bLogin]);
 
   return (
     <PostInfo>
       <Title>{post.title}</Title>
       <div>
         <DateString type="secondary">{post.date}</DateString>
-        {true && (
+        {bLogin && (
           <div>
             <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
               수정
