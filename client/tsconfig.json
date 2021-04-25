@@ -78,7 +78,8 @@
       "@common/*": ["common/*"],
       "@services/*": ["services/*"],
       "@constants/*": ["constants/*"],
-      "@util/*": ["util/*"]
+      "@util/*": ["util/*"],
+      "@state/*": ["state/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
