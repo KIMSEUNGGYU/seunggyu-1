@@ -7,15 +7,14 @@ import { PostData } from '@common/types';
 
 interface Props {
   post: PostData;
-  deletePost: (id: string) => void;
 }
 
-function PostPage({ post, deletePost }: Props) {
+function PostPage({ post }: Props) {
   return (
     <>
       <Global styles={globalStyle} />
       <PostPageContainer>
-        <PostInfo post={post} deletePost={deletePost} />
+        <PostInfo post={post} />
         <Contents post={post} />
       </PostPageContainer>
     </>

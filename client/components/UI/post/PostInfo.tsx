@@ -9,14 +9,27 @@ import { useRecoilValue } from 'recoil';
 import { isLoginState } from '@state/index';
 const { Text } = Typography;
 
+import PostRepository from '@services/post_repository';
+const postRepository = new PostRepository();
+
 interface Props {
   post: PostData;
-  deletePost: (id: string) => void;
 }
 
-function Info({ post, deletePost }: Props) {
+function Info({ post }: Props) {
   const router = useRouter();
   const isLogin = useRecoilValue(isLoginState);
+
+  const deletePost = async (postId: string) => {
+    const response = await postRepository.deletePost(postId);
+    if (response && response.status === 200) {
+      alert('삭제 성공');
+      router.push('/');
+      return;
+    }
+
+    alert('삭제 실패');
+  };
 
   return (
     <PostInfo>
