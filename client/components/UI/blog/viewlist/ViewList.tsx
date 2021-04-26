@@ -24,7 +24,7 @@ function ViewList({ posts }: Props) {
                 </ListTitleBlock>
                 <Description>{post.description}</Description>
                 <Tags>
-                  {post.tags.map((tag, idx) => (
+                  {post.tags.split(',').map((tag, idx) => (
                     <li key={idx}>#{tag}</li>
                   ))}
                 </Tags>

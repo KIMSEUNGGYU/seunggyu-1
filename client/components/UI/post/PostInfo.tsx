@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { theme } from '@theme/index';
-import { GetPostData } from '@common/types';
+import { PostData } from '@common/types';
 import { Typography, Button } from 'antd';
 
 import { useRecoilValue } from 'recoil';
@@ -13,7 +13,7 @@ import PostRepository from '@services/post_repository';
 const postRepository = new PostRepository();
 
 interface Props {
-  post: GetPostData;
+  post: PostData;
 }
 
 function Info({ post }: Props) {
@@ -41,14 +41,14 @@ function Info({ post }: Props) {
             <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
               수정
             </Button>
-            <Button size="small" onClick={() => deletePost(post.id)}>
+            <Button size="small" onClick={() => deletePost(post.id!)}>
               삭제
             </Button>
           </div>
         )}
       </div>
       <Tags>
-        {post.tags.map((tag, idx) => (
+        {post.tags.split(',').map((tag, idx) => (
           <Tag key={idx}>#{tag}</Tag>
         ))}
       </Tags>
