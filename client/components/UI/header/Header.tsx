@@ -13,6 +13,11 @@ function Header() {
   const [activeMenu, setActiveMenu] = useState('blog');
 
   useEffect(() => {
+    const data = localStorage.getItem('seunggyu');
+    data ? setIsLogin(true) : setIsLogin(false);
+  }, []);
+
+  useEffect(() => {
     const pathName = router.pathname;
     pathName === '/' ? setActiveMenu('blog') : setActiveMenu(pathName.slice(1));
   }, [router.pathname]);
