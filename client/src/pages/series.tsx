@@ -1,5 +1,5 @@
-import Series from '@pages/Series';
-import SeriesRepositoryImpl from '@services/series_repository';
+import Series from 'src/components/pages/Series';
+import SeriesRepositoryImpl from 'src/services/series_repository';
 import { SeriesData } from '@common/types';
 const seriesRepository = new SeriesRepositoryImpl();
 

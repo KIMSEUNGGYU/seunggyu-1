@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
 
-import PostInfo from '@post/PostInfo';
-import Contents from '@post/Contents';
+import PostInfo from 'src/components/UI/post/PostInfo';
+import Contents from 'src/components/UI/post/Contents';
 import { PostData } from '@common/types';
 
 interface Props {

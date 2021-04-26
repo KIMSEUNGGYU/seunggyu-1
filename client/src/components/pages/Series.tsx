@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import Series from '@series/Series';
+import Series from 'src/components/UI/series/Series';
 import { theme } from '@theme/index';
 import { SeriesData } from '@common/types';
 

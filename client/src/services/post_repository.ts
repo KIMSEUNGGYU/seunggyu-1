@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { TagData } from '@common/types';
-import { env } from '@constants/env';
+import { env } from 'src/constants/env';
 
 import { PostData } from '@common/types';
 

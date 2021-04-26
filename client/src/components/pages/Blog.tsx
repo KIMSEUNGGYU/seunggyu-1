@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import ViewMode from '@blog/viewmode/ViewMode';
-import ViewList from '@blog/viewlist/ViewList';
-import ViewBlock from '@blog/viewblock/ViewBlock';
-import Tags from '@blog/tags/Tags';
+import ViewMode from 'src/components/UI/blog/viewmode/ViewMode';
+import ViewList from 'src/components/UI/blog/viewlist/ViewList';
+import ViewBlock from 'src/components/UI/blog/viewblock/ViewBlock';
+import Tags from 'src/components/UI/blog/tags/Tags';
 import { useState } from 'react';
 import { PostData, TagData, ViewModeData } from '@common/types';
 

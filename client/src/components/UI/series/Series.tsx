@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { theme } from '@theme/index';
 import { SeriesData } from '@common/types';
-import DevelopingDialog from '@ui/dialog/DevelopingDialog';
+import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
 
 interface Props {
   series: SeriesData;

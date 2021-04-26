@@ -1,4 +1,4 @@
-import Login from '@login/Login';
+import Login from 'src/components/UI/login/Login';
 
 function LoginPage() {
   return <Login />;

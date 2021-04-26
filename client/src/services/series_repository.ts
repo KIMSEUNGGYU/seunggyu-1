@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { env } from '@constants/env';
+import { env } from 'src/constants/env';
 
 interface SeriesRepository {
   read: () => void;

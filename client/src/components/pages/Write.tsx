@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import removeMD from 'remove-markdown';
 
-import TUIEditor from '@ui/editor/TUIEditor';
+import TUIEditor from 'src/components/UI/editor/TUIEditor';
 import ImageUploaderImpl from '@services/image_uploader';
 import PostRepositoryImpl from '@services/post_repository';
-import EditorMenus from '@ui/editor/EditorMenu';
-import PostInfo from '@ui/editor/PostInfo';
+import EditorMenus from 'src/components/UI/editor/EditorMenu';
+import PostInfo from 'src/components/UI/editor/PostInfo';
 import styled from '@emotion/styled';
 import { PostData } from '@common/types';
 
