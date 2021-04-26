@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
 import { TuiEditorWithForwardedProps } from './TUIEditorWrapper';
-import Head from 'next/head';
 import { ImageUploader } from '@common/types';
 
 // editor plugin
@@ -52,41 +51,25 @@ const WysiwygEditor: React.FC<Props> = (props) => {
   }, [props, editorRef]);
 
   return (
-    <>
-      <Head>
-        <title>글쓰기 :: seunggyu</title>
-
-        <link
-          rel="stylesheet"
-          href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css"
-        />
-      </Head>
-      <div>
-        <EditorWithForwardedRef
-          {...props}
-          ref={editorRef}
-          initialValue={initialValue || '좋은 블로그 내용을 작성하자!! 🔥🔥👋'}
-          previewStyle={previewStyle || 'vertical'}
-          height={height || '600px'}
-          initialEditType={initialEditType || 'markdown'}
-          useCommandShortcut={useCommandShortcut || true}
-          usageStatistics={false}
-          onChange={handleChange}
-          hooks={{
-            addImageBlobHook: async (blob, callback) => {
-              const uploaded = await imageUploader.upload(blob);
-              callback(uploaded.url, uploaded.original_filename);
-              return false;
-            },
-          }}
-          plugins={[[codeSyntaxHighlight, { hljs }] as any]}
-        />
-      </div>
-    </>
+    <EditorWithForwardedRef
+      {...props}
+      ref={editorRef}
+      initialValue={initialValue || '좋은 블로그 내용을 작성하자!! 🔥🔥👋'}
+      previewStyle={previewStyle || 'vertical'}
+      height={height || '600px'}
+      initialEditType={initialEditType || 'markdown'}
+      useCommandShortcut={useCommandShortcut || true}
+      usageStatistics={false}
+      onChange={handleChange}
+      hooks={{
+        addImageBlobHook: async (blob, callback) => {
+          const uploaded = await imageUploader.upload(blob);
+          callback(uploaded.url, uploaded.original_filename);
+          return false;
+        },
+      }}
+      plugins={[[codeSyntaxHighlight, { hljs }] as any]}
+    />
   );
 };
 

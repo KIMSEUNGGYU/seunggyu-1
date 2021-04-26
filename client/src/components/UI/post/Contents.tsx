@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { PostData } from '@common/types';
-import TUIViewer from '@ui/editor/TUIViewer';
+import TUIViewer from 'src/components/UI/editor/TUIViewer';
 
 interface Props {
   post: PostData;

@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { Viewer as ViewerType, ViewerProps } from '@toast-ui/react-editor';
 import { TuiViewerWithForwardedProps } from './TUIViewerWrapper';
-import Head from 'next/head';
 
 // editor plugin
 import 'highlight.js/styles/github.css';
@@ -29,25 +28,11 @@ const WysiwygEditor: React.FC<Props> = (props) => {
   const { contents } = props;
 
   return (
-    <>
-      <Head>
-        <title> seunggyu</title>
-
-        <link
-          rel="stylesheet"
-          href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css"
-        />
-      </Head>
-      <ViewerWithForwardedRef
-        {...props}
-        initialValue={contents}
-        plugins={[[codeSyntaxHighlight, { hljs }] as any]}
-      />
-    </>
+    <ViewerWithForwardedRef
+      {...props}
+      initialValue={contents}
+      plugins={[[codeSyntaxHighlight, { hljs }] as any]}
+    />
   );
 };
 

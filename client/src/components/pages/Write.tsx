@@ -1,12 +1,13 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import removeMD from 'remove-markdown';
 
-import TUIEditor from '@ui/editor/TUIEditor';
+import TUIEditor from 'src/components/UI/editor/TUIEditor';
 import ImageUploaderImpl from '@services/image_uploader';
 import PostRepositoryImpl from '@services/post_repository';
-import EditorMenus from '@ui/editor/EditorMenu';
-import PostInfo from '@ui/editor/PostInfo';
+import EditorMenus from 'src/components/UI/editor/EditorMenu';
+import PostInfo from 'src/components/UI/editor/PostInfo';
 import styled from '@emotion/styled';
 import { PostData } from '@common/types';
 
@@ -82,17 +83,22 @@ export default function WritePage({ post }: Props) {
 
   if (!isLogin) return null;
   return (
-    <Editor>
-      <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo post={postState} setPost={setPostState} />
+    <>
+      <Head>
+        <title>WRITE | SEUNGGYU</title>
+      </Head>
+      <Editor>
+        <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
+        <PostInfo post={postState} setPost={setPostState} />
 
-      <TUIEditor
-        imageUploader={imageUploader}
-        onChange={(value) => setPostState({ ...postState, contents: value })}
-        initialValue={contents}
-      />
-      <EditorMenus updateMode={post ? true : false} addPost={addPost} />
-    </Editor>
+        <TUIEditor
+          imageUploader={imageUploader}
+          onChange={(value) => setPostState({ ...postState, contents: value })}
+          initialValue={contents}
+        />
+        <EditorMenus updateMode={post ? true : false} addPost={addPost} />
+      </Editor>
+    </>
   );
 }
 

@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router';
-
-import PostPage from '@pages/Post';
+import WritePage from 'src/components/pages/Write';
 import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();
@@ -13,7 +11,7 @@ interface Props {
 }
 
 export default function Page({ post }: Props) {
-  return <PostPage post={post} />;
+  return <WritePage post={post} />;
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

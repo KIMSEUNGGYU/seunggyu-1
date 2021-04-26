@@ -1,5 +1,5 @@
 import { ImageUploader } from '@common/types';
-import { env } from '@constants/env';
+import { env } from 'src/constants/env';
 
 export default class ImageUploaderImpl implements ImageUploader {
   async upload(file: any) {
