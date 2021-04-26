@@ -1,12 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Image from 'next/image';
-
-import { theme } from '@theme/index';
-
 import { useRecoilState } from 'recoil';
+
 import { isLoginState } from '@state/index';
+import { theme } from '@theme/index';
 
 function Header() {
   const router = useRouter();
@@ -24,23 +23,8 @@ function Header() {
   };
 
   const goLink = ({ target }: any) => {
-    switch (target.dataset.name) {
-      case 'logo':
-      case 'blog':
-        router.push('/');
-        break;
-      case 'series':
-        router.push('/series');
-        break;
-      case 'login':
-        router.push('/login');
-        break;
-      case 'write':
-        router.push('/write');
-        break;
-      default:
-        throw new Error(`제공하지 않은 메뉴: ${target.dataset.name}`);
-    }
+    const name = target.dataset.name;
+    name === 'logo' || name === 'blog' ? router.push('/') : router.push(`/${name}`);
   };
 
   return (

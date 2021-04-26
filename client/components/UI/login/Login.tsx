@@ -8,12 +8,12 @@ import { Input, Button } from 'antd';
 import { Post } from '@util/util';
 import { useRouter } from 'next/router';
 
-interface Props {
-  setbLogin: (login: boolean) => void;
-}
+import { isLoginState } from '@state/index';
+import { useSetRecoilState } from 'recoil';
 
-function Login({ setbLogin }: Props) {
+function Login() {
   const router = useRouter();
+  const setIsLogin = useSetRecoilState(isLoginState);
   const idRef = useRef<any>();
   const passwordRf = useRef<any>();
 
@@ -33,7 +33,7 @@ function Login({ setbLogin }: Props) {
 
     if (response?.status === 200) {
       alert('로그인 성공');
-      setbLogin(true);
+      setIsLogin(true);
       localStorage.setItem('seunggyu', 'root');
 
       router.push('/');

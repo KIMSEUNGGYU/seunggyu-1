@@ -10,6 +10,9 @@ import PostInfo from '@ui/editor/PostInfo';
 import styled from '@emotion/styled';
 import { PostData } from '@common/types';
 
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '@state/index';
+
 const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
 const postRepository = new PostRepositoryImpl();
@@ -25,21 +28,15 @@ interface Props {
 
 export default function WritePage({ post }: Props) {
   const router = useRouter();
+  const isLogin = useRecoilValue(isLoginState);
+
   const [postTitle, setPostTitle] = useState((post && post.title) || '');
   const [postTags, setPostTags] = useState((post && post.tags.toString()) || '');
   const [postContents, setPostContents] = useState((post && post.contents) || '');
 
-  const [bLogin, setbLogin] = useState(false);
   useEffect(() => {
-    const isLogin = localStorage.getItem('seunggyu');
-    if (isLogin) {
-      setbLogin(true);
-    } else {
-      router.push('/');
-    }
-  }, []);
-
-  if (!bLogin) return null;
+    if (!isLogin) router.push('/');
+  }, [isLogin]);
 
   const handlePrev = () => router.push('/');
   const addPost = async () => {
@@ -89,6 +86,7 @@ export default function WritePage({ post }: Props) {
     router.push('/');
   };
 
+  if (!isLogin) return null;
   return (
     <Editor>
       <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
