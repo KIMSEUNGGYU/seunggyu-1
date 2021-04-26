@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styled from '@emotion/styled';
 
 import ViewMode from 'src/components/UI/blog/viewmode/ViewMode';
@@ -28,6 +29,22 @@ function Blog({ posts, tags }: Props) {
 
   return (
     <>
+      <Head>
+        <title>BLOG | SEUNGGYU</title>
+        <meta
+          name="description"
+          content="개발자 김승규의 블로그 입니다. 좋은 컨텐츠를 생산하겠습니다."
+        />
+        <meta name="og:title" content="SEUNGGYU" />
+        <meta
+          name="og:image"
+          content="https://res.cloudinary.com/du4w00gvm/image/upload/v1619410321/main_image.png"
+        />
+        <meta
+          name="og:description"
+          content="개발자 김승규의 블로그 입니다. 좋은 컨텐츠를 생산하겠습니다."
+        />
+      </Head>
       <ViewMode changeViewMode={changeViewMode} mode={mode} />
       <BlogContainer>
         {mode === 'list' ? <ViewList posts={selectedPosts} /> : <ViewBlock posts={selectedPosts} />}

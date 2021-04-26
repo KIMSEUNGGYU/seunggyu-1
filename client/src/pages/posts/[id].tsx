@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-
 import PostPage from 'src/components/pages/Post';
 import PostRepository from '@services/post_repository';
 

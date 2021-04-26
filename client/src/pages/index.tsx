@@ -1,5 +1,5 @@
 import Blog from 'src/components/pages/Blog';
-import { PostData, TagData } from '@common';
+import { PostData, TagData } from '@common/types';
 import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();

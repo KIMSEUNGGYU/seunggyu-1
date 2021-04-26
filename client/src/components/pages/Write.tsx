@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import removeMD from 'remove-markdown';
@@ -82,17 +83,22 @@ export default function WritePage({ post }: Props) {
 
   if (!isLogin) return null;
   return (
-    <Editor>
-      <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo post={postState} setPost={setPostState} />
+    <>
+      <Head>
+        <title>WRITE | SEUNGGYU</title>
+      </Head>
+      <Editor>
+        <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
+        <PostInfo post={postState} setPost={setPostState} />
 
-      <TUIEditor
-        imageUploader={imageUploader}
-        onChange={(value) => setPostState({ ...postState, contents: value })}
-        initialValue={contents}
-      />
-      <EditorMenus updateMode={post ? true : false} addPost={addPost} />
-    </Editor>
+        <TUIEditor
+          imageUploader={imageUploader}
+          onChange={(value) => setPostState({ ...postState, contents: value })}
+          initialValue={contents}
+        />
+        <EditorMenus updateMode={post ? true : false} addPost={addPost} />
+      </Editor>
+    </>
   );
 }
 
