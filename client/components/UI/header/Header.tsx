@@ -5,28 +5,22 @@ import Image from 'next/image';
 
 import { theme } from '@theme/index';
 
-interface Props {
-  bLogin: boolean;
-  setbLogin: (login: boolean) => void;
-}
+import { useRecoilState } from 'recoil';
+import { isLoginState } from '@state/index';
 
-function Header({ bLogin, setbLogin }: Props) {
+function Header() {
   const router = useRouter();
-  let activeMenu;
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [activeMenu, setActiveMenu] = useState('blog');
 
-  if (router.pathname === '/') {
-    activeMenu = 'blog';
-  } else if (router.pathname === '/series') {
-    activeMenu = 'series';
-  } else if (router.pathname === '/login') {
-    activeMenu = 'login';
-  } else if (router.pathname === '/write') {
-    activeMenu = 'write';
-  }
+  useEffect(() => {
+    const pathName = router.pathname;
+    pathName === '/' ? setActiveMenu('blog') : setActiveMenu(pathName.slice(1));
+  }, [router.pathname]);
 
   const logout = () => {
     localStorage.removeItem('seunggyu');
-    setbLogin(false);
+    setIsLogin(false);
   };
 
   const goLink = ({ target }: any) => {
@@ -74,7 +68,7 @@ function Header({ bLogin, setbLogin }: Props) {
           Series
         </List>
 
-        {bLogin ? (
+        {isLogin ? (
           <>
             <List
               data-name="write"
