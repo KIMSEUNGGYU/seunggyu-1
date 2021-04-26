@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import { theme } from '@theme/index';
-import { PostData } from '@common/types';
+import { GetPostData } from '@common/types';
 import { Typography, Button } from 'antd';
 
 import { useRecoilValue } from 'recoil';
@@ -13,7 +13,7 @@ import PostRepository from '@services/post_repository';
 const postRepository = new PostRepository();
 
 interface Props {
-  post: PostData;
+  post: GetPostData;
 }
 
 function Info({ post }: Props) {

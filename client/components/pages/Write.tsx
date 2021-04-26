@@ -18,6 +18,15 @@ const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
 const postRepository = new PostRepositoryImpl();
 
+const emptyPost = {
+  id: '',
+  title: '',
+  date: '',
+  description: '',
+  contents: '',
+  tags: '',
+};
+
 interface Props {
   post?: PostData;
 }
@@ -26,28 +35,41 @@ export default function WritePage({ post }: Props) {
   const router = useRouter();
   const isLogin = useRecoilValue(isLoginState);
 
-  const [postTitle, setPostTitle] = useState((post && post.title) || '');
-  const [postTags, setPostTags] = useState((post && post.tags.toString()) || '');
-  const [postContents, setPostContents] = useState((post && post.contents) || '');
+  const [postState, setPostState] = useState(post || emptyPost);
+  const { title, tags, contents } = postState;
 
   useEffect(() => {
     if (!isLogin) router.push('/');
   }, [isLogin]);
 
   const addPost = async () => {
-    if (!(postTitle && postTags && postContents)) {
+    if (!(title && tags && contents)) {
       alert('모든 내용을 입력해주세요');
       return;
     }
 
     const body = {
-      title: postTitle,
+      title: title,
       date: getDate(),
-      description: removeMD(postContents, { useImgAltText: false }).slice(0, MAX_DESCRIPTION),
-      tags: postTags.replaceAll(/ /gi, '').split(','),
-      contents: postContents,
+      description: removeMD(contents, { useImgAltText: false }).slice(0, MAX_DESCRIPTION),
+      tags: tags.replaceAll(/ /gi, ''),
+      contents: contents,
     };
 
+    // post 가 있으면 수정
+    if (post) {
+      const response = await postRepository.updatePost(post.id!, body);
+      if (!response) {
+        alert('post 수정 실패');
+        return;
+      }
+
+      alert('post 수정 성공');
+      router.push('/');
+      return;
+    }
+
+    // post 없으면 추가하기
     const response = await postRepository.create(body);
     if (!response) {
       alert('post 작성 실패');
@@ -58,46 +80,18 @@ export default function WritePage({ post }: Props) {
     router.push('/');
   };
 
-  const updatePost = async () => {
-    if (!(postTitle && postTags && postContents)) {
-      alert('모든 내용을 입력해주세요');
-      return;
-    }
-
-    const body = {
-      title: postTitle,
-      description: removeMD(postContents, { useImgAltText: false }).slice(0, MAX_DESCRIPTION),
-      tags: postTags.replaceAll(/ /gi, '').split(','),
-      contents: postContents,
-    };
-
-    const response = post && (await postRepository.updatePost(post.id, body));
-    if (!response) {
-      alert('post 수정 실패');
-      return;
-    }
-
-    alert('post 수정 성공');
-    router.push('/');
-  };
-
   if (!isLogin) return null;
   return (
     <Editor>
       <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
-      <PostInfo
-        setPostTitle={setPostTitle}
-        setPostTags={setPostTags}
-        postTitle={postTitle}
-        postTags={postTags}
-      />
+      <PostInfo post={postState} setPost={setPostState} />
 
       <TUIEditor
         imageUploader={imageUploader}
-        onChange={(value) => setPostContents(value)}
-        initialValue={postContents}
+        onChange={(value) => setPostState({ ...postState, contents: value })}
+        initialValue={contents}
       />
-      <EditorMenus updateMode={post ? true : false} updatePost={updatePost} addPost={addPost} />
+      <EditorMenus updateMode={post ? true : false} addPost={addPost} />
     </Editor>
   );
 }

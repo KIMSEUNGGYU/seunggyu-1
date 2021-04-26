@@ -3,13 +3,7 @@ import axios from 'axios';
 import { TagData } from '@common/types';
 import { env } from '@constants/env';
 
-type PostData = {
-  title: string;
-  date?: string;
-  description: string;
-  contents: string;
-  tags: string[];
-};
+import { PostData } from '@common/types';
 
 interface PostRepository {
   create: (body: PostData) => void;
@@ -28,14 +22,17 @@ export default class PostRepositoryImpl implements PostRepository {
   }
 
   private async createPost(body: PostData) {
-    const option = this.getPostOption(body);
+    const option = this.getPostOption({
+      ...body,
+      tags: body.tags.split(','),
+    });
     const response = await fetch(`${BASE_URL}/posts`, option);
     return response.ok;
   }
   private async createTag(postTags: PostData['tags']) {
     const fetchedTags = await this.getTags();
     const tags = fetchedTags.map((tag: TagData) => tag.name);
-    const newTags = postTags.filter((postTag: string) => !tags.includes(postTag));
+    const newTags = postTags.split(',').filter((postTag: string) => !tags.includes(postTag));
 
     // 이미 태그가 존재하여 굳이 생성하지 않아도 됨
     if (!newTags.length) {
@@ -88,7 +85,10 @@ export default class PostRepositoryImpl implements PostRepository {
   // 수정
   async updatePost(id: string, body: PostData) {
     try {
-      const option = this.getUpdateOption(body);
+      const option = this.getUpdateOption({
+        ...body,
+        tags: body.tags.split(','),
+      });
       return fetch(`${BASE_URL}/posts/${id}`, option)
         .then((res) => res.ok)
         .catch((error) => `태그 생성 오류: ${error}`);
