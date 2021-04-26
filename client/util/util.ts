@@ -48,24 +48,7 @@ function Delete(url = '') {
   });
 }
 
-// function deleteData(url) {
-//   return fetch(url, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-// }
-
-interface Cookies {
-  [key: string]: string;
+export function getDate() {
+  const date = new Date();
+  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 }
-
-const COOKIE_SPLIT_CHAR = '; ';
-
-export const cookieParser = (cookies = ''): Cookies =>
-  cookies.split(COOKIE_SPLIT_CHAR).reduce((parsingCookies: Cookies, cookieLine) => {
-    const [key, value] = cookieLine.split('=');
-    parsingCookies[key] = value;
-    return parsingCookies;
-  }, {});

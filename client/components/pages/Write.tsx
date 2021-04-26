@@ -12,15 +12,11 @@ import { PostData } from '@common/types';
 
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '@state/index';
+import { getDate } from '@util/util';
 
 const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
 const postRepository = new PostRepositoryImpl();
-
-function getDate() {
-  const date = new Date();
-  return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
-}
 
 interface Props {
   post?: PostData;
@@ -38,7 +34,6 @@ export default function WritePage({ post }: Props) {
     if (!isLogin) router.push('/');
   }, [isLogin]);
 
-  const handlePrev = () => router.push('/');
   const addPost = async () => {
     if (!(postTitle && postTags && postContents)) {
       alert('모든 내용을 입력해주세요');
@@ -102,12 +97,7 @@ export default function WritePage({ post }: Props) {
         onChange={(value) => setPostContents(value)}
         initialValue={postContents}
       />
-      <EditorMenus
-        updateMode={post ? true : false}
-        updatePost={updatePost}
-        addPost={addPost}
-        handlePrev={handlePrev}
-      />
+      <EditorMenus updateMode={post ? true : false} updatePost={updatePost} addPost={addPost} />
     </Editor>
   );
 }

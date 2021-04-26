@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
 import { theme } from '@theme/index';
@@ -5,16 +6,13 @@ import { theme } from '@theme/index';
 interface Props {
   updateMode: boolean;
   addPost: () => void;
-  handlePrev: () => void;
   updatePost: () => void;
 }
 
-export default function EditorMenuCompoenent({
-  updateMode,
-  addPost,
-  handlePrev,
-  updatePost,
-}: Props) {
+export default function EditorMenuCompoenent({ updateMode, addPost, updatePost }: Props) {
+  const router = useRouter();
+  const handlePrev = () => router.push('/');
+
   return (
     <EditorMenu>
       <PrevButton onClick={() => handlePrev()}> {'← 나가기'}</PrevButton>

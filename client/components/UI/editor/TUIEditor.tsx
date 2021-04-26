@@ -69,7 +69,7 @@ const WysiwygEditor: React.FC<Props> = (props) => {
         <EditorWithForwardedRef
           {...props}
           ref={editorRef}
-          initialValue={initialValue || 'hello react editor world!'}
+          initialValue={initialValue || '좋은 블로그 내용을 작성하자!! 🔥🔥👋'}
           previewStyle={previewStyle || 'vertical'}
           height={height || '600px'}
           initialEditType={initialEditType || 'markdown'}
