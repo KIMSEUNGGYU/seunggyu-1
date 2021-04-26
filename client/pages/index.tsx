@@ -14,8 +14,13 @@ export default function Home({ posts, tags }: Props) {
 }
 
 export async function getServerSideProps() {
-  const posts = await postRepository.read();
+  let posts = await postRepository.read();
   const tags = await postRepository.getTags();
+
+  posts = posts.map((post: PostData) => ({
+    ...post,
+    tags: post['tags'].toString(),
+  }));
 
   return {
     props: {

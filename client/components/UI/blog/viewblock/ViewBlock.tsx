@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
@@ -10,6 +9,29 @@ const { Text } = Typography;
 type Props = {
   posts: PostData[];
 };
+
+function ViewBlock({ posts }: Props) {
+  return (
+    <BlogBlock>
+      {posts.map((post) => (
+        <BlockContainer key={post.id}>
+          <Link href={`/posts/${post.id}`}>
+            <a>
+              <Title>{post.title}</Title>
+              <DateString>{post.date}</DateString>
+              <Description>{post.description}</Description>
+              <Tags>
+                {post.tags.split(',').map((tag, idx) => (
+                  <li key={idx}>#{tag}</li>
+                ))}
+              </Tags>
+            </a>
+          </Link>
+        </BlockContainer>
+      ))}
+    </BlogBlock>
+  );
+}
 
 const BlogBlock = styled.div`
   max-width: 80%;
@@ -65,28 +87,5 @@ const Tags = styled.ul`
     margin-right: 6px;
   }
 `;
-
-const ViewBlock: FC<Props> = ({ posts }) => {
-  return (
-    <BlogBlock>
-      {posts.map((post) => (
-        <BlockContainer key={post.id}>
-          <Link href={`/posts/${post.id}`}>
-            <a>
-              <Title>{post.title}</Title>
-              <DateString>{post.date}</DateString>
-              <Description>{post.description}</Description>
-              <Tags>
-                {post.tags.map((tag, idx) => (
-                  <li key={idx}>#{tag}</li>
-                ))}
-              </Tags>
-            </a>
-          </Link>
-        </BlockContainer>
-      ))}
-    </BlogBlock>
-  );
-};
 
 export default ViewBlock;

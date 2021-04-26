@@ -4,43 +4,51 @@ import styled from '@emotion/styled';
 import { theme } from '@theme/index';
 import { PostData } from '@common/types';
 import { Typography, Button } from 'antd';
-import { useEffect, useState } from 'react';
+
+import { useRecoilValue } from 'recoil';
+import { isLoginState } from '@state/index';
 const { Text } = Typography;
+
+import PostRepository from '@services/post_repository';
+const postRepository = new PostRepository();
 
 interface Props {
   post: PostData;
-  deletePost: (id: string) => void;
 }
 
-function Info({ post, deletePost }: Props) {
+function Info({ post }: Props) {
   const router = useRouter();
-  const [bLogin, setbLogin] = useState(false);
+  const isLogin = useRecoilValue(isLoginState);
 
-  useEffect(() => {
-    const isLogin = localStorage.getItem('seunggyu');
-    if (isLogin) {
-      setbLogin(true);
+  const deletePost = async (postId: string) => {
+    const response = await postRepository.deletePost(postId);
+    if (response && response.status === 200) {
+      alert('삭제 성공');
+      router.push('/');
+      return;
     }
-  }, [bLogin]);
+
+    alert('삭제 실패');
+  };
 
   return (
     <PostInfo>
       <Title>{post.title}</Title>
       <div>
         <DateString type="secondary">{post.date}</DateString>
-        {bLogin && (
+        {isLogin && (
           <div>
             <Button size="small" onClick={() => router.push(`/update/${post.id}`)}>
               수정
             </Button>
-            <Button size="small" onClick={() => deletePost(post.id)}>
+            <Button size="small" onClick={() => deletePost(post.id!)}>
               삭제
             </Button>
           </div>
         )}
       </div>
       <Tags>
-        {post.tags.map((tag, idx) => (
+        {post.tags.split(',').map((tag, idx) => (
           <Tag key={idx}>#{tag}</Tag>
         ))}
       </Tags>

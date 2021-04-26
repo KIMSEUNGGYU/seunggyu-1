@@ -18,7 +18,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (typeof context.query.id == 'string') {
     const post = await postRepository.detailRead(context.query.id);
     return {
-      props: { post },
+      props: { post: { ...post, tags: post.tags.toString() } },
     };
   }
 }

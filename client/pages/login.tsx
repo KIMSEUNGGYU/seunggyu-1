@@ -1,11 +1,7 @@
 import LoginPage from '@pages/Login';
 
-interface Props {
-  setbLogin: (login: boolean) => void;
-}
-
-function Login({ setbLogin }: Props) {
-  return <LoginPage setbLogin={setbLogin} />;
+function Login() {
+  return <LoginPage />;
 }
 
 export default Login;

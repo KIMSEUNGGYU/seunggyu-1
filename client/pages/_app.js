@@ -1,31 +1,19 @@
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { css, Global } from '@emotion/react';
+import { RecoilRoot } from 'recoil';
 
 import { theme } from '../theme/index';
 import Header from '@ui/header/Header';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const [bLogin, setbLogin] = useState(false);
-
-  useEffect(() => {
-    const isLogin = localStorage.getItem('seunggyu');
-    if (isLogin) {
-      setbLogin(true);
-    } else {
-      router.push('/');
-    }
-    console.log('isLogin', isLogin);
-  }, [bLogin]);
-
   return (
     <>
-      <Header bLogin={bLogin} setbLogin={setbLogin} />
       <Global styles={globalStyle} />
-      <Component {...pageProps} bLogin={bLogin} setbLogin={setbLogin} />
+      <RecoilRoot>
+        <Header />
+        <Component {...pageProps} />
+      </RecoilRoot>
     </>
   );
 }

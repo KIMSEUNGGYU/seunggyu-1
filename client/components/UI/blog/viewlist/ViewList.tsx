@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
@@ -9,6 +8,33 @@ const { Text } = Typography;
 
 interface Props {
   posts: PostData[];
+}
+
+function ViewList({ posts }: Props) {
+  return (
+    <>
+      <BlogLists>
+        {posts.map((post) => (
+          <ListContainer key={post.id}>
+            <Link href={`/posts/${post.id}`}>
+              <a>
+                <ListTitleBlock>
+                  <Title>{post.title}</Title>
+                  <DateString type="secondary">{post.date}</DateString>
+                </ListTitleBlock>
+                <Description>{post.description}</Description>
+                <Tags>
+                  {post.tags.split(',').map((tag, idx) => (
+                    <li key={idx}>#{tag}</li>
+                  ))}
+                </Tags>
+              </a>
+            </Link>
+          </ListContainer>
+        ))}
+      </BlogLists>
+    </>
+  );
 }
 
 const BlogLists = styled.ul`
@@ -66,32 +92,5 @@ const Tags = styled.ul`
     margin-right: 6px;
   }
 `;
-
-const ViewList: FC<Props> = ({ posts }) => {
-  return (
-    <>
-      <BlogLists>
-        {posts.map((post, idx) => (
-          <ListContainer key={post.id}>
-            <Link href={`/posts/${post.id}`}>
-              <a>
-                <ListTitleBlock>
-                  <Title>{post.title}</Title>
-                  <DateString type="secondary">{post.date}</DateString>
-                </ListTitleBlock>
-                <Description>{post.description}</Description>
-                <Tags>
-                  {post.tags.map((tag, idx) => (
-                    <li key={idx}>#{tag}</li>
-                  ))}
-                </Tags>
-              </a>
-            </Link>
-          </ListContainer>
-        ))}
-      </BlogLists>
-    </>
-  );
-};
 
 export default ViewList;

@@ -1,52 +1,35 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import { useRecoilState } from 'recoil';
 
+import { isLoginState } from '@state/index';
 import { theme } from '@theme/index';
 
-interface Props {
-  bLogin: boolean;
-  setbLogin: (login: boolean) => void;
-}
-
-function Header({ bLogin, setbLogin }: Props) {
+function Header() {
   const router = useRouter();
-  let activeMenu;
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [activeMenu, setActiveMenu] = useState('blog');
 
-  if (router.pathname === '/') {
-    activeMenu = 'blog';
-  } else if (router.pathname === '/series') {
-    activeMenu = 'series';
-  } else if (router.pathname === '/login') {
-    activeMenu = 'login';
-  } else if (router.pathname === '/write') {
-    activeMenu = 'write';
-  }
+  useEffect(() => {
+    const data = localStorage.getItem('seunggyu');
+    data ? setIsLogin(true) : setIsLogin(false);
+  }, []);
+
+  useEffect(() => {
+    const pathName = router.pathname;
+    pathName === '/' ? setActiveMenu('blog') : setActiveMenu(pathName.slice(1));
+  }, [router.pathname]);
 
   const logout = () => {
     localStorage.removeItem('seunggyu');
-    setbLogin(false);
+    setIsLogin(false);
   };
 
   const goLink = ({ target }: any) => {
-    switch (target.dataset.name) {
-      case 'logo':
-      case 'blog':
-        router.push('/');
-        break;
-      case 'series':
-        router.push('/series');
-        break;
-      case 'login':
-        router.push('/login');
-        break;
-      case 'write':
-        router.push('/write');
-        break;
-      default:
-        throw new Error(`제공하지 않은 메뉴: ${target.dataset.name}`);
-    }
+    const name = target.dataset.name;
+    name === 'logo' || name === 'blog' ? router.push('/') : router.push(`/${name}`);
   };
 
   return (
@@ -74,7 +57,7 @@ function Header({ bLogin, setbLogin }: Props) {
           Series
         </List>
 
-        {bLogin ? (
+        {isLogin ? (
           <>
             <List
               data-name="write"

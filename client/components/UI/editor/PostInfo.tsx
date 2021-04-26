@@ -1,32 +1,26 @@
+import { PostData } from '@common/types';
 import styled from '@emotion/styled';
 import { Input } from 'antd';
 
 interface Props {
-  setPostTitle: (title: string) => void;
-  setPostTags: (tags: string) => void;
-  postTitle: string;
-  postTags: string;
+  post: PostData;
+  setPost: (post: PostData) => void;
 }
 
-export default function PostInfoCompoenent({
-  setPostTitle,
-  setPostTags,
-  postTitle,
-  postTags,
-}: Props) {
+export default function PostInfoCompoenent({ post, setPost }: Props) {
   return (
     <PostInfo>
       <InputStyle
         size="large"
         placeholder="제목"
-        onChange={({ target }) => setPostTitle(target.value)}
-        value={postTitle}
+        onChange={({ target }) => setPost({ ...post, title: target.value })}
+        value={post.title}
       />
       <InputStyle
         size="large"
         placeholder="태그,"
-        onChange={({ target }) => setPostTags(target.value)}
-        value={postTags}
+        onChange={({ target }) => setPost({ ...post, tags: target.value })}
+        value={post.tags}
       />
     </PostInfo>
   );

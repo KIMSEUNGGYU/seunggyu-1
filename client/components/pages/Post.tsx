@@ -5,6 +5,22 @@ import PostInfo from '@post/PostInfo';
 import Contents from '@post/Contents';
 import { PostData } from '@common/types';
 
+interface Props {
+  post: PostData;
+}
+
+function PostPage({ post }: Props) {
+  return (
+    <>
+      <Global styles={globalStyle} />
+      <PostPageContainer>
+        <PostInfo post={post} />
+        <Contents post={post} />
+      </PostPageContainer>
+    </>
+  );
+}
+
 const globalStyle = css`
   body {
     background-color: white;
@@ -19,22 +35,5 @@ const PostPageContainer = styled.div`
   flex-direction: column;
   margin-top: 60px;
 `;
-
-interface Props {
-  post: PostData;
-  deletePost: (id: string) => void;
-}
-
-function PostPage({ post, deletePost }: Props) {
-  return (
-    <>
-      <Global styles={globalStyle} />
-      <PostPageContainer>
-        <PostInfo post={post} deletePost={deletePost} />
-        <Contents post={post} />
-      </PostPageContainer>
-    </>
-  );
-}
 
 export default PostPage;
