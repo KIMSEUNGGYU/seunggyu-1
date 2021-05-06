@@ -1,2 +1,2 @@
 # seunggyu
-seunggyu's website
+seunggyu's Blog
