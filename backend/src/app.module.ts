@@ -7,6 +7,8 @@ import { AuthModule } from '@auth/auth.module';
 import { UsersModule } from '@users/users.module';
 import * as Joi from 'joi';
 import { DatabaseModule } from './database/database.module';
+import { SeriesController } from './series/series.controller';
+import { SeriesModule } from './series/series.module';
 
 @Module({
   imports: [
@@ -25,8 +27,9 @@ import { DatabaseModule } from './database/database.module';
     AuthModule,
     UsersModule,
     DatabaseModule,
+    SeriesModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, SeriesController],
   providers: [AppService],
 })
 export class AppModule {}
