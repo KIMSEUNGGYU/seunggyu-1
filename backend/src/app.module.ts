@@ -29,7 +29,7 @@ import { SeriesModule } from './series/series.module';
     DatabaseModule,
     SeriesModule,
   ],
-  controllers: [AppController, SeriesController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
