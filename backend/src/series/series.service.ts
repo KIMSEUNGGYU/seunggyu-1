@@ -13,4 +13,8 @@ export class SeriesService {
   getSeries() {
     return this.SeriesRepository.find();
   }
+
+  createSeries(series) {
+    this.SeriesRepository.save(series);
+  }
 }
