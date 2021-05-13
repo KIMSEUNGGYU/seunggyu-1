@@ -1,25 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-// 예제에서는 하드 코딩 되었지만
-// 이 부분은 반드시 user entity를 표현하는 class/interface여야 한다.
-export type User = any;
+import { Users } from '@users/users.entity';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
+  constructor(
+    @InjectRepository(Users)
+    private usersRepository: Repository<Users>,
+  ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async getByUserId(userId: string) {
+    const user = this.usersRepository.findOne({ userId });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
+  }
+
+  async createUser(user: Users) {
+    try {
+      const hashedPassword = await hash(user.password, 10);
+      this.usersRepository.save({ ...user, password: hashedPassword });
+    } catch (error) {
+      if (error?.code === 'ER_DUP_ENTRY') {
+        throw new HttpException('User with that userId already exists', HttpStatus.BAD_REQUEST);
+      }
+    }
   }
 }

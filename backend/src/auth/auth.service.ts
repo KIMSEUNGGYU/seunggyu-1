@@ -1,27 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { compare } from 'bcrypt';
 
 import { UsersService } from '@users/users.service';
+import { HttpException } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
-    if (user && user.password === pass) {
+  async validateUser(userId: string, pass: string): Promise<any> {
+    try {
+      const user = await this.usersService.getByUserId(userId);
+      await this.verifyPassword(pass, user.password);
       const { password, ...result } = user;
-      // result는 password 를 제외한 user의 모든 정보를 포함한다.
       return result;
+    } catch (error) {
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
     }
-    return null;
+  }
+
+  private async verifyPassword(plainTextPassword: string, hashedPassword: string) {
+    const isPasswordMatch = await compare(plainTextPassword, hashedPassword);
+    if (!isPasswordMatch) {
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+    }
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { userId: user.userId, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
