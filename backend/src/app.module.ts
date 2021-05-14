@@ -5,11 +5,9 @@ import { AppController } from '@/app.controller';
 import { AppService } from '@/app.service';
 import { AuthModule } from '@auth/auth.module';
 import { UsersModule } from '@users/users.module';
+import { DatabaseModule } from '@database/database.module';
+import { SeriesModule } from '@series/series.module';
 import * as Joi from 'joi';
-import { DatabaseModule } from './database/database.module';
-import { SeriesController } from './series/series.controller';
-import { SeriesModule } from './series/series.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -28,7 +26,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     AuthModule,
     UsersModule,
     DatabaseModule,
-    // SeriesModule,
+    SeriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

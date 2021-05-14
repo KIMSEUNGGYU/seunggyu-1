@@ -1,5 +1,6 @@
-import { SeriesService } from './series.service';
 import { Controller, Get, Post, Request } from '@nestjs/common';
+
+import { SeriesService } from '@series/series.service';
 
 @Controller('series')
 export class SeriesController {
@@ -12,7 +13,6 @@ export class SeriesController {
 
   @Post()
   async creatSeries(@Request() req) {
-    // console.log(req.body);
     this.seriesService.createSeries(req.body);
   }
 }
