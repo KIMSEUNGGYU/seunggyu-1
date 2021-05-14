@@ -13,22 +13,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   isGlobal: true,
-    //   validationSchema: Joi.object({
-    //     DATABASE_HOST: Joi.string().required(),
-    //     DATABASE_PORT: Joi.number().required(),
-    //     DATABASE_USER: Joi.string().required(),
-    //     DATABASE_PASSWORD: Joi.string().required(),
-    //     DATABASE_NAME: Joi.string().required(),
-    //     JWT_SECRET: Joi.string().required(),
-    //     JWT_EXPIRATION_TIME: Joi.string().required(),
-    //   }),
-    // }),
-    TypeOrmModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.string().required(),
+        DATABASE_PORT: Joi.number().required(),
+        DATABASE_USER: Joi.string().required(),
+        DATABASE_PASSWORD: Joi.string().required(),
+        DATABASE_NAME: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
+      }),
+    }),
     // AuthModule,
     // UsersModule,
-    // DatabaseModule,
+    DatabaseModule,
     // SeriesModule,
   ],
   controllers: [AppController],
