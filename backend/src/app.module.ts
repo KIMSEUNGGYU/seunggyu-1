@@ -9,6 +9,7 @@ import * as Joi from 'joi';
 import { DatabaseModule } from './database/database.module';
 import { SeriesController } from './series/series.controller';
 import { SeriesModule } from './series/series.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { SeriesModule } from './series/series.module';
     AuthModule,
     UsersModule,
     DatabaseModule,
-    SeriesModule,
+    // SeriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
