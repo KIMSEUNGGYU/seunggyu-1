@@ -26,7 +26,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       }),
     }),
     // AuthModule,
-    // UsersModule,
+    UsersModule,
     DatabaseModule,
     // SeriesModule,
   ],
