@@ -25,7 +25,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
-    // AuthModule,
+    AuthModule,
     UsersModule,
     DatabaseModule,
     // SeriesModule,
