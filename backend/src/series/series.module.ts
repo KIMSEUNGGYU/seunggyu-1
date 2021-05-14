@@ -5,7 +5,7 @@ import { Series } from './series.entity';
 import { SeriesService } from './series.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Series])],
+  // imports: [TypeOrmModule.forFeature([Series])],
   providers: [SeriesService],
   controllers: [SeriesController],
 })
