@@ -5,6 +5,8 @@
       "@/*": ["src/*"],
       "@auth/*": ["src/auth/*"],
       "@users/*": ["src/users/*"],
+      "@series/*": ["src/series/*"],
+      "@database/*": ["src/database/*"],
       "@utils/*": ["src/utils/*"],
       "@config/*": ["src/config/*"],
       "@entity/*": ["src/entity/*"]

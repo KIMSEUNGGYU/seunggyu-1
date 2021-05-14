@@ -1,7 +1,8 @@
-import { Series } from './series.entity_';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
+import { Series } from '@entity/Series';
 
 @Injectable()
 export class SeriesService {
