@@ -1,4 +1,4 @@
-import WritePage from 'src/components/pages/Write';
+import WritePage from '@components/layout/Write';
 import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();

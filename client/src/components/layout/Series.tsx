@@ -3,18 +3,31 @@ import Head from 'next/head';
 
 import Series from 'src/components/UI/series/Series';
 import { theme } from '@theme/index';
-import { SeriesData } from '@common/types';
+
+type SeriesData = {
+  id: number;
+  title: string;
+  postId: string;
+  postTitle: string;
+};
+
+type SeriesListData = {
+  title: string;
+  seriesList: SeriesData[];
+};
 
 interface Props {
-  series: SeriesData[];
+  seriesList: SeriesListData[];
 }
 
-function SeriesPage({ series }: Props) {
-  const seriesList = series.map((contents, idx) => (
-    <SeriesBlock key={idx}>
-      <Series series={contents} />
-    </SeriesBlock>
-  ));
+function SeriesLayout({ seriesList }: Props) {
+  const SeriesList = seriesList.map((series, idx) => {
+    return (
+      <SeriesBlock key={idx}>
+        <Series title={series.title} seriesList={series.seriesList} />
+      </SeriesBlock>
+    );
+  });
 
   return (
     <>
@@ -35,7 +48,7 @@ function SeriesPage({ series }: Props) {
           content="개발자 김승규의 시리즈 입니다. 튜토리얼 또는 순차적으로 개념을 익히세요"
         />
       </Head>
-      <SeriesContainer>{seriesList}</SeriesContainer>
+      <SeriesContainer>{SeriesList}</SeriesContainer>
     </>
   );
 }
@@ -58,4 +71,4 @@ const SeriesBlock = styled.div`
   position: relative;
 `;
 
-export default SeriesPage;
+export default SeriesLayout;

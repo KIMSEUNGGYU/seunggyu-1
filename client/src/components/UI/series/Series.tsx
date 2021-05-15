@@ -1,42 +1,61 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { theme } from '@theme/index';
-import { SeriesData } from '@common/types';
 import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
 
+type SeriesData = {
+  id: number;
+  title: string;
+  postId: string;
+  postTitle: string;
+};
+
 interface Props {
-  series: SeriesData;
+  title: string;
+  seriesList: SeriesData[];
 }
 
-function Series({ series }: Props) {
+function Series({ title, seriesList }: Props) {
   const [toggle, setToggle] = useState(false);
   const [bDevelopDialog, setbDevelopDialog] = useState(false);
+
   const closeDialog = () => setbDevelopDialog(false);
+  const openDialog = () => setbDevelopDialog(true);
+  const closeSeriesList = () => setToggle(false);
+  const openSeriesList = () => setToggle(true);
+
+  const ToggleOpenComponent = (
+    <ToggleBlock onClick={openSeriesList}>
+      <CaretDownOutlined />
+    </ToggleBlock>
+  );
+
+  const ToggleCloseComponent = (
+    <ToggleBlock onClick={closeSeriesList}>
+      <CaretUpOutlined />
+    </ToggleBlock>
+  );
+
+  const SeriesListContainer = seriesList.map((item) => (
+    <SeriesList key={item.id} onClick={openDialog}>
+      {item.postTitle}
+    </SeriesList>
+  ));
 
   return (
     <>
-      <Title>{series.title}</Title>
+      <Title>{title}</Title>
       {toggle ? (
-        <>
-          <SeriesLists>
-            {series.lists.map((list) => (
-              <SeriesList key={list.id} onClick={() => setbDevelopDialog(true)}>
-                {list.title}
-              </SeriesList>
-            ))}
-
-            <ToggleBlock onClick={() => setToggle(!toggle)}>
-              <CaretUpOutlined />
-            </ToggleBlock>
-          </SeriesLists>
-        </>
+        <SeriesLists>
+          {SeriesListContainer}
+          {ToggleCloseComponent}
+        </SeriesLists>
       ) : (
-        <ToggleBlock onClick={() => setToggle(!toggle)}>
-          <CaretDownOutlined />
-        </ToggleBlock>
+        ToggleOpenComponent
       )}
+
       <DevelopingDialog visible={bDevelopDialog} closeDialog={closeDialog} />
     </>
   );

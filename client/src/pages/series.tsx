@@ -1,22 +1,32 @@
-import Series from 'src/components/pages/Series';
+import SeriesLayout from '@layout/Series';
 import SeriesRepositoryImpl from 'src/services/series_repository';
-import { SeriesData } from '@common/types';
+
 const seriesRepository = new SeriesRepositoryImpl();
 
+type SeriesData = {
+  id: number;
+  title: string;
+  postId: string;
+  postTitle: string;
+};
+
 interface Props {
-  series: SeriesData[];
+  seriesList: {
+    title: string;
+    seriesList: SeriesData[] | [];
+  }[];
 }
 
-export default function Home({ series }: Props) {
-  return <Series series={series} />;
+export default function Series({ seriesList }: Props) {
+  return <SeriesLayout seriesList={seriesList} />;
 }
 
 export async function getStaticProps() {
-  const series = await seriesRepository.read();
+  const seriesList = await seriesRepository.read();
 
   return {
     props: {
-      series,
+      seriesList,
     },
   };
 }

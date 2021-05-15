@@ -29,12 +29,15 @@ export interface ImageUploader {
   upload: (file: any) => any;
 }
 
+//  id: 7, title: '자료구조', postId: '11', postTitle: '자료구조 - 스택'
 type SeriesPostData = {
   id: string;
   title: string;
+  postId: string;
+  postTitle: string;
 };
 
 export type SeriesData = {
-  title: string;
-  lists: SeriesPostData[];
+  title?: string;
+  seriesList: SeriesPostData[];
 };

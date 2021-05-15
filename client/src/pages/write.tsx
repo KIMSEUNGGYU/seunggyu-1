@@ -1,4 +1,4 @@
-import WritePage from 'src/components/pages/Write';
+import WritePage from '@components/layout/Write';
 
 export default function Write() {
   return <WritePage />;
