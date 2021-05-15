@@ -62,26 +62,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/components/layout/*"],
-      "@ui/*": ["src/components/UI/*"],
-      "@header/*": ["src/components/UI/header/*"],
-      "@blog/*": ["src/components/UI/blog/*"],
-      "@series/*": ["src/components/UI/series/*"],
-      "@login/*": ["src/components/UI/login/*"],
-      "@post/*": ["src/components/UI/post/*"],
-      "@theme/*": ["src/theme/*"],
-      "@data/*": ["src/data/*"],
-      "@common/*": ["src/common/*"],
-      "@services/*": ["src/services/*"],
-      "@constants/*": ["src/constants/*"],
-      "@util/*": ["src/util/*"],
-      "@state/*": ["src/state/*"]
-    }
+    "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "extends": "./tsconfig.paths.json"
 }
