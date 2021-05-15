@@ -1,32 +1,40 @@
-import { FC, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { theme } from '@theme/index';
-import { SeriesData } from '@common/types';
+// import { SeriesData } from '@common/types';
 import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
 
+// { id: 7, title: '자료구조', postId: '11', postTitle: '자료구조 - 스택' },
+type SeriesData = {
+  id: number;
+  title: string;
+  postId: string;
+  postTitle: string;
+};
+
 interface Props {
-  series: SeriesData;
+  title: string;
+  seriesList: SeriesData[];
 }
 
-function Series({ series }: Props) {
+function Series({ title, seriesList }: Props) {
   const [toggle, setToggle] = useState(false);
   const [bDevelopDialog, setbDevelopDialog] = useState(false);
   const closeDialog = () => setbDevelopDialog(false);
 
   return (
     <>
-      <Title>{series.title}</Title>
+      <Title>{title}</Title>
       {toggle ? (
         <>
           <SeriesLists>
-            {series.lists.map((list) => (
-              <SeriesList key={list.id} onClick={() => setbDevelopDialog(true)}>
-                {list.title}
+            {seriesList.map((item) => (
+              <SeriesList key={item.id} onClick={() => setbDevelopDialog(true)}>
+                {item.postTitle}
               </SeriesList>
             ))}
-
             <ToggleBlock onClick={() => setToggle(!toggle)}>
               <CaretUpOutlined />
             </ToggleBlock>
@@ -37,6 +45,7 @@ function Series({ series }: Props) {
           <CaretDownOutlined />
         </ToggleBlock>
       )}
+
       <DevelopingDialog visible={bDevelopDialog} closeDialog={closeDialog} />
     </>
   );
