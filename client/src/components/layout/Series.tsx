@@ -20,8 +20,7 @@ interface Props {
   seriesList: SeriesListData[];
 }
 
-function SeriesPage({ seriesList }: Props) {
-  // const SeriesList = null;
+function SeriesLayout({ seriesList }: Props) {
   const SeriesList = seriesList.map((series, idx) => {
     return (
       <SeriesBlock key={idx}>
@@ -72,4 +71,4 @@ const SeriesBlock = styled.div`
   position: relative;
 `;
 
-export default SeriesPage;
+export default SeriesLayout;

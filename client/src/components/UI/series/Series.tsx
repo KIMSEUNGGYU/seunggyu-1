@@ -20,28 +20,40 @@ interface Props {
 function Series({ title, seriesList }: Props) {
   const [toggle, setToggle] = useState(false);
   const [bDevelopDialog, setbDevelopDialog] = useState(false);
+
   const closeDialog = () => setbDevelopDialog(false);
+  const openDialog = () => setbDevelopDialog(true);
+  const closeSeriesList = () => setToggle(false);
+  const openSeriesList = () => setToggle(true);
+
+  const ToggleOpenComponent = (
+    <ToggleBlock onClick={openSeriesList}>
+      <CaretDownOutlined />
+    </ToggleBlock>
+  );
+
+  const ToggleCloseComponent = (
+    <ToggleBlock onClick={closeSeriesList}>
+      <CaretUpOutlined />
+    </ToggleBlock>
+  );
+
+  const SeriesListContainer = seriesList.map((item) => (
+    <SeriesList key={item.id} onClick={openDialog}>
+      {item.postTitle}
+    </SeriesList>
+  ));
 
   return (
     <>
       <Title>{title}</Title>
       {toggle ? (
-        <>
-          <SeriesLists>
-            {seriesList.map((item) => (
-              <SeriesList key={item.id} onClick={() => setbDevelopDialog(true)}>
-                {item.postTitle}
-              </SeriesList>
-            ))}
-            <ToggleBlock onClick={() => setToggle(!toggle)}>
-              <CaretUpOutlined />
-            </ToggleBlock>
-          </SeriesLists>
-        </>
+        <SeriesLists>
+          {SeriesListContainer}
+          {ToggleCloseComponent}
+        </SeriesLists>
       ) : (
-        <ToggleBlock onClick={() => setToggle(!toggle)}>
-          <CaretDownOutlined />
-        </ToggleBlock>
+        ToggleOpenComponent
       )}
 
       <DevelopingDialog visible={bDevelopDialog} closeDialog={closeDialog} />

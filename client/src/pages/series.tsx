@@ -1,10 +1,5 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
-
-import SeriesPage from '@components/layout/Series';
+import SeriesLayout from '@layout/Series';
 import SeriesRepositoryImpl from 'src/services/series_repository';
-import { isLoginState, seriesState } from '@state/index';
-import { useEffect } from 'react';
-// import { SeriesData } from '@common/types';
 
 const seriesRepository = new SeriesRepositoryImpl();
 
@@ -23,13 +18,7 @@ interface Props {
 }
 
 export default function Series({ seriesList }: Props) {
-  const [value, setValue] = useRecoilState<any>(seriesState);
-  useEffect(() => {
-    setValue(seriesList);
-    console.log(value);
-  }, []);
-
-  return <SeriesPage seriesList={seriesList} />;
+  return <SeriesLayout seriesList={seriesList} />;
 }
 
 export async function getStaticProps() {
