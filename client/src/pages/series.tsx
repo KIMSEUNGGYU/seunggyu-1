@@ -1,5 +1,9 @@
-import SeriesPage from 'src/components/pages/Series';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
+import SeriesPage from '@components/layout/Series';
 import SeriesRepositoryImpl from 'src/services/series_repository';
+import { isLoginState, seriesState } from '@state/index';
+import { useEffect } from 'react';
 // import { SeriesData } from '@common/types';
 
 const seriesRepository = new SeriesRepositoryImpl();
@@ -14,11 +18,17 @@ type SeriesData = {
 interface Props {
   seriesList: {
     title: string;
-    seriesList: SeriesData[];
+    seriesList: SeriesData[] | [];
   }[];
 }
 
-export default function Home({ seriesList }: Props) {
+export default function Series({ seriesList }: Props) {
+  const [value, setValue] = useRecoilState<any>(seriesState);
+  useEffect(() => {
+    setValue(seriesList);
+    console.log(value);
+  }, []);
+
   return <SeriesPage seriesList={seriesList} />;
 }
 

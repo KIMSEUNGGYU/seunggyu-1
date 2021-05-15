@@ -8,5 +8,10 @@ export const isLoginState = atom({
 
 export const seriesState = atom({
   key: 'seriesState',
-  default: {},
+  default: [],
+});
+
+export const nameState = atom({
+  key: 'nameState',
+  default: '',
 });

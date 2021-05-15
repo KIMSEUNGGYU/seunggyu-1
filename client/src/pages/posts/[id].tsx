@@ -1,4 +1,4 @@
-import PostPage from 'src/components/pages/Post';
+import PostPage from '@components/layout/Post';
 import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();

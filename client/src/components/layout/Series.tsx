@@ -11,14 +11,17 @@ type SeriesData = {
   postTitle: string;
 };
 
+type SeriesListData = {
+  title: string;
+  seriesList: SeriesData[];
+};
+
 interface Props {
-  seriesList: {
-    title: string;
-    seriesList: SeriesData[];
-  }[];
+  seriesList: SeriesListData[];
 }
 
 function SeriesPage({ seriesList }: Props) {
+  // const SeriesList = null;
   const SeriesList = seriesList.map((series, idx) => {
     return (
       <SeriesBlock key={idx}>

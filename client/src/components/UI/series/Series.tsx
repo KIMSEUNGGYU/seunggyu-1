@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { theme } from '@theme/index';
-// import { SeriesData } from '@common/types';
 import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
 
-// { id: 7, title: '자료구조', postId: '11', postTitle: '자료구조 - 스택' },
 type SeriesData = {
   id: number;
   title: string;
