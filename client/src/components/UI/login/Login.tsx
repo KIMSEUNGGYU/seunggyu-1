@@ -26,19 +26,24 @@ function Login() {
       return;
     }
 
-    const response = await Post('/api/login', {
-      id,
-      password,
-    });
+    try {
+      const url = 'http://localhost:4000/auth/login';
+      const response = await Post(url, {
+        userId: id,
+        password,
+      });
 
-    if (response?.status === 200) {
-      alert('로그인 성공');
-      setIsLogin(true);
-      localStorage.setItem('seunggyu', 'root');
-
-      router.push('/');
-    } else {
-      alert('로그인 실패');
+      console.log(response);
+      if (response?.status === 200) {
+        alert('로그인 성공');
+        setIsLogin(true);
+        localStorage.setItem('seunggyu', 'root');
+        router.push('/');
+      } else {
+        alert('로그인 실패');
+      }
+    } catch (error) {
+      console.error(`login error: ${error}`);
     }
   };
 
