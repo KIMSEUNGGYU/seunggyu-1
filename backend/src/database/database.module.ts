@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Users } from '@entity/Users';
 import { Series } from '@entity/Series';
+import { Tags } from '@entity/Tags';
+import { Posts } from '@/entity/Posts';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Series } from '@entity/Series';
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE_NAME'),
         logging: false,
-        entities: [Users, Series],
+        entities: [Users, Series, Posts, Tags],
         // synchronize: true,
       }),
     }),

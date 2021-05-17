@@ -7,6 +7,7 @@ import { AuthModule } from '@auth/auth.module';
 import { UsersModule } from '@users/users.module';
 import { DatabaseModule } from '@database/database.module';
 import { SeriesModule } from '@series/series.module';
+import { PostsModule } from './posts/posts.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -27,6 +28,7 @@ import * as Joi from 'joi';
     UsersModule,
     DatabaseModule,
     SeriesModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
