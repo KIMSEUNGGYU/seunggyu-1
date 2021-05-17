@@ -16,8 +16,8 @@ interface Props {
 function Blog({ posts, tags }: Props) {
   const [mode, setMode] = useState<ViewModeData>('list');
   const [tagId, setTagId] = useState<string | null>(null);
-  const changeViewMode = (mode: ViewModeData) => setMode(mode);
 
+  const changeViewMode = (mode: ViewModeData) => setMode(mode);
   const changeTag = (tagId: string | null) => setTagId(tagId);
   let selectedPosts = posts; // 처음에 모든 포스트 가져옴
 
