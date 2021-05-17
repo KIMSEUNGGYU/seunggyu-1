@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { useRef } from 'react';
 
 import { theme } from '@theme/index';
 import { Input, Button } from 'antd';
@@ -14,13 +13,19 @@ import { useSetRecoilState } from 'recoil';
 function Login() {
   const router = useRouter();
   const setIsLogin = useSetRecoilState(isLoginState);
-  const idRef = useRef<any>();
-  const passwordRf = useRef<any>();
+
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChangeId = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setId(target.value);
+  };
+
+  const handleChangePassword = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(target.value);
+  };
 
   const login = async () => {
-    const id = idRef.current.state.value;
-    const password = passwordRf.current.state.value;
-
     if (!(id && password)) {
       alert('모두 입력 바랍니다.');
       return;
@@ -33,32 +38,45 @@ function Login() {
         password,
       });
 
-      console.log(response);
-      if (response?.status === 200) {
-        alert('로그인 성공');
-        setIsLogin(true);
-        localStorage.setItem('seunggyu', 'root');
-        router.push('/');
-      } else {
+      if (response?.status !== 200) {
+        setId('');
+        setPassword('');
         alert('로그인 실패');
+        return;
       }
+
+      alert('로그인 성공');
+      setIsLogin(true);
+      localStorage.setItem('seunggyu', 'root');
+      router.push('/');
     } catch (error) {
-      console.error(`login error: ${error}`);
+      console.error(`Login Error: ${error}`);
     }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    login();
+  };
+
   return (
-    <LoginContainer>
-      <InputStyle ref={idRef} size="large" placeholder="아이디" />
-      <InputStyle ref={passwordRf} size="large" placeholder="비밀번호" type="password" />
-      <SingInButton type="primary" onClick={login}>
+    <LoginContainer onSubmit={handleSubmit}>
+      <InputStyle size="large" placeholder="아이디" onChange={handleChangeId} value={id} />
+      <InputStyle
+        size="large"
+        placeholder="비밀번호"
+        type="password"
+        onChange={handleChangePassword}
+        value={password}
+      />
+      <SingInButton type="primary" htmlType="submit">
         로그인
       </SingInButton>
     </LoginContainer>
   );
 }
 
-const LoginContainer = styled.div`
+const LoginContainer = styled.form`
   max-width: 800px;
   background-color: white;
   margin: 0 auto;
