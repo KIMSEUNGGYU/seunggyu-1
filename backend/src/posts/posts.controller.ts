@@ -7,6 +7,6 @@ export class PostsController {
 
   @Get()
   async getPosts() {
-    return 'Get Posts';
+    return await this.postsService.getPosts();
   }
 }
