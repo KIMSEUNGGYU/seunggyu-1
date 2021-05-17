@@ -6,26 +6,22 @@ import { TagData } from '@common/types';
 const { Text } = Typography;
 
 type Props = {
-  tags: TagData[];
-  tagId: string | null;
-  changeTag: (tagId: string | null) => void;
+  tags: TagData;
+  tagName: string | null;
+  changeTag: (tagName: string | null) => void;
 };
 
-function Tags({ tags, tagId, changeTag }: Props) {
+function Tags({ tags, tagName, changeTag }: Props) {
   const viewAllTag = (
-    <Tag className={tagId === null ? 'active' : ''} onClick={() => changeTag(null)}>
+    <Tag className={tagName === null ? 'active' : ''} onClick={() => changeTag(null)}>
       전체보기
     </Tag>
   );
 
-  const tagList = tags.map((tag) => {
+  const tagList = tags.map((tag, idx) => {
     return (
-      <Tag
-        key={tag.id}
-        className={tagId?.toString() == tag.id ? 'active' : ''}
-        onClick={() => changeTag(tag.id)}
-      >
-        {tag.name}
+      <Tag key={idx} className={tagName == tag ? 'active' : ''} onClick={() => changeTag(tag)}>
+        {tag}
       </Tag>
     );
   });
