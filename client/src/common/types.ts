@@ -2,10 +2,21 @@ export type MenuData = 'blog' | 'series' | 'login';
 
 export type ViewModeData = 'list' | 'block';
 
-export type TagData = {
-  id: string;
-  name: string;
-};
+// export type TagData = {
+//   id: string;
+//   name: string;
+// };
+
+// export interface PostData {
+//   id?: string;
+//   title: string;
+//   date: string;
+//   description: string;
+//   contents: string;
+//   tags: TagData[];
+// }
+
+export type TagData = string[];
 
 export interface PostData {
   id?: string;
@@ -13,7 +24,7 @@ export interface PostData {
   date: string;
   description: string;
   contents: string;
-  tags: string;
+  tags: string[];
 }
 
 export interface GetPostData {

@@ -10,25 +10,26 @@ type PostData = {
   date: string;
   description: string;
   contents: string;
-  tags: TagData[];
+  tags: string[];
 };
 
 interface Props {
   posts: PostData[] | [];
-  tags: TagData[] | [];
+  tags: string[] | [];
 }
 
 export default function Home({ posts, tags }: Props) {
+  console.log(tags);
   return <Blog posts={posts} tags={tags} />;
 }
 
 export async function getServerSideProps() {
   let posts = await postRepository.read();
   let tags = await postRepository.getTags();
-  // tags = tags.map((tag) => tag.name);
-  // console.log(tags);
+  tags = tags.map((tag: any) => tag.name);
+  // console.log('tags', tags);
 
-  posts = posts.map((post: PostData) => {
+  posts = posts.map((post: any) => {
     const tag = post['tags'][0];
     return {
       ...post,
