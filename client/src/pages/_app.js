@@ -28,6 +28,8 @@ function MyApp({ Component, pageProps }) {
           content="개발자 김승규의 블로그 입니다. 좋은 컨텐츠를 생산하겠습니다."
         />
         <meta property="og:type" content="website" />
+        {/* Mixed Content Error fix */}
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <Global styles={globalStyle} />
       <RecoilRoot>
