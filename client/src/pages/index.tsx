@@ -9,16 +9,15 @@ type PostData = {
   date: string;
   description: string;
   contents: string;
-  tags: string[];
+  tags: string;
 };
 
 interface Props {
   postList: PostData[] | [];
-  tags: string[] | [];
+  tagList: string[] | [];
 }
 
 export default function Home({ postList, tagList }: Props) {
-  console.log(postList, tagList);
   return <Blog postList={postList} tagList={tagList} />;
 }
 

@@ -6,11 +6,18 @@ import { theme } from '@theme/index';
 import { Typography } from 'antd';
 const { Text } = Typography;
 
-type PostData = {};
+type PostData = {
+  id?: string;
+  title: string;
+  date: string;
+  description: string;
+  contents: string;
+  tags: string;
+};
 
 interface Props {
   // posts: PostData[];
-  posts: any;
+  posts: PostData[];
 }
 
 function ViewList({ posts }: Props) {

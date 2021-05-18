@@ -8,16 +8,16 @@ import Tags from 'src/components/UI/blog/tags/Tags';
 import { useState } from 'react';
 import { ViewModeData } from '@common/types';
 
+type TagsData = string[] | [];
+
 type PostData = {
   id?: string;
   title: string;
   date: string;
   description: string;
   contents: string;
-  tags: string[];
+  tags: string;
 };
-
-type TagsData = string[] | [];
 
 interface Props {
   postList: PostData[] | [];
@@ -34,8 +34,8 @@ function Blog({ postList, tagList }: Props) {
   let selectedPosts = postList; // 처음에 모든 포스트 가져옴
   if (tagName !== null) {
     // tag 를 선택하면 해당 태그의 정보만 가져옴
-    const selectedTag = tagList.find((tag) => tag === tagName);
-    selectedPosts = postList.filter((post) => post.tags.includes(selectedTag!));
+    const selectedTag: any = tagList.find((tag) => tag === tagName);
+    selectedPosts = postList.filter((post) => post.tags.split(',').includes(selectedTag));
   }
 
   return (
