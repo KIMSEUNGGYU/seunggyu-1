@@ -21,13 +21,28 @@ export class PostsService {
     return this.postsRepository.findOne({ where: { id: postId } });
   }
 
+  async updatePost(postId, postData) {
+    const { tags, ...post } = postData;
+
+    const newTags = await this.tagsService.findNewTag(tags);
+    newTags.length && (await this.tagsService.createTag(newTags));
+
+    const postToUpdate = await this.postsRepository.findOne(postId);
+    postToUpdate.title = post.title;
+    postToUpdate.date = post.date;
+    postToUpdate.description = post.description;
+    postToUpdate.contents = post.contents;
+    postToUpdate.tags = tags.toString();
+
+    await this.postsRepository.save(postToUpdate);
+  }
+
   async createPost(postData) {
     const { tags, ...post } = postData;
 
     try {
-      const newTags = await this.tagsService.findNewTag(tags);
-
       // create tag
+      const newTags = await this.tagsService.findNewTag(tags);
       newTags.length && (await this.tagsService.createTag(newTags));
 
       // create post
