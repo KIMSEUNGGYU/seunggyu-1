@@ -13,23 +13,24 @@ type PostData = {
 };
 
 interface Props {
-  posts: PostData[] | [];
+  postList: PostData[] | [];
   tags: string[] | [];
 }
 
-export default function Home({ posts, tags }: Props) {
-  return <Blog posts={posts} tags={tags} />;
+export default function Home({ postList, tagList }: Props) {
+  console.log(postList, tagList);
+  return <Blog postList={postList} tagList={tagList} />;
 }
 
 export async function getServerSideProps() {
-  let posts = await postRepository.read();
-  let tags = await postRepository.getTags();
-  tags = tags.map((tag: any) => tag.name);
+  const postList = await postRepository.read();
+  let tagList = await postRepository.getTags();
+  tagList = tagList.map((tag: any) => tag.name);
 
   return {
     props: {
-      posts,
-      tags,
+      postList,
+      tagList,
     },
   };
 }

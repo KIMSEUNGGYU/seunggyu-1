@@ -37,3 +37,13 @@ export type SeriesData = {
   title?: string;
   seriesList: SeriesPostData[];
 };
+
+// ---
+
+export type PostTag = {
+  tags: string;
+};
+
+export type TagsData = {
+  tags: string[] | [];
+};

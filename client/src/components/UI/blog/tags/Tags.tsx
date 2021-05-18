@@ -6,19 +6,19 @@ import { TagData } from '@common/types';
 const { Text } = Typography;
 
 type Props = {
-  tags: TagData;
+  tagList: TagData;
   tagName: string | null;
   changeTag: (tagName: string | null) => void;
 };
 
-function Tags({ tags, tagName, changeTag }: Props) {
+function Tags({ tagList, tagName, changeTag }: Props) {
   const viewAllTag = (
     <Tag className={tagName === null ? 'active' : ''} onClick={() => changeTag(null)}>
       전체보기
     </Tag>
   );
 
-  const tagList = tags.map((tag, idx) => {
+  const TagList = tagList.map((tag, idx) => {
     return (
       <Tag key={idx} className={tagName == tag ? 'active' : ''} onClick={() => changeTag(tag)}>
         {tag}
@@ -29,10 +29,10 @@ function Tags({ tags, tagName, changeTag }: Props) {
   return (
     <TagsContainer>
       <Title># 태그</Title>
-      <TagList>
+      <TagListWrapper>
         {viewAllTag}
-        {tagList}
-      </TagList>
+        {TagList}
+      </TagListWrapper>
     </TagsContainer>
   );
 }
@@ -51,7 +51,7 @@ const Title = styled(Text)`
   margin: 0 auto;
 `;
 
-const TagList = styled.ul`
+const TagListWrapper = styled.ul`
   margin-top: 1em;
 `;
 

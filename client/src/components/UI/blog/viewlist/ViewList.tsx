@@ -2,15 +2,19 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 
 import { theme } from '@theme/index';
-import { PostData } from '@common/types';
+// import { PostData } from '@common/types';
 import { Typography } from 'antd';
 const { Text } = Typography;
 
+type PostData = {};
+
 interface Props {
-  posts: PostData[];
+  // posts: PostData[];
+  posts: any;
 }
 
 function ViewList({ posts }: Props) {
+  // console.log(posts);
   return (
     <>
       <BlogLists>
@@ -24,7 +28,7 @@ function ViewList({ posts }: Props) {
                 </ListTitleBlock>
                 <Description>{post.description}</Description>
                 <Tags>
-                  {post.tags.split(',').map((tag, idx) => (
+                  {post.tags.split(',').map((tag: any, idx) => (
                     <li key={idx}>#{tag}</li>
                   ))}
                 </Tags>
