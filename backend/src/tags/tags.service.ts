@@ -32,4 +32,9 @@ export class TagsService {
       await this.tagsRepository.save(tagsEntity);
     }
   }
+
+  async deleteTag(tagName) {
+    const tagToRemove = await this.tagsRepository.findOne({ where: { name: tagName } });
+    tagToRemove && (await this.tagsRepository.remove(tagToRemove));
+  }
 }

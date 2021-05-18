@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Posts } from '@entity/Posts';
-import { throws } from 'assert';
 
 @Injectable()
 export class PostsService {
@@ -41,7 +40,6 @@ export class PostsService {
   async deletePost(postId) {
     const postToRemove = await this.postsRepository.findOne(postId);
     await this.postsRepository.remove(postToRemove);
-    // console.log(postToRemove);
   }
 
   async createPost(postData) {
