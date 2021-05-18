@@ -10,6 +10,9 @@ import { theme } from '@theme/index';
 import { Post } from '@util/util';
 
 import { isLoginState } from '@state/index';
+import { env } from '@constants/env';
+
+const BASE_URL = env.BASE_URL;
 
 function Login() {
   const router = useRouter();
@@ -33,7 +36,7 @@ function Login() {
     }
 
     try {
-      const url = 'http://localhost:4000/auth/login';
+      const url = `${BASE_URL}/auth/login`;
       const response = await Post(url, {
         userId: id,
         password,
