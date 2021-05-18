@@ -18,7 +18,6 @@ interface Props {
 }
 
 export default function Home({ posts, tags }: Props) {
-  console.log(tags);
   return <Blog posts={posts} tags={tags} />;
 }
 

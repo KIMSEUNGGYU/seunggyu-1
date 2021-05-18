@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "server": "json-server --watch ./src/data/data.json -p 4000",
     "build": "next build",
     "start": "next start"
   },

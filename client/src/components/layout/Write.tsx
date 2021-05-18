@@ -47,8 +47,6 @@ export default function WritePage({ post }: Props) {
   const [postState, setPostState] = useState(post || emptyPost);
   const { title, tags, contents } = postState;
 
-  console.log(title, tags);
-
   useEffect(() => {
     if (!isLogin) router.push('/');
   }, [isLogin]);
