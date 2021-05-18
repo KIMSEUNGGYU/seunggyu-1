@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
-
-import { theme } from '@theme/index';
-import { PostData } from '@common/types';
-import { Typography, Button } from 'antd';
-
 import { useRecoilValue } from 'recoil';
-import { isLoginState } from '@state/index';
-const { Text } = Typography;
 
+import { PostData } from '@common/types';
+import { theme } from '@theme/index';
+import Button from 'antd/lib/button';
+import Text from 'antd/lib/typography/Text';
+
+import { isLoginState } from '@state/index';
 import PostRepository from '@services/post_repository';
 const postRepository = new PostRepository();
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { TagData } from '@common/types';
 import { env } from 'src/constants/env';
 
 import { PostData } from '@common/types';
@@ -17,45 +16,12 @@ const BASE_URL = env.BASE_URL;
 export default class PostRepositoryImpl implements PostRepository {
   // 생성
   async create(post: PostData) {
-    const result = await Promise.all([this.createPost(post), this.createTag(post.tags)]);
-    return result.every((requestState) => requestState);
-  }
-
-  private async createPost(body: PostData) {
-    const option = this.getPostOption({
-      ...body,
-      tags: body.tags.split(','),
-    });
+    const { tags, ...postData } = post;
+    const tagList = tags.split(',');
+    const option = this.getPostOption({ ...post, tags: tagList });
     const response = await fetch(`${BASE_URL}/posts`, option);
+
     return response.ok;
-  }
-  private async createTag(postTags: PostData['tags']) {
-    const fetchedTags = await this.getTags();
-    const tags = fetchedTags.map((tag: TagData) => tag.name);
-    const newTags = postTags.split(',').filter((postTag: string) => !tags.includes(postTag));
-
-    // 이미 태그가 존재하여 굳이 생성하지 않아도 됨
-    if (!newTags.length) {
-      return true;
-    }
-
-    const requests = newTags.map((tag) => {
-      const option = this.getPostOption({ name: tag });
-      try {
-        return fetch(`${BASE_URL}/tags`, option);
-      } catch (error) {
-        console.error(`create Tag error: ${error}`);
-        throw new Error(`create Tag error: ${error}`);
-      }
-    });
-
-    // tag가 정상적으로 생성되는지 판단
-    try {
-      const result = await Promise.all(requests);
-      return result.every((response) => response.ok);
-    } catch (error) {
-      console.error(`error: ${error}`);
-    }
   }
 
   // 조회
@@ -93,7 +59,7 @@ export default class PostRepositoryImpl implements PostRepository {
         .then((res) => res.ok)
         .catch((error) => `태그 생성 오류: ${error}`);
     } catch (error) {
-      console.log(`포스트 업데이트 오류: ${error}`);
+      console.error(`포스트 업데이트 오류: ${error}`);
     }
   }
 

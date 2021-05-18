@@ -1,5 +1,4 @@
-import Blog from '@components/layout/Blog';
-import { TagData } from '@common/types';
+import Blog from '@layout/Blog';
 import PostRepository from '@services/post_repository';
 
 const postRepository = new PostRepository();
@@ -10,37 +9,27 @@ type PostData = {
   date: string;
   description: string;
   contents: string;
-  tags: string[];
+  tags: string;
 };
 
 interface Props {
-  posts: PostData[] | [];
-  tags: string[] | [];
+  postList: PostData[] | [];
+  tagList: string[] | [];
 }
 
-export default function Home({ posts, tags }: Props) {
-  console.log(tags);
-  return <Blog posts={posts} tags={tags} />;
+export default function Home({ postList, tagList }: Props) {
+  return <Blog postList={postList} tagList={tagList} />;
 }
 
 export async function getServerSideProps() {
-  let posts = await postRepository.read();
-  let tags = await postRepository.getTags();
-  tags = tags.map((tag: any) => tag.name);
-  // console.log('tags', tags);
-
-  posts = posts.map((post: any) => {
-    const tag = post['tags'][0];
-    return {
-      ...post,
-      tags: tag.name,
-    };
-  });
+  const postList = await postRepository.read();
+  let tagList = await postRepository.getTags();
+  tagList = tagList.map((tag: any) => tag.name);
 
   return {
     props: {
-      posts,
-      tags,
+      postList,
+      tagList,
     },
   };
 }

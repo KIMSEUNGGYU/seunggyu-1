@@ -1,10 +1,17 @@
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import styled from '@emotion/styled';
+import Text from 'antd/lib/typography/Text';
 
 import { theme } from '@theme/index';
-import { PostData } from '@common/types';
-import { Typography } from 'antd';
-const { Text } = Typography;
+
+type PostData = {
+  id?: string;
+  title: string;
+  date: string;
+  description: string;
+  contents: string;
+  tags: string;
+};
 
 interface Props {
   posts: PostData[];
@@ -24,7 +31,7 @@ function ViewList({ posts }: Props) {
                 </ListTitleBlock>
                 <Description>{post.description}</Description>
                 <Tags>
-                  {post.tags.split(',').map((tag, idx) => (
+                  {post.tags.split(',').map((tag: any, idx) => (
                     <li key={idx}>#{tag}</li>
                   ))}
                 </Tags>

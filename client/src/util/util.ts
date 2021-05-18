@@ -11,7 +11,7 @@ export async function Get(url = '') {
     const response = await fetch(url);
     return response.json();
   } catch (error) {
-    console.log(`${url} GET Error: ${error}`);
+    console.error(`${url} GET Error: ${error}`);
   }
 }
 
@@ -25,7 +25,7 @@ export function Post(url = '', data = {}) {
       },
     });
   } catch (error) {
-    console.log(`${url} POST Error: ${error}`);
+    console.error(`${url} POST Error: ${error}`);
   }
 }
 

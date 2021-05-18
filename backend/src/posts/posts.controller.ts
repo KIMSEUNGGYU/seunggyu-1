@@ -1,5 +1,5 @@
 import { PostsService } from './posts.service';
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 @Controller('posts')
 export class PostsController {
@@ -13,5 +13,20 @@ export class PostsController {
   @Get(':id')
   async getPost(@Param('id') postId: string) {
     return await this.postsService.getPost(postId);
+  }
+
+  @Post()
+  async createPost(@Body() postData) {
+    return await this.postsService.createPost(postData);
+  }
+
+  @Put(':id')
+  async updatePost(@Param('id') postId: string, @Body() postData) {
+    return await this.postsService.updatePost(postId, postData);
+  }
+
+  @Delete(':id')
+  async deletePost(@Param('id') postId: string) {
+    return await this.postsService.deletePost(postId);
   }
 }

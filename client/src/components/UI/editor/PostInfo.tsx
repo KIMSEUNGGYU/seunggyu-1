@@ -1,6 +1,7 @@
-import { PostData } from '@common/types';
 import styled from '@emotion/styled';
-import { Input } from 'antd';
+import Input from 'antd/lib/input';
+
+import { PostData } from '@common/types';
 
 interface Props {
   post: PostData;

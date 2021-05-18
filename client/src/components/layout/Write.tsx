@@ -9,7 +9,6 @@ import PostRepositoryImpl from '@services/post_repository';
 import EditorMenus from 'src/components/UI/editor/EditorMenu';
 import PostInfo from 'src/components/UI/editor/PostInfo';
 import styled from '@emotion/styled';
-import { PostData } from '@common/types';
 
 import { useRecoilValue } from 'recoil';
 import { isLoginState } from '@state/index';
@@ -26,6 +25,15 @@ const emptyPost = {
   description: '',
   contents: '',
   tags: '',
+};
+
+type PostData = {
+  id?: string;
+  title: string;
+  date: string;
+  description: string;
+  contents: string;
+  tags: string;
 };
 
 interface Props {

@@ -8,32 +8,34 @@ import Tags from 'src/components/UI/blog/tags/Tags';
 import { useState } from 'react';
 import { ViewModeData } from '@common/types';
 
+type TagsData = string[] | [];
+
 type PostData = {
   id?: string;
   title: string;
   date: string;
   description: string;
   contents: string;
-  tags: string[];
+  tags: string;
 };
 
 interface Props {
-  posts: PostData[] | [];
-  tags: string[] | [];
+  postList: PostData[] | [];
+  tagList: TagsData;
 }
 
-function Blog({ posts, tags }: Props) {
+function Blog({ postList, tagList }: Props) {
   const [mode, setMode] = useState<ViewModeData>('list');
   const [tagName, setTagName] = useState<string | null>(null);
 
   const changeViewMode = (mode: ViewModeData) => setMode(mode);
   const changeTag = (tagName: string | null) => setTagName(tagName);
 
-  let selectedPosts = posts; // 처음에 모든 포스트 가져옴
+  let selectedPosts = postList; // 처음에 모든 포스트 가져옴
   if (tagName !== null) {
     // tag 를 선택하면 해당 태그의 정보만 가져옴
-    const selectedTag = tags.find((tag) => tag === tagName);
-    selectedPosts = posts.filter((post) => post.tags.includes(selectedTag!));
+    const selectedTag: any = tagList.find((tag) => tag === tagName);
+    selectedPosts = postList.filter((post) => post.tags.split(',').includes(selectedTag));
   }
 
   return (
@@ -57,7 +59,7 @@ function Blog({ posts, tags }: Props) {
       <ViewMode changeViewMode={changeViewMode} mode={mode} />
       <BlogContainer>
         {mode === 'list' ? <ViewList posts={selectedPosts} /> : <ViewBlock posts={selectedPosts} />}
-        <Tags tags={tags} tagName={tagName} changeTag={changeTag} />
+        <Tags tagList={tagList} tagName={tagName} changeTag={changeTag} />
       </BlogContainer>
     </>
   );

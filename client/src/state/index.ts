@@ -1,4 +1,3 @@
-// import from "recoil"
 import { atom } from 'recoil';
 
 export const isLoginState = atom({
@@ -6,12 +5,12 @@ export const isLoginState = atom({
   default: false,
 });
 
-export const seriesState = atom({
-  key: 'seriesState',
-  default: [],
-});
+// export const seriesState = atom({
+//   key: 'seriesState',
+//   default: [],
+// });
 
-export const nameState = atom({
-  key: 'nameState',
-  default: '',
-});
+// export const nameState = atom({
+//   key: 'nameState',
+//   default: '',
+// });
