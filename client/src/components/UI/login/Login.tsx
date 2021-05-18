@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
-import { theme } from '@theme/index';
-import { Input, Button } from 'antd';
+import { Input } from 'antd';
+import { Button } from 'antd';
 
+import { theme } from '@theme/index';
 import { Post } from '@util/util';
-import { useRouter } from 'next/router';
 
 import { isLoginState } from '@state/index';
-import { useSetRecoilState } from 'recoil';
 
 function Login() {
   const router = useRouter();
@@ -92,6 +93,7 @@ const LoginContainer = styled.form`
 const InputStyle = styled(Input)`
   margin-bottom: 20px;
   width: 50%;
+  padding: 0.5em;
 `;
 
 const SingInButton = styled(Button)`

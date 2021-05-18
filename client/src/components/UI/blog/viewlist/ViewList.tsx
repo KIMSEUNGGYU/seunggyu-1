@@ -1,10 +1,8 @@
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import styled from '@emotion/styled';
+import Text from 'antd/lib/typography/Text';
 
 import { theme } from '@theme/index';
-// import { PostData } from '@common/types';
-import { Typography } from 'antd';
-const { Text } = Typography;
 
 type PostData = {
   id?: string;
@@ -16,12 +14,10 @@ type PostData = {
 };
 
 interface Props {
-  // posts: PostData[];
   posts: PostData[];
 }
 
 function ViewList({ posts }: Props) {
-  // console.log(posts);
   return (
     <>
       <BlogLists>

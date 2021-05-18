@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { Button } from 'antd';
 import styled from '@emotion/styled';
+import Button from 'antd/lib/button';
+
 import { theme } from '@theme/index';
 
 interface Props {

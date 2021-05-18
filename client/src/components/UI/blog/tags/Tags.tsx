@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import { Typography } from 'antd';
+import Text from 'antd/lib/typography/Text';
 
 import { theme } from '@theme/index';
 import { TagData } from '@common/types';
-const { Text } = Typography;
 
 type Props = {
   tagList: TagData;
