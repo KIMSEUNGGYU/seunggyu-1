@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { TagData } from '@common/types';
 import { env } from 'src/constants/env';
 
 import { PostData } from '@common/types';
@@ -17,8 +16,19 @@ const BASE_URL = env.BASE_URL;
 export default class PostRepositoryImpl implements PostRepository {
   // 생성
   async create(post: PostData) {
-    const result = await Promise.all([this.createPost(post), this.createTag(post.tags)]);
-    return result.every((requestState) => requestState);
+    // console.log(post);
+    const { tags, ...postData } = post;
+    const tagList = tags.split(',');
+    console.log(tagList);
+    const option = this.getPostOption({ ...post, tags: tagList });
+    const response = await fetch(`${BASE_URL}/posts`, option);
+    console.log(response);
+
+    return response.ok;
+
+    // console.log('create post', post);
+    // const result = await Promise.all([this.createPost(post), this.createTag(post.tags)]);
+    // return result.every((requestState) => requestState);
   }
 
   private async createPost(body: PostData) {
@@ -26,9 +36,11 @@ export default class PostRepositoryImpl implements PostRepository {
       ...body,
       tags: body.tags.split(','),
     });
+
     const response = await fetch(`${BASE_URL}/posts`, option);
     return response.ok;
   }
+
   private async createTag(postTags: PostData['tags']) {
     const fetchedTags = await this.getTags();
     const tags = fetchedTags.map((tag: TagData) => tag.name);
@@ -39,23 +51,23 @@ export default class PostRepositoryImpl implements PostRepository {
       return true;
     }
 
-    const requests = newTags.map((tag) => {
-      const option = this.getPostOption({ name: tag });
-      try {
-        return fetch(`${BASE_URL}/tags`, option);
-      } catch (error) {
-        console.error(`create Tag error: ${error}`);
-        throw new Error(`create Tag error: ${error}`);
-      }
-    });
+    // const requests = newTags.map((tag) => {
+    //   const option = this.getPostOption({ name: tag });
+    //   try {
+    //     return fetch(`${BASE_URL}/tags`, option);
+    //   } catch (error) {
+    //     console.error(`create Tag error: ${error}`);
+    //     throw new Error(`create Tag error: ${error}`);
+    //   }
+    // });
 
     // tag가 정상적으로 생성되는지 판단
-    try {
-      const result = await Promise.all(requests);
-      return result.every((response) => response.ok);
-    } catch (error) {
-      console.error(`error: ${error}`);
-    }
+    // try {
+    //   const result = await Promise.all(requests);
+    //   return result.every((response) => response.ok);
+    // } catch (error) {
+    //   console.error(`error: ${error}`);
+    // }
   }
 
   // 조회
