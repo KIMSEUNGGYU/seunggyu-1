@@ -12,10 +12,10 @@ export class PostsService {
   ) {}
 
   async getPosts() {
-    return this.postsRepository.find({ relations: ['tags'] });
+    return this.postsRepository.find();
   }
 
   async getPost(postId) {
-    return this.postsRepository.findOne({ relations: ['tags'], where: { id: postId } });
+    return this.postsRepository.findOne({ where: { id: postId } });
   }
 }
