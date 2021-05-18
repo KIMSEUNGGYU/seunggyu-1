@@ -38,6 +38,7 @@ module.exports = withCSS(
           use: 'null-loader',
         });
       }
+
       return config;
     },
   }),
