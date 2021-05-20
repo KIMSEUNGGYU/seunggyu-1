@@ -1,6 +1,5 @@
 export const env = {
-  // BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-  BASE_URL: 'http://133.186.244.169',
+  BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   IMAGE_UPLOAD_PRESET: process.env.NEXT_PUBLIC_IMAGE_UPLOAD_PRESET!,
   IMAGE_UPLOAD_URL: process.env.NEXT_PUBLIC_IMAGE_UPLOAD_URL!,
 };
