@@ -19,7 +19,7 @@ export default class SeriesRepositoryImpl implements SeriesRepository {
   // 조회
   async read() {
     try {
-      const response = await axios.get(`http://133.186.244.169/series`);
+      const response = await axios.get(`${BASE_URL}/series`);
 
       const data = response.data.reduce((acc: any, curr: Series) => {
         if (!acc[curr.title]) acc[curr.title] = [];
