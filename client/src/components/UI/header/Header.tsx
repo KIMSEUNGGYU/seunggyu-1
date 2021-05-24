@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import styled from '@emotion/styled';
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
+import Image from 'next/image';
+import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
 import { theme } from '@theme/index';
@@ -33,63 +33,69 @@ function Header() {
   };
 
   return (
-    <Head>
-      <Logo>
-        <Image
-          data-name="logo"
-          src="/SEUNGGYU.svg"
-          alt="Picture of the author"
-          width={180}
-          height={41}
-          onClick={goLink}
-        />
-      </Logo>
-      <Menu>
-        <List data-name="blog" className={activeMenu === 'blog' ? 'active' : ''} onClick={goLink}>
-          Blog
-        </List>
+    <UnderLineBox>
+      <HeaderWrapper>
+        <Logo>
+          <Image
+            data-name="logo"
+            src="/SEUNGGYU.svg"
+            alt="Picture of the author"
+            width={180}
+            height={41}
+            onClick={goLink}
+          />
+        </Logo>
+        <Menu>
+          <List data-name="blog" className={activeMenu === 'blog' ? 'active' : ''} onClick={goLink}>
+            Blog
+          </List>
 
-        <List
-          data-name="series"
-          className={activeMenu === 'series' ? 'active' : ''}
-          onClick={goLink}
-        >
-          Series
-        </List>
-
-        {isLogin ? (
-          <>
-            <List
-              data-name="write"
-              className={activeMenu === 'write' ? 'active' : ''}
-              onClick={goLink}
-            >
-              write
-            </List>
-            <span onClick={logout}>Logout</span>
-          </>
-        ) : (
           <List
-            data-name="login"
-            className={activeMenu === 'login' ? 'active' : ''}
+            data-name="series"
+            className={activeMenu === 'series' ? 'active' : ''}
             onClick={goLink}
           >
-            Login
+            Series
           </List>
-        )}
-      </Menu>
-    </Head>
+
+          {isLogin ? (
+            <List>
+              <List
+                data-name="write"
+                className={activeMenu === 'write' ? 'active' : ''}
+                onClick={goLink}
+              >
+                write
+              </List>
+              <span onClick={logout}>Logout</span>
+            </List>
+          ) : (
+            <List
+              data-name="login"
+              className={activeMenu === 'login' ? 'active' : ''}
+              onClick={goLink}
+            >
+              Login
+            </List>
+          )}
+        </Menu>
+      </HeaderWrapper>
+    </UnderLineBox>
   );
 }
 
-const Head = styled.header`
+const UnderLineBox = styled.div`
   width: 100%;
+  border-bottom: 1px solid ${theme.BORDER_COLOR};
+`;
+
+const HeaderWrapper = styled.header`
+  max-width: 1200px;
   height: 100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${theme.BORDER_COLOR};
 `;
 
 const Logo = styled.div`

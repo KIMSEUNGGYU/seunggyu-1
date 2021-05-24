@@ -6,11 +6,12 @@ import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { theme } from '../theme/index';
-import Header from '@ui/header/Header';
+import Header from '@header/Header';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Global styles={globalStyle} />
       <Head>
         <title>SEUNGGYU</title>
         <meta charSet="UTF-8" />
@@ -31,7 +32,6 @@ function MyApp({ Component, pageProps }) {
         {/* Mixed Content Error fix */}
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-      <Global styles={globalStyle} />
       <RecoilRoot>
         <Header />
         <Component {...pageProps} />

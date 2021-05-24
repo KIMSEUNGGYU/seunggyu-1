@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
 import { TagData } from '@common/types';
 
 type Props = {
@@ -42,6 +42,9 @@ const TagsContainer = styled.aside`
   flex-direction: column;
   padding: 10px;
   margin-left: 60px;
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
+  }
 `;
 
 const Title = styled(Text)`
