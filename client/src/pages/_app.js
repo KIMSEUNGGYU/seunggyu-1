@@ -5,12 +5,14 @@ import { RecoilRoot } from 'recoil';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
-import { theme } from '../theme/index';
 import Header from '@header/Header';
+import ThemeToggle from '@theme/ThemeToggle';
+import { theme } from '@theme/theme';
+import ThemeProvider from '@context/themeProvider.js';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Global styles={globalStyle} />
       <Head>
         <title>SEUNGGYU</title>
@@ -35,8 +37,9 @@ function MyApp({ Component, pageProps }) {
       <RecoilRoot>
         <Header />
         <Component {...pageProps} />
+        <ThemeToggle />
       </RecoilRoot>
-    </>
+    </ThemeProvider>
   );
 }
 
@@ -45,7 +48,7 @@ const globalStyle = css`
     box-sizing: border-box;
   }
   body {
-    background-color: ${theme.BACKGROUND_COLOR};
+    background-color: #f8f9fa;
     margin: 0;
     overflow-y: scroll;
   }
