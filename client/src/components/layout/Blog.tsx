@@ -7,6 +7,7 @@ import ViewBlock from 'src/components/UI/blog/viewblock/ViewBlock';
 import Tags from 'src/components/UI/blog/tags/Tags';
 import { useState } from 'react';
 import { ViewModeData } from '@common/types';
+import { BP } from '@theme/index';
 
 type TagsData = string[] | [];
 
@@ -38,6 +39,9 @@ function Blog({ postList, tagList }: Props) {
     selectedPosts = postList.filter((post) => post.tags.split(',').includes(selectedTag));
   }
 
+  const BlogView =
+    mode === 'list' ? <ViewList posts={selectedPosts} /> : <ViewBlock posts={selectedPosts} />;
+
   return (
     <>
       <Head>
@@ -57,20 +61,38 @@ function Blog({ postList, tagList }: Props) {
         />
       </Head>
       <ViewMode changeViewMode={changeViewMode} mode={mode} />
-      <BlogContainer>
-        {mode === 'list' ? <ViewList posts={selectedPosts} /> : <ViewBlock posts={selectedPosts} />}
-        <Tags tagList={tagList} tagName={tagName} changeTag={changeTag} />
-      </BlogContainer>
+      <BlogWrapper>
+        <BlogContainer>{BlogView}</BlogContainer>
+        <TagContainer>
+          <Tags tagList={tagList} tagName={tagName} changeTag={changeTag} />
+        </TagContainer>
+      </BlogWrapper>
     </>
   );
 }
 
-const BlogContainer = styled.div`
+const BlogWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   margin-top: 60px;
+`;
+
+const BlogContainer = styled.div`
+  width: 80%;
+  @media (max-width: ${BP.TABLET}) {
+    margin: 1em;
+    width: 100%;
+  }
+`;
+
+const TagContainer = styled.div`
+  width: 20%;
+  margin-left: 40px;
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
+  }
 `;
 
 export default Blog;

@@ -37,14 +37,10 @@ function Tags({ tagList, tagName, changeTag }: Props) {
 }
 
 const TagsContainer = styled.aside`
-  width: 20%;
+  /* width: 20%; */
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-left: 60px;
-  @media (max-width: ${BP.TABLET}) {
-    display: none;
-  }
 `;
 
 const Title = styled(Text)`
