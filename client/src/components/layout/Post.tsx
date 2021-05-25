@@ -45,6 +45,7 @@ const PostPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 60px;
+  padding: 1em;
 `;
 
 export default PostPage;
