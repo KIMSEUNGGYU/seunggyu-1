@@ -54,7 +54,7 @@ function SeriesLayout({ seriesList }: Props) {
 }
 
 const SeriesContainer = styled.div`
-  padding: 1em;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -66,7 +66,7 @@ const SeriesBlock = styled.div`
   width: 48%;
   height: 330px;
   background-color: ${theme.SERIES_BOX_COLOR};
-  margin-top: 49px;
+  margin-top: 2rem;
 
   @media (max-width: ${BP.TABLET}) {
     width: 100%;

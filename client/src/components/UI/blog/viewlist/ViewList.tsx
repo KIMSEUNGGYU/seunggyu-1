@@ -61,10 +61,10 @@ const ListTitleBlock = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    span:nth-child(1) {
+    span:nth-of-type(1) {
       font-size: 1.1rem;
     }
-    span:nth-child(2) {
+    span:nth-of-type(2) {
       font-size: 0.7rem;
     }
   }
