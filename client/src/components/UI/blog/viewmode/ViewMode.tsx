@@ -28,11 +28,12 @@ function ViewMode({ changeViewMode, mode }: Props) {
 const ViewModeBlock = styled.ul`
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 48px;
+  padding: 1rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 36px;
+  font-size: 2rem;
 
   @media (max-width: ${BP.TABLET}) {
     display: none;
