@@ -5,7 +5,8 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
+import BurgerMenu from './BurgerMenu';
 
 function Header() {
   const router = useRouter();
@@ -45,6 +46,7 @@ function Header() {
             onClick={goLink}
           />
         </Logo>
+
         <Menu>
           <List data-name="blog" className={activeMenu === 'blog' ? 'active' : ''} onClick={goLink}>
             Blog
@@ -79,6 +81,7 @@ function Header() {
             </List>
           )}
         </Menu>
+        <BurgerMenu />
       </HeaderWrapper>
     </UnderLineBox>
   );
@@ -96,6 +99,7 @@ const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 const Logo = styled.div`
@@ -108,6 +112,10 @@ const Menu = styled.ul`
   display: flex;
   margin: 27px;
   margin-right: 45px;
+
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
+  }
 `;
 
 const List = styled.li<{ active?: boolean }>`
