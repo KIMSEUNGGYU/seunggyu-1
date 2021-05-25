@@ -74,6 +74,7 @@ function Blog({ postList, tagList }: Props) {
 const BlogWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1em;
   display: flex;
   justify-content: space-between;
   margin-top: 60px;

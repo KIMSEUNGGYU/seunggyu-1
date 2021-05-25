@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Head from 'next/head';
 
 import Series from 'src/components/UI/series/Series';
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
 
 type SeriesData = {
   id: number;
@@ -54,21 +54,24 @@ function SeriesLayout({ seriesList }: Props) {
 }
 
 const SeriesContainer = styled.div`
+  padding: 1em;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 60px;
+  flex-wrap: wrap;
 `;
 
 const SeriesBlock = styled.div`
-  max-width: 48%;
   width: 48%;
   height: 330px;
   background-color: ${theme.SERIES_BOX_COLOR};
   margin-top: 49px;
-  position: relative;
+
+  @media (max-width: ${BP.TABLET}) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export default SeriesLayout;
