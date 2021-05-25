@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
 import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
+import { css } from '@emotion/react';
 
 type SeriesData = {
   id: number;
@@ -46,14 +47,15 @@ function Series({ title, seriesList }: Props) {
 
   return (
     <>
-      <Title>{title}</Title>
-      {toggle ? (
-        <SeriesLists>
+      <SeriesWrapper>
+        <Title>{title}</Title>
+        {!toggle && ToggleOpenComponent}
+      </SeriesWrapper>
+      {toggle && (
+        <SeriesLists visible={toggle}>
           {SeriesListContainer}
           {ToggleCloseComponent}
         </SeriesLists>
-      ) : (
-        ToggleOpenComponent
       )}
 
       <DevelopingDialog visible={bDevelopDialog} closeDialog={closeDialog} />
@@ -61,30 +63,47 @@ function Series({ title, seriesList }: Props) {
   );
 }
 
+const SeriesWrapper = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: ${BP.TABLET}) {
+    height: 200px;
+  }
+`;
+
 const Title = styled.h1`
   color: ${theme.MAIN_COLOR};
-  font-size: 35px;
+  font-size: 2rem;
   font-weight: bold;
-  text-align: center;
-  line-height: 300px;
 `;
 
 const ToggleBlock = styled.div`
-  margin-top: 3rem;
   position: absolute;
-  bottom: 30px;
-  right: 25px;
+  bottom: 1rem;
+  right: 1rem;
   cursor: pointer;
   font-size: 28px;
   color: ${theme.MAIN_COLOR};
 `;
 
-const SeriesLists = styled.ol`
-  padding: 30px 25px;
-  padding-bottom: 90px;
-  background-color: white;
-  font-size: 20px;
-  position: relative;
+const SeriesLists = styled.ol<any>`
+  display: none;
+
+  ${(visible) =>
+    visible &&
+    css`
+      display: block;
+      width: 100%;
+      padding: 30px 25px;
+      background-color: white;
+      font-size: 20px;
+      position: relative;
+    `}
 `;
 
 const SeriesList = styled.li`

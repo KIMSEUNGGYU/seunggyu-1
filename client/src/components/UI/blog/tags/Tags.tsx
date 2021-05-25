@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
 import { TagData } from '@common/types';
 
 type Props = {
@@ -37,11 +37,10 @@ function Tags({ tagList, tagName, changeTag }: Props) {
 }
 
 const TagsContainer = styled.aside`
-  width: 20%;
+  /* width: 20%; */
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-left: 60px;
 `;
 
 const Title = styled(Text)`

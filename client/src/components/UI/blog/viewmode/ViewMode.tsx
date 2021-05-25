@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { MenuOutlined, BlockOutlined } from '@ant-design/icons';
 
-import { theme } from '@theme/index';
+import { theme, BP } from '@theme/index';
 import { ViewModeData } from '@common/types';
 
 type Props = {
@@ -28,11 +28,16 @@ function ViewMode({ changeViewMode, mode }: Props) {
 const ViewModeBlock = styled.ul`
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 48px;
+  padding: 1rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 36px;
+  font-size: 2rem;
+
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
+  }
 `;
 
 const MenuItem = styled.li`

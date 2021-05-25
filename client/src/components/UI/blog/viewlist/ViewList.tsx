@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { theme } from '@theme/index';
+import { BP, theme } from '@theme/index';
 
 type PostData = {
   id?: string;
@@ -18,36 +18,28 @@ interface Props {
 }
 
 function ViewList({ posts }: Props) {
-  return (
-    <>
-      <BlogLists>
-        {posts.map((post) => (
-          <ListContainer key={post.id}>
-            <Link href={`/posts/${post.id}`}>
-              <a>
-                <ListTitleBlock>
-                  <Title>{post.title}</Title>
-                  <DateString type="secondary">{post.date}</DateString>
-                </ListTitleBlock>
-                <Description>{post.description}</Description>
-                <Tags>
-                  {post.tags.split(',').map((tag: any, idx) => (
-                    <li key={idx}>#{tag}</li>
-                  ))}
-                </Tags>
-              </a>
-            </Link>
-          </ListContainer>
-        ))}
-      </BlogLists>
-    </>
-  );
+  const PostList = posts.map((post) => (
+    <ListContainer key={post.id}>
+      <Link href={`/posts/${post.id}`}>
+        <a>
+          <ListTitleBlock>
+            <Title>{post.title}</Title>
+            <DateString type="secondary">{post.date}</DateString>
+          </ListTitleBlock>
+          <Description>{post.description}</Description>
+          <Tags>
+            {post.tags.split(',').map((tag: any, idx) => (
+              <li key={idx}>#{tag}</li>
+            ))}
+          </Tags>
+        </a>
+      </Link>
+    </ListContainer>
+  ));
+
+  return <ul>{PostList}</ul>;
 }
 
-const BlogLists = styled.ul`
-  max-width: 80%;
-  width: 80%;
-`;
 const ListContainer = styled.li`
   background-color: white;
   border: 1px solid ${theme.BORDER_COLOR};
@@ -65,16 +57,27 @@ const ListContainer = styled.li`
 const ListTitleBlock = styled.div`
   display: flex;
   align-items: flex-end;
+  @media (max-width: ${BP.TABLET}) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    span:nth-of-type(1) {
+      font-size: 1.1rem;
+    }
+    span:nth-of-type(2) {
+      font-size: 0.7rem;
+    }
+  }
 `;
 
 const Title = styled(Text)`
   font-size: 2em;
+  margin-right: 1em;
   font-weight: bold;
 `;
 
 const DateString = styled(Text)`
   color: ${theme.GREY_TEXT_COLOR};
-  margin-left: 1em;
   font-weight: bold;
 `;
 
@@ -87,6 +90,10 @@ const Description = styled(Text)`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
+  }
 `;
 
 const Tags = styled.ul`
@@ -97,6 +104,10 @@ const Tags = styled.ul`
     color: ${theme.MAIN_COLOR};
     font-weight: bold;
     margin-right: 6px;
+  }
+
+  @media (max-width: ${BP.TABLET}) {
+    display: none;
   }
 `;
 
