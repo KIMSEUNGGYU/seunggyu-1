@@ -6,11 +6,17 @@ import PostInfo from 'src/components/UI/post/PostInfo';
 import Contents from 'src/components/UI/post/Contents';
 import { PostData } from '@common/types';
 
+import { lightTheme, darkTheme } from '@theme/theme';
+import { useTheme } from '@context/themeProvider';
+
 interface Props {
   post: PostData;
 }
 
 function PostPage({ post }: Props) {
+  const [mode, _] = useTheme();
+  const theme = mode === 'light' ? lightTheme : darkTheme;
+
   return (
     <>
       <Head>
@@ -23,7 +29,16 @@ function PostPage({ post }: Props) {
         />
         <meta name="og:description" content={post.description} />
       </Head>
-      <Global styles={globalStyle} />
+      <Global
+        styles={css`
+          body {
+            margin: 0;
+            overflow-y: scroll;
+            background: ${mode === 'light' ? 'white' : theme.backgroundColor};
+            color: ${theme.primaryColor};
+          }
+        `}
+      />
       <PostPageContainer>
         <PostInfo post={post} />
         <Contents post={post} />
@@ -31,13 +46,6 @@ function PostPage({ post }: Props) {
     </>
   );
 }
-
-const globalStyle = css`
-  body {
-    background-color: white;
-    margin: 0;
-  }
-`;
 
 const PostPageContainer = styled.div`
   max-width: 1200px;

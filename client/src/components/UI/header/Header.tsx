@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
-import { BP, theme } from '@theme/index';
+import { BP } from '@theme/index';
 import BurgerMenu from './BurgerMenu';
 
 function Header() {
@@ -61,7 +61,7 @@ function Header() {
           </List>
 
           {isLogin ? (
-            <List>
+            <>
               <List
                 data-name="write"
                 className={activeMenu === 'write' ? 'active' : ''}
@@ -70,7 +70,7 @@ function Header() {
                 write
               </List>
               <span onClick={logout}>Logout</span>
-            </List>
+            </>
           ) : (
             <List
               data-name="login"
@@ -89,7 +89,7 @@ function Header() {
 
 const UnderLineBox = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${theme.BORDER_COLOR};
+  border-bottom: ${({ theme }) => theme.border};
 `;
 
 const HeaderWrapper = styled.header`
@@ -110,8 +110,6 @@ const Logo = styled.div`
 
 const Menu = styled.ul`
   display: flex;
-  margin: 27px;
-  margin-right: 45px;
 
   @media (max-width: ${BP.TABLET}) {
     display: none;
@@ -119,12 +117,14 @@ const Menu = styled.ul`
 `;
 
 const List = styled.li<{ active?: boolean }>`
+  display: flex;
   margin-right: 20px;
   font-size: 2.1em;
   cursor: pointer;
 
   &.active {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.activeColor};
+    font-weight: 500;
   }
 `;
 

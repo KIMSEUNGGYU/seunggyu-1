@@ -71,15 +71,15 @@ const PostInfo = styled.div`
 `;
 
 const Title = styled(Text)`
-  display: block;
   font-size: 2em;
+  margin-right: 1em;
   font-weight: bold;
+  color: ${({ theme }) => theme.primaryColor};
 `;
 
 const DateString = styled(Text)`
-  color: ${theme.GREY_TEXT_COLOR};
+  color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;
-  align-self: center;
 `;
 
 const Tags = styled.ul`
@@ -87,10 +87,9 @@ const Tags = styled.ul`
 `;
 
 const Tag = styled.li`
-  color: ${theme.MAIN_COLOR};
+  color: ${({ theme }) => theme.mainColor};
   font-weight: bold;
   margin-right: 6px;
-  font-weight: bold;
 `;
 
 export default Info;

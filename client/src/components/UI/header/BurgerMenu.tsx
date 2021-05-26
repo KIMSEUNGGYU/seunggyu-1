@@ -50,14 +50,16 @@ const BurgerMenuIcon = styled(MenuOutlined)`
 
 const MenuList = styled.ul`
   display: none;
+  color: ${({ theme }) => theme.primaryColor};
 
   li:hover {
-    color: blue;
+    color: ${({ theme }) => theme.hoverColor};
   }
 
   @media (max-width: ${BP.TABLET}) {
     display: block;
-    background: white;
+    background: ${({ theme }) => theme.burgerMenuBackgroundColor};
+    border: ${({ theme }) => theme.border};
     padding: 0.2em;
     position: absolute;
     right: 8px;

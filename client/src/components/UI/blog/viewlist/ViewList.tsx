@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { BP, theme } from '@theme/index';
+import { BP } from '@theme/index';
 
 type PostData = {
   id?: string;
@@ -41,15 +41,15 @@ function ViewList({ posts }: Props) {
 }
 
 const ListContainer = styled.li`
-  background-color: white;
-  border: 1px solid ${theme.BORDER_COLOR};
+  background-color: ${({ theme }) => theme.listBoxColor};
+  border: ${({ theme }) => theme.border};
   padding: 18px 42px;
   margin-bottom: 40px;
   cursor: pointer;
   transition: transform 0.3s;
 
   &:hover {
-    box-shadow: 6px 8px 4px -1px rgba(212, 210, 212, 1);
+    box-shadow: ${({ theme }) => theme.boxShadow};
     transform: translateY(-20px);
   }
 `;
@@ -77,7 +77,7 @@ const Title = styled(Text)`
 `;
 
 const DateString = styled(Text)`
-  color: ${theme.GREY_TEXT_COLOR};
+  color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;
 `;
 
@@ -101,13 +101,9 @@ const Tags = styled.ul`
   display: flex;
 
   & > li {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.mainColor};
     font-weight: bold;
     margin-right: 6px;
-  }
-
-  @media (max-width: ${BP.TABLET}) {
-    display: none;
   }
 `;
 

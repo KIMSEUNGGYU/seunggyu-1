@@ -15,7 +15,7 @@ function LoginPage() {
         />
         <meta name="og:description" content="안전한 로그인 / 관리자만 사용할 수 있습니다." />
         {/* Mixed Content Error fix */}
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <Login />
     </>

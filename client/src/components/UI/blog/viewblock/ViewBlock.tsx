@@ -2,7 +2,6 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { theme } from '@theme/index';
 import { PostData } from '@common/types';
 
 type Props = {
@@ -33,17 +32,16 @@ function ViewBlock({ posts }: Props) {
 }
 
 const BlogBlock = styled.div`
-  max-width: 80%;
-  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 `;
+
 const BlockContainer = styled.div`
   width: 48%;
   height: 360px;
-  background-color: white;
-  border: 1px solid ${theme.BORDER_COLOR};
+  background-color: ${({ theme }) => theme.listBoxColor};
+  border: ${({ theme }) => theme.border};
   padding: 30px 42px;
   margin-bottom: 50px;
   position: relative;
@@ -51,7 +49,7 @@ const BlockContainer = styled.div`
 
   transition: transform 0.3s;
   &:hover {
-    box-shadow: 6px 8px 4px -1px rgba(212, 210, 212, 1);
+    box-shadow: ${({ theme }) => theme.boxShadow};
     transform: translateY(-20px);
   }
 `;
@@ -60,7 +58,7 @@ const Title = styled(Text)`
   font-weight: bold;
 `;
 const DateString = styled(Text)`
-  color: ${theme.GREY_TEXT_COLOR};
+  color: ${({ theme }) => theme.primaryColor};
   margin-left: 1em;
   font-weight: bold;
 `;
@@ -81,7 +79,7 @@ const Tags = styled.ul`
   bottom: 10px;
 
   & > li {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.mainColor};
     font-weight: bold;
     margin-right: 6px;
   }

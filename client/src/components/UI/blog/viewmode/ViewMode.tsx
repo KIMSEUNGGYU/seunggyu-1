@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { MenuOutlined, BlockOutlined } from '@ant-design/icons';
 
-import { theme, BP } from '@theme/index';
+import { BP } from '@theme/index';
 import { ViewModeData } from '@common/types';
 
 type Props = {
@@ -10,15 +10,16 @@ type Props = {
 };
 
 function ViewMode({ changeViewMode, mode }: Props) {
+  const handelChangeMode = (viewMode: ViewModeData) => () => {
+    changeViewMode(viewMode);
+  };
+
   return (
     <ViewModeBlock>
-      <MenuItem className={mode === 'list' ? 'choice' : ''} onClick={() => changeViewMode('list')}>
+      <MenuItem className={mode === 'list' ? 'active' : ''} onClick={handelChangeMode('list')}>
         <MenuOutlined />
       </MenuItem>
-      <MenuItem
-        className={mode === 'block' ? 'choice' : ''}
-        onClick={() => changeViewMode('block')}
-      >
+      <MenuItem className={mode === 'block' ? 'active' : ''} onClick={handelChangeMode('block')}>
         <BlockOutlined />
       </MenuItem>
     </ViewModeBlock>
@@ -29,7 +30,6 @@ const ViewModeBlock = styled.ul`
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
-  margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -44,9 +44,12 @@ const MenuItem = styled.li`
   margin-left: 25px;
   cursor: pointer;
 
-  &.choice {
+  &:hover {
+    color: ${({ theme }) => theme.hoverColor};
+  }
+  &.active {
+    color: ${({ theme }) => theme.activeColor};
     font-weight: bold;
-    color: ${theme.MAIN_COLOR};
   }
 `;
 export default ViewMode;

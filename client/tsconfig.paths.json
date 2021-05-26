@@ -3,7 +3,6 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      // "@pages/*": ["src/components/layout/*"],
       "@layout/*": ["src/components/layout/*"],
       "@ui/*": ["src/components/UI/*"],
       "@header/*": ["src/components/UI/header/*"],
@@ -12,7 +11,7 @@
       "@login/*": ["src/components/UI/login/*"],
       "@post/*": ["src/components/UI/post/*"],
       "@theme/*": ["src/theme/*"],
-      "@data/*": ["src/data/*"],
+      "@context/*": ["src/context/*"],
       "@common/*": ["src/common/*"],
       "@services/*": ["src/services/*"],
       "@constants/*": ["src/constants/*"],

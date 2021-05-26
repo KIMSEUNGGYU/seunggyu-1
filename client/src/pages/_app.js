@@ -1,17 +1,19 @@
 import Head from 'next/head';
-import { css, Global } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
 
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
-import { theme } from '../theme/index';
 import Header from '@header/Header';
+import ThemeToggle from '@theme/ThemeToggle';
+import { theme } from '@theme/theme';
+import ThemeProvider from '@context/themeProvider.js';
+import GlobalStyle from '@theme/globalStyle';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Global styles={globalStyle} />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Head>
         <title>SEUNGGYU</title>
         <meta charSet="UTF-8" />
@@ -30,40 +32,15 @@ function MyApp({ Component, pageProps }) {
         />
         <meta property="og:type" content="website" />
         {/* Mixed Content Error fix */}
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <RecoilRoot>
         <Header />
         <Component {...pageProps} />
+        <ThemeToggle />
       </RecoilRoot>
-    </>
+    </ThemeProvider>
   );
 }
-
-const globalStyle = css`
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    background-color: ${theme.BACKGROUND_COLOR};
-    margin: 0;
-    overflow-y: scroll;
-  }
-
-  ul {
-    margin: 0;
-    padding-left: 0;
-  }
-  li {
-    list-style: none;
-  }
-  h1 {
-    margin: 0;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
 
 export default MyApp;
