@@ -70,6 +70,7 @@ const SeriesWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: ${({ theme }) => theme.seriesTitleBoxColor};
 
   @media (max-width: ${BP.TABLET}) {
     height: 200px;
@@ -77,7 +78,7 @@ const SeriesWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  color: ${theme.MAIN_COLOR};
+  color: ${({ theme }) => theme.mainColor};
   font-size: 2rem;
   font-weight: bold;
 `;
@@ -88,22 +89,23 @@ const ToggleBlock = styled.div`
   right: 1rem;
   cursor: pointer;
   font-size: 28px;
-  color: ${theme.MAIN_COLOR};
+  color: ${({ theme }) => theme.mainColor};
 `;
 
 const SeriesLists = styled.ol<any>`
   display: none;
+
   margin: 0;
+  width: 100%;
+  padding: 30px 25px;
+  background: ${({ theme }) => theme.seriesListBoxColor};
+  font-size: 20px;
+  position: relative;
 
   ${(visible) =>
     visible &&
     css`
       display: block;
-      width: 100%;
-      padding: 30px 25px;
-      background-color: white;
-      font-size: 20px;
-      position: relative;
     `}
 `;
 
@@ -111,7 +113,7 @@ const SeriesList = styled.li`
   cursor: pointer;
 
   &:hover {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.hoverColor};
     font-weight: bold;
   }
   &::before {

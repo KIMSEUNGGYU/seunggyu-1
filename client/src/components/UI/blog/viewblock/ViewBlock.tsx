@@ -49,7 +49,7 @@ const BlockContainer = styled.div`
 
   transition: transform 0.3s;
   &:hover {
-    box-shadow: 6px 8px 4px -1px rgba(212, 210, 212, 1);
+    box-shadow: ${({ theme }) => theme.boxShadow};
     transform: translateY(-20px);
   }
 `;

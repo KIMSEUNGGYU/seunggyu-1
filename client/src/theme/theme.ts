@@ -61,6 +61,8 @@ export const lightTheme = {
   listBoxColor: 'white',
   seriesTitleBoxColor: '#E9ECEF',
   seriesListBoxColor: 'white',
+  dialogBackgroundColor: 'white',
+  boxShadow: '0 5px 10px rgba(100, 100, 100, 0.15), 0 2px 4px rgba(100, 100, 100, 0.15)',
 };
 
 export const darkTheme = {
@@ -74,6 +76,8 @@ export const darkTheme = {
   listBoxColor: darkBackgroundOverley[1],
   seriesTitleBoxColor: darkBackgroundOverley[8],
   seriesListBoxColor: darkBackgroundOverley[1],
+  dialogBackgroundColor: darkBackgroundOverley[2],
+  boxShadow: '0px 5px 10px rgba(40, 40, 40, 1), 0px 2px 4px rgba(40, 40, 40, 1)',
 };
 
 export const theme = {
