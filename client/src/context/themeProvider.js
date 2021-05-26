@@ -25,8 +25,6 @@ function useTheme() {
   const context = useContext(ThemeContext);
   const { ThemeMode, setThemeMode } = context;
 
-  console.log(ThemeMode, setThemeMode);
-
   const toggleTheme = useCallback(() => {
     if (ThemeMode === 'light') {
       setThemeMode('dark');

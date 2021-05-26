@@ -93,6 +93,7 @@ const ToggleBlock = styled.div`
 
 const SeriesLists = styled.ol<any>`
   display: none;
+  margin: 0;
 
   ${(visible) =>
     visible &&
