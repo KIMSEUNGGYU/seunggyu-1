@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
         />
         <meta property="og:type" content="website" />
         {/* Mixed Content Error fix */}
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <RecoilRoot>
         <Header />

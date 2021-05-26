@@ -74,6 +74,8 @@ export const lightTheme = {
   CODE_NUMBER: '#008080',
   CODE_HTML: '#A626A4',
   CODE_INLINE: '#EB5757',
+
+  A_LINK: '#0ca678',
 };
 
 export const darkTheme = {
@@ -101,6 +103,8 @@ export const darkTheme = {
   CODE_ID: '#f76767',
   CODE_NUMBER: '#64878F',
   CODE_HTML: '#f8bbd0',
+
+  A_LINK: '#0ca678',
 };
 
 export const theme = {
