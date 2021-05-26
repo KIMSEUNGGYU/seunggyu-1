@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 
 import { useTheme } from '@context/themeProvider';
@@ -14,13 +13,13 @@ function ThemeToggle() {
   );
 }
 
-const ToggleWrapper = styled.button`
+const ToggleWrapper = styled.button<{ mode: string; onClick: MouseEvent }>`
   position: fixed;
   z-index: 999999;
   bottom: 4%;
   right: 3%;
   background-color: ${(props) => props.theme.backgroundColor};
-  border: ${(props) => props.theme.borderColor};
+  border: ${(props) => props.theme.border};
   font-size: 20px;
   display: flex;
   justify-content: center;

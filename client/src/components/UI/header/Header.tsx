@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
-import { BP, theme } from '@theme/index';
+import { BP } from '@theme/index';
 import BurgerMenu from './BurgerMenu';
+// import { ThemeType } from '@theme/theme';
 
 function Header() {
   const router = useRouter();
@@ -89,7 +90,7 @@ function Header() {
 
 const UnderLineBox = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${theme.BORDER_COLOR};
+  border: ${(props) => props.theme.border};
 `;
 
 const HeaderWrapper = styled.header`
@@ -124,7 +125,7 @@ const List = styled.li<{ active?: boolean }>`
   cursor: pointer;
 
   &.active {
-    color: ${theme.MAIN_COLOR};
+    color: ${(props) => props.theme.mainColor};
   }
 `;
 
