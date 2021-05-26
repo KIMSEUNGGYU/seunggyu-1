@@ -61,7 +61,7 @@ function Header() {
           </List>
 
           {isLogin ? (
-            <List>
+            <>
               <List
                 data-name="write"
                 className={activeMenu === 'write' ? 'active' : ''}
@@ -70,7 +70,7 @@ function Header() {
                 write
               </List>
               <span onClick={logout}>Logout</span>
-            </List>
+            </>
           ) : (
             <List
               data-name="login"
@@ -117,6 +117,7 @@ const Menu = styled.ul`
 `;
 
 const List = styled.li<{ active?: boolean }>`
+  display: flex;
   margin-right: 20px;
   font-size: 2.1em;
   cursor: pointer;
