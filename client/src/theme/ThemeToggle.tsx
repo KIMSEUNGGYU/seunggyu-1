@@ -18,8 +18,8 @@ const ToggleWrapper = styled.button<{ mode: string; onClick: MouseEvent }>`
   z-index: 999999;
   bottom: 4%;
   right: 3%;
-  background-color: ${(props) => props.theme.backgroundColor};
-  border: ${(props) => props.theme.border};
+  background-color: ${({ theme }) => theme.backgroundColor};
+  border: ${({ theme }) => theme.border};
   font-size: 20px;
   display: flex;
   justify-content: center;

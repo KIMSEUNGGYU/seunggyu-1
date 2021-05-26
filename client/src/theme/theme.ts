@@ -1,25 +1,3 @@
-// const overlay0 = '#121212';
-// const overlay1 = '#1f1f1f';
-// const overlay2 = '#242424';
-// const overlay3 = '#262626';
-// const overlay4 = '#292929';
-
-// const overlay6 = '#2e2e2e';
-// const overlay8 = '#303030';
-// const overlay12 = '#363636';
-// const overlay16 = '#383838';
-// const overlay24 = '#3b3b3b';
-// export const theme = {
-//   MAIN_COLOR: '#0C4DA2',
-//   BACKGROUND_COLOR: '#F8F9FA',
-//   BORDER_COLOR: '#BFBFBF',
-//   GREY_TEXT_COLOR: 'rgba(0,0,0,.4)',
-//   SERIES_BOX_COLOR: '#E9ECEF',
-//   H1: '2em',
-//   H2: '1.5em',
-//   H3: '1.17em',
-// };
-
 const darkBackgroundColor = '#121212';
 const lightBackgroundColor = '#f8f8f8';
 
@@ -63,21 +41,24 @@ const darkTextColor = {
 const lightMainColor = {
   normal: '#1890ff',
   hover: '#40a9ff',
-  click: '#096dd9',
+  active: '#096dd9',
 };
 
 const darkMainColor = {
   normal: '#177ddb', // 6
   hover: '#1664ac', // 5
-  click: '#3b9ae7', // 7
+  active: '#3b9ae7', // 7
 };
 
 export const lightTheme = {
   backgroundColor: lightBackgroundColor,
   titleColor: lightTextColor.title,
-  primaryColor: lightTextColor.primaryText,
-  border: `1px solid ${lightTextColor.border}`,
   mainColor: lightMainColor.normal,
+  primaryColor: lightTextColor.primaryText,
+  activeColor: lightMainColor.active,
+  hoverColor: lightMainColor.hover,
+  border: `1px solid ${lightTextColor.border}`,
+  listBoxColor: 'white',
   seriesTitleBoxColor: '#E9ECEF',
   seriesListBoxColor: 'white',
 };
@@ -85,9 +66,12 @@ export const lightTheme = {
 export const darkTheme = {
   backgroundColor: darkBackgroundColor,
   titleColor: darkTextColor.title,
-  primaryColor: darkTextColor.primaryText,
-  border: `1px solid ${darkTextColor.border}`,
   mainColor: darkMainColor.normal,
+  primaryColor: darkTextColor.primaryText,
+  activeColor: darkMainColor.active,
+  hoverColor: darkMainColor.hover,
+  border: `1px solid ${darkTextColor.border}`,
+  listBoxColor: darkBackgroundOverley[1],
   seriesTitleBoxColor: darkBackgroundOverley[8],
   seriesListBoxColor: darkBackgroundOverley[1],
 };

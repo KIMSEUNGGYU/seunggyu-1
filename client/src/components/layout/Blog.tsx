@@ -77,7 +77,6 @@ const BlogWrapper = styled.div`
   padding: 1em;
   display: flex;
   justify-content: space-between;
-  margin-top: 60px;
 `;
 
 const BlogContainer = styled.div`

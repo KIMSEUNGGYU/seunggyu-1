@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import { css, Global } from '@emotion/react';
-import styled from '@emotion/styled';
 import { RecoilRoot } from 'recoil';
 
 import 'codemirror/lib/codemirror.css';
@@ -15,9 +13,7 @@ import GlobalStyle from '@theme/globalStyle';
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      {/* <Global styles={globalStyle} /> */}
       <GlobalStyle />
-      {/* <GlobalStyle theme={mode === 'light' ? lightTheme : darkTheme} /> */}
       <Head>
         <title>SEUNGGYU</title>
         <meta charSet="UTF-8" />
@@ -46,32 +42,5 @@ function MyApp({ Component, pageProps }) {
     </ThemeProvider>
   );
 }
-
-// const globalStyle = css`
-//   * {
-//     box-sizing: border-box;
-//   }
-//   body {
-//     /* background-color: #f8f9fa; */
-//     background: ${(props) => props.theme.bgColor};
-//     margin: 0;
-//     overflow-y: scroll;
-//   }
-
-//   ul {
-//     margin: 0;
-//     padding-left: 0;
-//   }
-//   li {
-//     list-style: none;
-//   }
-//   h1 {
-//     margin: 0;
-//   }
-//   a {
-//     text-decoration: none;
-//     color: inherit;
-//   }
-// `;
 
 export default MyApp;

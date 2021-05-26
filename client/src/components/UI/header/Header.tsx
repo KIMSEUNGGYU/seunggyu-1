@@ -7,7 +7,6 @@ import styled from '@emotion/styled';
 import { isLoginState } from '@state/index';
 import { BP } from '@theme/index';
 import BurgerMenu from './BurgerMenu';
-// import { ThemeType } from '@theme/theme';
 
 function Header() {
   const router = useRouter();
@@ -90,7 +89,7 @@ function Header() {
 
 const UnderLineBox = styled.div`
   width: 100%;
-  border: ${(props) => props.theme.border};
+  border-bottom: ${({ theme }) => theme.border};
 `;
 
 const HeaderWrapper = styled.header`
@@ -111,8 +110,6 @@ const Logo = styled.div`
 
 const Menu = styled.ul`
   display: flex;
-  margin: 27px;
-  margin-right: 45px;
 
   @media (max-width: ${BP.TABLET}) {
     display: none;
@@ -125,7 +122,8 @@ const List = styled.li<{ active?: boolean }>`
   cursor: pointer;
 
   &.active {
-    color: ${(props) => props.theme.mainColor};
+    color: ${({ theme }) => theme.activeColor};
+    font-weight: 500;
   }
 `;
 

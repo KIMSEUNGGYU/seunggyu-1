@@ -17,6 +17,7 @@ const GlobalStyle = () => {
           margin: 0;
           overflow-y: scroll;
           background: ${theme.backgroundColor};
+          color: ${theme.primaryColor};
         }
 
         ul {

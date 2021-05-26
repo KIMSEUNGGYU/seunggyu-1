@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
-import { BP, theme } from '@theme/index';
 import { TagData } from '@common/types';
 
 type Props = {
@@ -37,10 +36,8 @@ function Tags({ tagList, tagName, changeTag }: Props) {
 }
 
 const TagsContainer = styled.aside`
-  /* width: 20%; */
   display: flex;
   flex-direction: column;
-  padding: 10px;
 `;
 
 const Title = styled(Text)`
@@ -58,10 +55,10 @@ const Tag = styled.li<{ active?: boolean }>`
   cursor: pointer;
 
   &:hover {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.hoverColor};
   }
   &.active {
-    color: ${theme.MAIN_COLOR};
+    color: ${({ theme }) => theme.activeColor};
     font-weight: bold;
   }
 `;
