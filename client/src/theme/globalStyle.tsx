@@ -34,6 +34,15 @@ const GlobalStyle = () => {
           text-decoration: none;
           color: inherit;
         }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: ${theme.primaryColor};
+        }
       `}
     />
   );

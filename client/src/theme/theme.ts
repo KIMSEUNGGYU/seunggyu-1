@@ -63,6 +63,17 @@ export const lightTheme = {
   seriesListBoxColor: 'white',
   dialogBackgroundColor: 'white',
   boxShadow: '0 5px 10px rgba(100, 100, 100, 0.15), 0 2px 4px rgba(100, 100, 100, 0.15)',
+
+  CODE_BACKGROUND: 'rgba(135,131,120,0.15)',
+  CODE_KEWORD: '#95C76F',
+  CODE_STRING: '#f76767',
+  CODE_VAR: '#008080',
+  CODE_TAG: '#000080',
+  CODE_ATTRIBUTE: '#000080',
+  CODE_ID: '#990000',
+  CODE_NUMBER: '#008080',
+  CODE_HTML: '#A626A4',
+  CODE_INLINE: '#EB5757',
 };
 
 export const darkTheme = {
@@ -78,6 +89,18 @@ export const darkTheme = {
   seriesListBoxColor: darkBackgroundOverley[1],
   dialogBackgroundColor: darkBackgroundOverley[2],
   boxShadow: '0px 5px 10px rgba(40, 40, 40, 1), 0px 2px 4px rgba(40, 40, 40, 1)',
+
+  // code background, code inline => notion 값
+  CODE_BACKGROUND: 'rgba(135,131,120,0.15)',
+  CODE_INLINE: '#EB5757',
+  CODE_KEWORD: '#95C76F',
+  CODE_STRING: '#f76767',
+  CODE_VAR: '#74e6ff',
+  CODE_TAG: '#74e6ff',
+  CODE_ATTRIBUTE: '#EFA16B',
+  CODE_ID: '#f76767',
+  CODE_NUMBER: '#64878F',
+  CODE_HTML: '#f8bbd0',
 };
 
 export const theme = {
