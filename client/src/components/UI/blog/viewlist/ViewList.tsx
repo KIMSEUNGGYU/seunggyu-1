@@ -105,10 +105,6 @@ const Tags = styled.ul`
     font-weight: bold;
     margin-right: 6px;
   }
-
-  @media (max-width: ${BP.TABLET}) {
-    display: none;
-  }
 `;
 
 export default ViewList;

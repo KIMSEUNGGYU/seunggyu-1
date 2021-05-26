@@ -62,6 +62,7 @@ export const lightTheme = {
   seriesTitleBoxColor: '#E9ECEF',
   seriesListBoxColor: 'white',
   dialogBackgroundColor: 'white',
+  burgerMenuBackgroundColor: 'white',
   boxShadow: '0 5px 10px rgba(100, 100, 100, 0.15), 0 2px 4px rgba(100, 100, 100, 0.15)',
 
   CODE_BACKGROUND: 'rgba(135,131,120,0.15)',
@@ -90,6 +91,7 @@ export const darkTheme = {
   seriesTitleBoxColor: darkBackgroundOverley[8],
   seriesListBoxColor: darkBackgroundOverley[1],
   dialogBackgroundColor: darkBackgroundOverley[2],
+  burgerMenuBackgroundColor: darkBackgroundOverley[2],
   boxShadow: '0px 5px 10px rgba(40, 40, 40, 1), 0px 2px 4px rgba(40, 40, 40, 1)',
 
   // code background, code inline => notion 값
