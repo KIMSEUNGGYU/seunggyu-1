@@ -4,9 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 
 import { Input } from 'antd';
-import { Button } from 'antd';
 
-import { theme } from '@theme/index';
 import { Post } from '@util/util';
 
 import { isLoginState } from '@state/index';
@@ -73,20 +71,18 @@ function Login() {
         onChange={handleChangePassword}
         value={password}
       />
-      <SingInButton type="primary" htmlType="submit">
-        로그인
-      </SingInButton>
+      <SignInButton type={'submit'}>로그인</SignInButton>
     </LoginContainer>
   );
 }
 
 const LoginContainer = styled.form`
   max-width: 800px;
-  background-color: white;
   margin: 0 auto;
   margin-top: 150px;
   height: 300px;
-  border: 1px solid ${theme.BORDER_COLOR};
+  background: ${({ theme }) => theme.seriesListBoxColor};
+  border: ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,10 +95,18 @@ const InputStyle = styled(Input)`
   padding: 0.5em;
 `;
 
-const SingInButton = styled(Button)`
+const SignInButton = styled.button`
   width: 50%;
   height: 40px;
   font-size: 1.4em;
+  background: ${({ theme }) => theme.mainColor};
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.hoverColor};
+  }
 `;
 
 export default Login;
