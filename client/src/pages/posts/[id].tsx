@@ -16,9 +16,9 @@ export default function Page({ post }: Props) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (typeof context.query.id == 'string') {
     const post = await postRepository.detailRead(context.query.id);
-
+    const parsePost = { ...post, tags: post.tags.name };
     return {
-      props: { post },
+      props: { post: parsePost },
     };
   }
 }

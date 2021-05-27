@@ -35,4 +35,6 @@ const PostInfo = styled.div`
 const InputStyle = styled(Input)`
   margin-bottom: 20px;
   width: 50%;
+  font-size: 1.2rem;
+  padding: 0.5rem;
 `;
