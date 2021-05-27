@@ -18,6 +18,6 @@ export class Posts {
   @Column('text')
   contents: string;
 
-  @ManyToOne(() => Tags, (tags) => tags.posts)
+  @ManyToOne(() => Tags, (tags) => tags.posts, { onDelete: 'CASCADE' })
   tags: Tags;
 }

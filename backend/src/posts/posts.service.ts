@@ -38,8 +38,30 @@ export class PostsService {
   }
 
   async deletePost(postId) {
-    const postToRemove = await this.postsRepository.findOne(postId);
-    await this.postsRepository.remove(postToRemove);
+    try {
+      const postToRemove = await this.postsRepository.findOne({
+        relations: ['tags'],
+        where: { id: postId },
+      });
+
+      const postListByTag =
+        postToRemove &&
+        (await this.postsRepository.find({
+          relations: ['tags'],
+          where: { tags: postToRemove.tags.id },
+        }));
+
+      // 삭제되는 post와 관련된 태그와 관련된 post가 하나 이하인 경우 해당 태그 삭제
+      // 관련 태그 삭제
+      postToRemove &&
+        postListByTag.length <= 1 &&
+        (await this.tagsService.deleteTag(postToRemove.tags.name));
+
+      // 관련 post 삭제
+      postToRemove && (await this.postsRepository.remove(postToRemove));
+    } catch (error) {
+      console.error(`Delete Post Error:${error}`);
+    }
   }
 
   async createPost(postData) {

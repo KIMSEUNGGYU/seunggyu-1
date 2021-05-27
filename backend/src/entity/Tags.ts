@@ -9,6 +9,6 @@ export class Tags {
   @Column()
   name: string;
 
-  @OneToMany(() => Posts, (posts) => posts.tags)
+  @OneToMany(() => Posts, (posts) => posts.tags, { cascade: true })
   posts: Posts[];
 }
