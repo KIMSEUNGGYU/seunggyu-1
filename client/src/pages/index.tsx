@@ -23,12 +23,14 @@ export default function Home({ postList, tagList }: Props) {
 
 export async function getServerSideProps() {
   const postList = await postRepository.read();
+  const parsePostList = postList.map((post: any) => ({ ...post, tags: post.tags.name }));
+
   let tagList = await postRepository.getTags();
   tagList = tagList.map((tag: any) => tag.name);
 
   return {
     props: {
-      postList,
+      postList: parsePostList,
       tagList,
     },
   };
