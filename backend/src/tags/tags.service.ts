@@ -15,6 +15,10 @@ export class TagsService {
     return this.tagsRepository.find();
   }
 
+  async getTagByName(name: string) {
+    return this.tagsRepository.findOne({ where: { name } });
+  }
+
   async findNewTag(tags) {
     const newTag = [];
     for (const tag of tags) {

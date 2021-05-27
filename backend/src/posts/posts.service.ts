@@ -14,11 +14,11 @@ export class PostsService {
   ) {}
 
   async getPosts() {
-    return this.postsRepository.find();
+    return this.postsRepository.find({ relations: ['tags'] });
   }
 
   async getPost(postId) {
-    return this.postsRepository.findOne({ where: { id: postId } });
+    return this.postsRepository.findOne({ relations: ['tags'], where: { id: postId } });
   }
 
   async updatePost(postId, postData) {
@@ -51,20 +51,21 @@ export class PostsService {
       newTags.length && (await this.tagsService.createTag(newTags));
 
       // create post
-      const postEntity = this.getPostEntity(post, tags);
+      const postEntity = await this.getPostEntity(post, tags);
       await this.postsRepository.save(postEntity);
     } catch (error) {
       console.error(`Create Post Error: ${error}`);
     }
   }
 
-  private getPostEntity(post, tags) {
+  private async getPostEntity(post, tags) {
+    const tagsId = await this.tagsService.getTagByName(tags);
     const postEntity = this.postsRepository.create();
     postEntity.title = post.title;
     postEntity.date = post.date;
     postEntity.description = post.description;
     postEntity.contents = post.contents;
-    postEntity.tags = tags.toString();
+    postEntity.tags = tagsId;
     return postEntity;
   }
 }
