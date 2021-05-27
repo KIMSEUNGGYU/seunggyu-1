@@ -106,6 +106,8 @@ const getPosts = () => {
   ];
 };
 
+const tagsList = [{ name: '자료구조' }, { name: '브라우저' }];
+
 const postsList = [
   {
     title: '자료구조 - 스택',
@@ -141,8 +143,6 @@ const postsList = [
   },
 ];
 
-const tagsList = [{ name: '자료구조' }, { name: '브라우저' }];
-
 export class seed1620994092793 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const users = await getUsers();
@@ -162,23 +162,24 @@ export class seed1620994092793 implements MigrationInterface {
       ]);
     });
 
-    const posts = getPosts();
-    posts.forEach(async ({ title, date, description, contents, tags }) => {
-      await queryRunner.query(
-        'INSERT INTO posts (title, date, description, contents, tags) VALUES (?, ?, ?, ?, ?)',
-        [title, date, description, contents, tags],
-      );
-    });
-
     tagsList.forEach(async ({ name }) => {
       await queryRunner.query('INSERT INTO tags(name) VALUES (?)', [name]);
+    });
+
+    const posts = getPosts();
+    posts.forEach(async ({ title, date, description, contents, tags }) => {
+      const tagsId = await queryRunner.query(`SELECT tags.id FROM tags WHERE name="${tags}"`);
+      await queryRunner.query(
+        'INSERT INTO posts (title, date, description, contents, tagsId) VALUES (?, ?, ?, ?, ?)',
+        [title, date, description, contents, tagsId[0].id],
+      );
     });
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('DELETE FROM users');
     await queryRunner.query('DELETE FROM series');
-    await queryRunner.query('DELETE FROM tags');
     await queryRunner.query('DELETE FROM posts');
+    await queryRunner.query('DELETE FROM tags');
   }
 }

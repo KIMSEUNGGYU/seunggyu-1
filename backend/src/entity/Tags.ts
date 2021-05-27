@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Posts } from './Posts';
 
 @Entity()
 export class Tags {
@@ -7,4 +8,7 @@ export class Tags {
 
   @Column()
   name: string;
+
+  @OneToMany(() => Posts, (posts) => posts.tags, { cascade: true })
+  posts: Posts[];
 }
