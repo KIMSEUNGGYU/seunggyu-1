@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Tags } from './Tags';
 
 @Entity()
 export class Posts {
@@ -17,6 +18,6 @@ export class Posts {
   @Column('text')
   contents: string;
 
-  @Column()
-  tags: string;
+  @ManyToOne(() => Tags, (tags) => tags.posts)
+  tags: Tags;
 }
