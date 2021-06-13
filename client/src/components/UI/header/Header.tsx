@@ -6,12 +6,15 @@ import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
 import { BP } from '@theme/index';
+import { useTheme } from '@context/themeProvider';
 import BurgerMenu from './BurgerMenu';
 
 function Header() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [activeMenu, setActiveMenu] = useState('blog');
+
+  const [mode, _] = useTheme();
 
   useEffect(() => {
     const data = localStorage.getItem('seunggyu');
@@ -39,7 +42,7 @@ function Header() {
         <Logo>
           <Image
             data-name="logo"
-            src="/SEUNGGYU.svg"
+            src={`/logo-${mode}.svg`}
             alt="Picture of the author"
             width={180}
             height={41}
