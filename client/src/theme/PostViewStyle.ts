@@ -8,8 +8,8 @@ const PostViewStyle = (mode: any) => {
     body {
       margin: 0;
       overflow-y: scroll;
-      background: ${mode === 'light' ? 'white' : theme.backgroundColor};
-      color: ${theme.primaryColor};
+      background: ${theme.postBackgroundColor};
+      color: ${theme.postTextColor};
     }
     h1 {
       margin-top: 32px;
