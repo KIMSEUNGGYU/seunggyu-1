@@ -118,6 +118,7 @@ const Menu = styled.ul`
 
 const List = styled.li<{ active?: boolean }>`
   display: flex;
+  margin-left: 0px;
   margin-right: 20px;
   font-size: 2.1em;
   cursor: pointer;

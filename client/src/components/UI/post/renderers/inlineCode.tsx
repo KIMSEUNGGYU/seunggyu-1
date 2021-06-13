@@ -7,7 +7,7 @@ interface InlineCodeProps {
 const InlineCode = styled.code`
   background-color: ${({ theme }) => theme.CODE_BACKGROUND};
   color: ${({ theme }) => theme.CODE_INLINE};
-  padding: 3px 4px;
+  padding: 2.72px 5.4px;
   border-radius: 4px;
   font-size: 0.85rem;
 `;

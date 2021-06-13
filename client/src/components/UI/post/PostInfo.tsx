@@ -90,6 +90,9 @@ const Tag = styled.li`
   color: ${({ theme }) => theme.mainColor};
   font-weight: bold;
   margin-right: 6px;
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
 `;
 
 export default Info;
