@@ -14,7 +14,7 @@ export class PostsService {
   ) {}
 
   async getPosts() {
-    return this.postsRepository.find({ relations: ['tags'] });
+    return this.postsRepository.find({ relations: ['tags'], order: { id: 'DESC' } });
   }
 
   async getPost(postId) {
