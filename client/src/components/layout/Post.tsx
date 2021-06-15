@@ -5,9 +5,8 @@ import { css, Global } from '@emotion/react';
 import PostInfo from 'src/components/UI/post/PostInfo';
 import Contents from 'src/components/UI/post/Contents';
 import { PostData } from '@common/types';
-
-import PostViewStyle from '@theme/PostViewStyle';
 import { useTheme } from '@context/themeProvider';
+import { lightTheme, darkTheme } from '@theme/theme';
 
 interface Props {
   post: PostData;
@@ -15,6 +14,7 @@ interface Props {
 
 function PostPage({ post }: Props) {
   const [mode, _] = useTheme();
+  const theme = mode === 'light' ? lightTheme : darkTheme;
 
   return (
     <>
@@ -28,7 +28,14 @@ function PostPage({ post }: Props) {
         />
         <meta name="og:description" content={post.description} />
       </Head>
-      <Global styles={PostViewStyle(mode)} />
+      <Global
+        styles={css`
+          body {
+            background: ${theme.postBackgroundColor};
+            color: ${theme.postTextColor};
+          }
+        `}
+      />
       <PostPageContainer>
         <PostInfo post={post} />
         <Contents post={post} />
