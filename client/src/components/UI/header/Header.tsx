@@ -84,7 +84,7 @@ const UnderLine = React.memo(styled.hr`
   border: ${({ theme }) => theme.border};
 `);
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = React.memo(styled.header`
   max-width: 1200px;
   height: 100px;
   margin: 0 auto;
@@ -92,7 +92,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   position: relative;
-`;
+`);
 
 const Menu = styled.ul`
   display: flex;
