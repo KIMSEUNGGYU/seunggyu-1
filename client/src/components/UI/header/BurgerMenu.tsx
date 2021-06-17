@@ -2,22 +2,16 @@ import React, { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { MenuOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 
 import { BP } from '@theme/index';
 
-const BurgerMenu = () => {
-  const router = useRouter();
+interface Props {
+  goLink({ target }: any): void;
+}
 
+const BurgerMenu = ({ goLink }: Props) => {
   const [isToggle, setIsToggle] = useState(false);
-
-  const handleChangeToggle = () => setIsToggle(!isToggle);
-
-  const goLink = useCallback(({ target }: any) => {
-    const name = target.dataset.name;
-    name === 'logo' || name === 'blog' ? router.push('/') : router.push(`/${name}`);
-    setIsToggle(false);
-  }, []);
+  const handleChangeToggle = useCallback(() => setIsToggle(!isToggle), []);
 
   return (
     <>

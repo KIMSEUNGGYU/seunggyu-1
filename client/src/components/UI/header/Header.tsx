@@ -73,7 +73,7 @@ function Header() {
             </List>
           )}
         </Menu>
-        <BurgerMenu />
+        <BurgerMenu goLink={goLink} />
       </HeaderWrapper>
       <UnderLine />
     </>
