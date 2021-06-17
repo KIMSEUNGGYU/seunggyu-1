@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import Image from 'next/image';
 import styled from '@emotion/styled';
 
 import { isLoginState } from '@state/index';
 import { BP } from '@theme/index';
 import { useTheme } from '@context/themeProvider';
 import BurgerMenu from './BurgerMenu';
+import Logo from './Logo';
 
 function Header() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [activeMenu, setActiveMenu] = useState('blog');
-
-  const [mode, _] = useTheme();
+  let [mode, _] = useTheme();
 
   useEffect(() => {
     const data = localStorage.getItem('seunggyu');
@@ -26,30 +25,20 @@ function Header() {
     pathName === '/' ? setActiveMenu('blog') : setActiveMenu(pathName.slice(1));
   }, [router.pathname]);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('seunggyu');
     setIsLogin(false);
-  };
+  }, []);
 
-  const goLink = ({ target }: any) => {
+  const goLink = useCallback(({ target }: any) => {
     const name = target.dataset.name;
     name === 'logo' || name === 'blog' ? router.push('/') : router.push(`/${name}`);
-  };
+  }, []);
 
   return (
-    <UnderLineBox>
+    <>
       <HeaderWrapper>
-        <Logo>
-          <Image
-            data-name="logo"
-            src={`/logo-${mode}.svg`}
-            alt="Picture of the author"
-            width={180}
-            height={41}
-            onClick={goLink}
-          />
-        </Logo>
-
+        <Logo mode={mode} goLink={goLink} />
         <Menu>
           <List data-name="blog" className={activeMenu === 'blog' ? 'active' : ''} onClick={goLink}>
             Blog
@@ -86,14 +75,14 @@ function Header() {
         </Menu>
         <BurgerMenu />
       </HeaderWrapper>
-    </UnderLineBox>
+      <UnderLine />
+    </>
   );
 }
 
-const UnderLineBox = styled.div`
-  width: 100%;
-  border-bottom: ${({ theme }) => theme.border};
-`;
+const UnderLine = React.memo(styled.hr`
+  border: ${({ theme }) => theme.border};
+`);
 
 const HeaderWrapper = styled.header`
   max-width: 1200px;
@@ -103,12 +92,6 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   position: relative;
-`;
-
-const Logo = styled.div`
-  margin: 27px;
-  margin-left: 27px;
-  cursor: pointer;
 `;
 
 const Menu = styled.ul`
@@ -132,4 +115,4 @@ const List = styled.li<{ active?: boolean }>`
   }
 `;
 
-export default Header;
+export default React.memo(Header);
