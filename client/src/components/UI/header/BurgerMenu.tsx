@@ -1,21 +1,17 @@
+import React, { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { MenuOutlined } from '@ant-design/icons';
-import { BP } from '@theme/index';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 
-const BurgerMenu = () => {
-  const router = useRouter();
+import { BP } from '@theme/index';
 
+interface Props {
+  goLink({ target }: any): void;
+}
+
+const BurgerMenu = ({ goLink }: Props) => {
   const [isToggle, setIsToggle] = useState(false);
-
-  const handleChangeToggle = () => setIsToggle(!isToggle);
-
-  const goLink = ({ target }: any) => {
-    const name = target.dataset.name;
-    name === 'logo' || name === 'blog' ? router.push('/') : router.push(`/${name}`);
-    setIsToggle(false);
-  };
+  const handleChangeToggle = useCallback(() => setIsToggle(!isToggle), []);
 
   return (
     <>
@@ -34,7 +30,7 @@ const BurgerMenu = () => {
   );
 };
 
-const BurgerMenuIcon = styled(MenuOutlined)`
+const BurgerMenuIcon = React.memo(styled(MenuOutlined)`
   display: none;
 
   @media (max-width: ${BP.TABLET}) {
@@ -46,7 +42,7 @@ const BurgerMenuIcon = styled(MenuOutlined)`
     font-size: 1.8rem;
     cursor: pointer;
   }
-`;
+`);
 
 const MenuList = styled.ul`
   display: none;
@@ -67,4 +63,4 @@ const MenuList = styled.ul`
   }
 `;
 
-export default BurgerMenu;
+export default React.memo(BurgerMenu);

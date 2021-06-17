@@ -1,18 +1,18 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import removeMD from 'remove-markdown';
+import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
 import TUIEditor from 'src/components/UI/editor/TUIEditor';
-import ImageUploaderImpl from '@services/image_uploader';
-import PostRepositoryImpl from '@services/post_repository';
 import EditorMenus from 'src/components/UI/editor/EditorMenu';
 import PostInfo from 'src/components/UI/editor/PostInfo';
-import styled from '@emotion/styled';
+import HeadWrapper from '@components/Head';
 
-import { useRecoilValue } from 'recoil';
-import { isLoginState } from '@state/index';
 import { getDate } from '@util/util';
+import { isLoginState } from '@state/index';
+import ImageUploaderImpl from '@services/image_uploader';
+import PostRepositoryImpl from '@services/post_repository';
 
 const MAX_DESCRIPTION = 400;
 const imageUploader = new ImageUploaderImpl();
@@ -40,7 +40,7 @@ interface Props {
   post?: PostData;
 }
 
-export default function WritePage({ post }: Props) {
+function EditorLayout({ post }: Props) {
   const router = useRouter();
   const isLogin = useRecoilValue(isLoginState);
 
@@ -90,11 +90,11 @@ export default function WritePage({ post }: Props) {
   };
 
   if (!isLogin) return null;
+
   return (
     <>
-      <Head>
-        <title>WRITE | SEUNGGYU</title>
-      </Head>
+      <HeadWrapper title="WRITE" />
+
       <Editor>
         <h1>좋은 블로그 내용을 작성하자!! 🔥🔥👋</h1>
         <PostInfo post={postState} setPost={setPostState} />
@@ -113,3 +113,5 @@ export default function WritePage({ post }: Props) {
 const Editor = styled.div`
   padding: 20px;
 `;
+
+export default EditorLayout;

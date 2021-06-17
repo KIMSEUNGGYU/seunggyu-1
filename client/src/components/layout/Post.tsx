@@ -1,33 +1,25 @@
-import Head from 'next/head';
 import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
+import { useRecoilValue } from 'recoil';
 
-import PostInfo from 'src/components/UI/post/PostInfo';
-import Contents from 'src/components/UI/post/Contents';
+import PostInfo from '@post/PostInfo';
+import Contents from '@post/Contents';
+import HeadWrapper from '@components/Head';
+
 import { PostData } from '@common/types';
-import { useTheme } from '@context/themeProvider';
 import { lightTheme, darkTheme } from '@theme/theme';
+import { themeModeState } from '@state/index';
 
 interface Props {
   post: PostData;
 }
 
-function PostPage({ post }: Props) {
-  const [mode, _] = useTheme();
+function PostLayout({ post }: Props) {
+  const mode = useRecoilValue(themeModeState);
   const theme = mode === 'light' ? lightTheme : darkTheme;
 
   return (
     <>
-      <Head>
-        <title>{post.title} | SEUNGGYU</title>
-        <meta name="description" content={post.description} />
-        <meta name="og:title" content={`${post.title} | SEUNGGYU`} />
-        <meta
-          name="og:image"
-          content="https://res.cloudinary.com/du4w00gvm/image/upload/v1619410321/main_image.png"
-        />
-        <meta name="og:description" content={post.description} />
-      </Head>
       <Global
         styles={css`
           body {
@@ -36,6 +28,7 @@ function PostPage({ post }: Props) {
           }
         `}
       />
+      <HeadWrapper title={post.title} description={post.description} />
       <PostPageContainer>
         <PostInfo post={post} />
         <Contents post={post} />
@@ -53,4 +46,4 @@ const PostPageContainer = styled.div`
   padding: 1em;
 `;
 
-export default PostPage;
+export default PostLayout;

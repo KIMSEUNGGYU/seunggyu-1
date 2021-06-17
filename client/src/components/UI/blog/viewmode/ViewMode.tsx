@@ -3,6 +3,7 @@ import { MenuOutlined, BlockOutlined } from '@ant-design/icons';
 
 import { BP } from '@theme/index';
 import { ViewModeData } from '@common/types';
+import React from 'react';
 
 type Props = {
   mode: ViewModeData;
@@ -52,4 +53,4 @@ const MenuItem = styled.li`
     font-weight: bold;
   }
 `;
-export default ViewMode;
+export default React.memo(ViewMode);
