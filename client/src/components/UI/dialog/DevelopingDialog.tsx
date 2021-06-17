@@ -44,4 +44,4 @@ const CancelBtn = styled.button`
   background: ${({ theme }) => theme.seriesTitleBoxColor};
 `;
 
-export default DevelopingDialog;
+export default React.memo(DevelopingDialog);

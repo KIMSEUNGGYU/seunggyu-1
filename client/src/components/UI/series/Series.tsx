@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
-import { BP, theme } from '@theme/index';
+import { BP } from '@theme/index';
 import DevelopingDialog from 'src/components/UI/dialog/DevelopingDialog';
 import { css } from '@emotion/react';
 
@@ -22,10 +22,10 @@ function Series({ title, seriesList }: Props) {
   const [toggle, setToggle] = useState(false);
   const [bDevelopDialog, setbDevelopDialog] = useState(false);
 
-  const closeDialog = () => setbDevelopDialog(false);
-  const openDialog = () => setbDevelopDialog(true);
-  const closeSeriesList = () => setToggle(false);
-  const openSeriesList = () => setToggle(true);
+  const closeDialog = useCallback(() => setbDevelopDialog(false), []);
+  const openDialog = useCallback(() => setbDevelopDialog(true), []);
+  const closeSeriesList = useCallback(() => setToggle(false), []);
+  const openSeriesList = useCallback(() => setToggle(true), []);
 
   const ToggleOpenComponent = (
     <ToggleBlock onClick={openSeriesList}>
@@ -125,4 +125,4 @@ const SeriesList = styled.li`
   }
 `;
 
-export default Series;
+export default React.memo(Series);

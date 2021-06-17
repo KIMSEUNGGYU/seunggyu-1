@@ -18,4 +18,4 @@ const DarkBackground = styled.div`
   background: rgba(0, 0, 0, 0.2);
 `;
 
-export default DialogTemplate;
+export default React.memo(DialogTemplate);
