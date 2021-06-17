@@ -10,6 +10,7 @@
       "@series/*": ["src/components/UI/series/*"],
       "@login/*": ["src/components/UI/login/*"],
       "@post/*": ["src/components/UI/post/*"],
+      "@editor/*": ["src/components/UI/editor/*"],
       "@theme/*": ["src/theme/*"],
       "@context/*": ["src/context/*"],
       "@common/*": ["src/common/*"],

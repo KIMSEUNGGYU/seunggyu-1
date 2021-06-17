@@ -1,9 +1,10 @@
-import Head from 'next/head';
 import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
 
-import PostInfo from 'src/components/UI/post/PostInfo';
-import Contents from 'src/components/UI/post/Contents';
+import PostInfo from '@post/PostInfo';
+import Contents from '@post/Contents';
+import HeadWrapper from '@components/Head';
+
 import { PostData } from '@common/types';
 import { useTheme } from '@context/themeProvider';
 import { lightTheme, darkTheme } from '@theme/theme';
@@ -18,16 +19,6 @@ function PostLayout({ post }: Props) {
 
   return (
     <>
-      <Head>
-        <title>{post.title} | SEUNGGYU</title>
-        <meta name="description" content={post.description} />
-        <meta name="og:title" content={`${post.title} | SEUNGGYU`} />
-        <meta
-          name="og:image"
-          content="https://res.cloudinary.com/du4w00gvm/image/upload/v1619410321/main_image.png"
-        />
-        <meta name="og:description" content={post.description} />
-      </Head>
       <Global
         styles={css`
           body {
@@ -36,6 +27,7 @@ function PostLayout({ post }: Props) {
           }
         `}
       />
+      <HeadWrapper title={post.title} description={post.description} />
       <PostPageContainer>
         <PostInfo post={post} />
         <Contents post={post} />

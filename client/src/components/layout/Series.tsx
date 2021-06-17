@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import Head from 'next/head';
 
-import Series from 'src/components/UI/series/Series';
+import Series from '@series/Series';
+import HeadWrapper from '@components/Head';
 import { BP, theme } from '@theme/index';
 
 type SeriesData = {
@@ -31,23 +31,10 @@ function SeriesLayout({ seriesList }: Props) {
 
   return (
     <>
-      <Head>
-        <title>SERIES | SEUNGGYU</title>
-        <meta charSet="UTF-8" />
-        <meta
-          name="description"
-          content="개발자 김승규의 시리즈 입니다. 튜토리얼 또는 순차적으로 개념을 익히세요"
-        />
-        <meta name="og:title" content="SEUNGGYU" />
-        <meta
-          name="og:image"
-          content="https://res.cloudinary.com/du4w00gvm/image/upload/v1619410321/main_image.png"
-        />
-        <meta
-          name="og:description"
-          content="개발자 김승규의 시리즈 입니다. 튜토리얼 또는 순차적으로 개념을 익히세요"
-        />
-      </Head>
+      <HeadWrapper
+        title="SERIES"
+        description="개발자 김승규의 시리즈 입니다. 튜토리얼 또는 순차적으로 개념을 익히세요"
+      />
       <SeriesContainer>{SeriesList}</SeriesContainer>
     </>
   );
