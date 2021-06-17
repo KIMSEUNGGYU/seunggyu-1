@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
 
-import { isLoginState } from '@state/index';
+import { isLoginState, themeModeState } from '@state/index';
 import { BP } from '@theme/index';
-import { useTheme } from '@context/themeProvider';
 import BurgerMenu from './BurgerMenu';
 import Logo from './Logo';
 
@@ -13,7 +13,8 @@ function Header() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [activeMenu, setActiveMenu] = useState('blog');
-  let [mode, _] = useTheme();
+  const themeMode = useRecoilValue(themeModeState);
+  const mode = themeMode;
 
   useEffect(() => {
     const data = localStorage.getItem('seunggyu');

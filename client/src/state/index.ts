@@ -5,12 +5,7 @@ export const isLoginState = atom({
   default: false,
 });
 
-// export const seriesState = atom({
-//   key: 'seriesState',
-//   default: [],
-// });
-
-// export const nameState = atom({
-//   key: 'nameState',
-//   default: '',
-// });
+export const themeModeState = atom({
+  key: 'themeModeState',
+  default: 'light',
+});

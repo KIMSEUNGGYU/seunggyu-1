@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import atomOneDark from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark';
 import atomOneLight from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
-import { useTheme } from '@context/themeProvider';
+import { useRecoilValue } from 'recoil';
+
+import { themeModeState } from '@state/index';
 
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/hljs/typescript';
@@ -36,7 +38,8 @@ const SyntaxWrapper = styled(SyntaxHighlighter)`
 `;
 
 const code = ({ language, value }: CodeProps) => {
-  const [mode, _] = useTheme();
+  const mode = useRecoilValue(themeModeState);
+
   return (
     <SyntaxWrapper style={mode === 'dark' ? atomOneDark : atomOneLight} language={language}>
       {value}

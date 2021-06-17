@@ -2,8 +2,8 @@ import { RecoilRoot } from 'recoil';
 
 import Header from '@header/Header';
 import HeadWrapper from '@components/Head';
+import ThemeToggle from '@components/ThemeToggle';
 
-import ThemeToggle from '@theme/ThemeToggle';
 import { theme } from '@theme/theme';
 import GlobalStyle from '@theme/globalStyle';
 import ThemeProvider from '@context/themeProvider.js';
@@ -14,15 +14,16 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <HeadWrapper />
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <RecoilRoot>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <HeadWrapper />
+          <GlobalStyle />
+
           <Header />
           <Component {...pageProps} />
           <ThemeToggle />
-        </RecoilRoot>
-      </ThemeProvider>
+        </ThemeProvider>
+      </RecoilRoot>
     </>
   );
 }
