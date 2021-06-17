@@ -40,7 +40,7 @@ interface Props {
   post?: PostData;
 }
 
-export default function WritePage({ post }: Props) {
+export default function EditorPage({ post }: Props) {
   const router = useRouter();
   const isLogin = useRecoilValue(isLoginState);
 

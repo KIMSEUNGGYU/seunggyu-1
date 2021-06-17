@@ -1,18 +1,9 @@
-import WritePage from '@components/layout/Write';
-import PostRepository from '@services/post_repository';
-
-const postRepository = new PostRepository();
-
-import { PostData } from '@common/types';
 import { GetServerSidePropsContext } from 'next';
 
-interface Props {
-  post: PostData;
-}
+import PostRepository from '@services/post_repository';
+const postRepository = new PostRepository();
 
-export default function Page({ post }: Props) {
-  return <WritePage post={post} />;
-}
+export { default } from '@components/layout/editor';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (typeof context.query.id == 'string') {
