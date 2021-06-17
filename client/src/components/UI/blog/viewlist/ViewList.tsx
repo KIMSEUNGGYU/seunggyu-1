@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
 import { BP } from '@theme/index';
+import React from 'react';
 
 type PostData = {
   id?: string;
@@ -107,4 +108,4 @@ const Tags = styled.ul`
   }
 `;
 
-export default ViewList;
+export default React.memo(ViewList);

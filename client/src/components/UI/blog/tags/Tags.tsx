@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import Text from 'antd/lib/typography/Text';
 
@@ -63,4 +64,4 @@ const Tag = styled.li<{ active?: boolean }>`
   }
 `;
 
-export default Tags;
+export default React.memo(Tags);
