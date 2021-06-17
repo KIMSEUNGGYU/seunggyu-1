@@ -12,7 +12,7 @@ interface Props {
   post: PostData;
 }
 
-function PostPage({ post }: Props) {
+function PostLayout({ post }: Props) {
   const [mode, _] = useTheme();
   const theme = mode === 'light' ? lightTheme : darkTheme;
 
@@ -53,4 +53,4 @@ const PostPageContainer = styled.div`
   padding: 1em;
 `;
 
-export default PostPage;
+export default PostLayout;

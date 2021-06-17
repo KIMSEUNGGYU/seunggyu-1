@@ -25,7 +25,7 @@ interface Props {
   tagList: TagsData;
 }
 
-function Blog({ postList, tagList }: Props) {
+function BlogLayout({ postList, tagList }: Props) {
   const [mode, setMode] = useState<ViewModeData>('list');
   const [tagName, setTagName] = useState<string | null>(null);
 
@@ -95,4 +95,4 @@ const TagContainer = styled.div`
   }
 `;
 
-export default Blog;
+export default BlogLayout;

@@ -40,7 +40,7 @@ interface Props {
   post?: PostData;
 }
 
-export default function EditorPage({ post }: Props) {
+function EditorLayout({ post }: Props) {
   const router = useRouter();
   const isLogin = useRecoilValue(isLoginState);
 
@@ -113,3 +113,5 @@ export default function EditorPage({ post }: Props) {
 const Editor = styled.div`
   padding: 20px;
 `;
+
+export default EditorLayout;

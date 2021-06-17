@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import Login from 'src/components/UI/login/Login';
 
-function LoginPage() {
+function LoginLayout() {
   return (
     <>
       <Head>
@@ -22,4 +22,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginLayout;
