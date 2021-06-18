@@ -1,12 +1,11 @@
 import { css, Global } from '@emotion/react';
-import { useRecoilValue } from 'recoil';
 
+import { useTheme } from '@context/themeProvider';
 import { lightTheme, darkTheme } from './theme';
 
-import { themeModeState } from '@state/index';
-
 const GlobalStyle = () => {
-  const mode = useRecoilValue(themeModeState);
+  const [mode, _] = useTheme();
+
   const theme = mode === 'light' ? lightTheme : darkTheme;
 
   return (

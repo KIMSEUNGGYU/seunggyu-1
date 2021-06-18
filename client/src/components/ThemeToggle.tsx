@@ -1,26 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import { useRecoilState } from 'recoil';
 
-import { themeModeState } from '@state/index';
+import { useTheme } from '@context/themeProvider';
 
 function ThemeToggle() {
-  const [mode, setMode] = useRecoilState(themeModeState);
-
-  useEffect(() => {
-    const LocalTheme = localStorage.getItem('theme') || 'light';
-    setMode(LocalTheme);
-  }, []);
-
-  const toggle = useCallback(() => {
-    if (mode === 'dark') {
-      localStorage.setItem('theme', 'light');
-      setMode('light');
-    } else {
-      localStorage.setItem('theme', 'dark');
-      setMode('dark');
-    }
-  }, [mode]);
+  const [mode, toggle] = useTheme();
 
   return (
     <ToggleWrapper mode={mode} onClick={toggle}>
