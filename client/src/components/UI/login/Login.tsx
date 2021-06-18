@@ -70,6 +70,7 @@ function Login() {
         type="password"
         onChange={handleChangePassword}
         value={password}
+        autoComplete="off"
       />
       <SignInButton type={'submit'}>로그인</SignInButton>
     </LoginContainer>
