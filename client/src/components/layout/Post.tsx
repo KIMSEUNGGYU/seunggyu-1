@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
-import { useRecoilValue } from 'recoil';
 
 import PostInfo from '@post/PostInfo';
 import Contents from '@post/Contents';
@@ -8,14 +7,14 @@ import HeadWrapper from '@components/Head';
 
 import { PostData } from '@common/types';
 import { lightTheme, darkTheme } from '@theme/theme';
-import { themeModeState } from '@state/index';
+import { useTheme } from '@context/themeProvider';
 
 interface Props {
   post: PostData;
 }
 
 function PostLayout({ post }: Props) {
-  const mode = useRecoilValue(themeModeState);
+  const [mode, _] = useTheme();
   const theme = mode === 'light' ? lightTheme : darkTheme;
 
   return (
