@@ -1,4 +1,5 @@
 import { RecoilRoot } from 'recoil';
+import { useEffect, useState } from 'react';
 
 import Header from '@header/Header';
 import HeadWrapper from '@components/Head';
@@ -12,6 +13,14 @@ import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 function MyApp({ Component, pageProps }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <>
       <RecoilRoot>
