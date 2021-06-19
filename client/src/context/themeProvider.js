@@ -6,11 +6,8 @@ import { lightTheme, darkTheme } from '@theme/theme';
 export const ThemeContext = createContext({});
 
 const ThemeProvider = ({ children }) => {
-  const [ThemeMode, setThemeMode] = useState();
-  useEffect(() => {
-    const LocalTheme = localStorage.getItem('theme') || 'light';
-    setThemeMode(LocalTheme);
-  }, []);
+  const LocalTheme = localStorage.getItem('theme') || 'light';
+  const [ThemeMode, setThemeMode] = useState(LocalTheme);
 
   const themeObject = ThemeMode === 'light' ? lightTheme : darkTheme;
 
