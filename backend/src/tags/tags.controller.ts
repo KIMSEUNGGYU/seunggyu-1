@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 
 import { TagsService } from './tags.service';
 
@@ -14,6 +14,11 @@ export class TagsController {
   @Delete(':tagName')
   async deleteTag(@Param('tagName') tagName: string) {
     return this.tagsService.deleteTag(tagName);
-    // console.log('delete tag', tagName);
+  }
+
+  @Put(':id')
+  async updateTag(@Param('id') tagId: string, @Body() tagData) {
+    const tagName = tagData['name'];
+    return this.tagsService.updateTag(tagId, tagName);
   }
 }
