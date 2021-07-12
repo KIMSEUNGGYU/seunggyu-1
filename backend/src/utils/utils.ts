@@ -1,7 +1,6 @@
-import { hash } from 'bcrypt';
+import { hashSync } from 'bcrypt';
 
-export async function makeHash(data: string) {
-  // return 'password';
-  const hashedData = await hash(data, 10);
+export function makeHash(data: string) {
+  const hashedData = hashSync(data, 10);
   return hashedData;
 }
