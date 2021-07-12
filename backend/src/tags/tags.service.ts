@@ -41,4 +41,18 @@ export class TagsService {
     const tagToRemove = await this.tagsRepository.findOne({ where: { name: tagName } });
     tagToRemove && (await this.tagsRepository.remove(tagToRemove));
   }
+
+  async updateTag(tagId: string, tagName: string) {
+    const tagToUpdate = await this.tagsRepository.findOne({ where: { id: tagId } });
+
+    if (!tagToUpdate) return;
+
+    tagToUpdate.name = tagName;
+    // 업데이트 적용
+    try {
+      await this.tagsRepository.save(tagToUpdate);
+    } catch (error) {
+      console.error(`Update Tag Error: ${error}`);
+    }
+  }
 }
