@@ -66,8 +66,8 @@ export const lightTheme = {
 
   CODE_INLINE: '#EB5757',
   CODE_BACKGROUND: '#f7f6f3',
-  A_LINK: '#0ca678',
-
+  A_LINK: 'rgba(55,53,47,0.4)',
+  QUOTE_COLOR: 'baack',
   // post
   postBackgroundColor: '#fff',
   postTextColor: 'rgb(55, 53, 47)',
@@ -90,7 +90,8 @@ export const darkTheme = {
 
   CODE_INLINE: '#EB5757',
   CODE_BACKGROUND: '#3E4447',
-  A_LINK: '#0ca678',
+  A_LINK: 'rgba(255,255,255,0.4)',
+  QUOTE_COLOR: 'rgba(255, 255, 255, 0.9)',
 
   // post
   postBackgroundColor: '#303437',
