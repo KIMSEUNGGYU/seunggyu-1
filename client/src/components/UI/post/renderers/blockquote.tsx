@@ -6,12 +6,12 @@ interface BlockQuoteProps {
 }
 
 const BlockQuote = styled.blockquote`
-  border-left: 4px solid #20c997;
+  border-left: 4px solid ${({ theme }) => theme.postTextColor};
   padding: 0 16px;
-  margin: 0;
+  margin: 0.5rem 0;
 
   & > p {
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
   }
 `;
