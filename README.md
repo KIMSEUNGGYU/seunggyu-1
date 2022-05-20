@@ -1,4 +1,8 @@
 # seunggyu
+## v2 로 바로가기
+[V2 마이그레이션 ~ing](https://github.com/CodeSoom/project-react-6-KIMSEUNGGYU)
+
+## V1
 > seunggyu's website  
 - 저를 나타낸다고 생각하고 좋은 컨텐츠를 제공하기 위해 제작한 사이트 입니다.
 - 학습한 내용 및 적용한 내용을 잘 정리해서 다수에게 도움이 되고자 합니다.
